@@ -1,0 +1,30 @@
+学习文档：
+https://www.runoob.com/go/go-multi-dimensional-arrays.html
+https://www.tizi365.com/archives/250.html
+
+获取源代码：
+git clone https://github.com/fyonecon/ginlaravel.git
+cd ginlaravel
+
+使用 govendor 安装依赖包：
+go get -u -v github.com/kardianos/govendor
+govendor sync
+
+初始化项目：
+go mod init
+go mod tidy
+go build -mod=mod
+go mod vendor
+
+运行http服务：
+go run server.go
+
+迁移项目呢时，需要更换项目名：
+-go.mod
+-route.go
+-door.go
+-mysql.go
+--控制器里面的
+
+
+
