@@ -7,7 +7,7 @@ func GetDbConfig() map[string]string {
 
 	dbConfig["DB_HOST"] = "192.168.131.7"
 	dbConfig["DB_PORT"] = "3306"
-	dbConfig["DB_NAME"] = "shequ"
+	dbConfig["DB_NAME"] = "ginlaravel"
 	dbConfig["DB_USER"] = "root2"
 	dbConfig["DB_PWD"] = "123456"
 	dbConfig["DB_CHARSET"] = "utf8mb4"

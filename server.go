@@ -1,8 +1,8 @@
 package main
 
 import (
-	"ginlaravel/app/provider/driver"
 	"ginlaravel/app/provider/door"
+	"ginlaravel/app/provider/driver"
 	"github.com/gin-gonic/gin"
 )
 

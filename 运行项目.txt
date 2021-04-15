@@ -1,6 +1,14 @@
+
+联系作者fyonecon：
+长沙（2016-2017#WEB、2018-2020#PHP、2021—#GO）；
+邮箱：2652335796@qq.com、ikydee@yahoo.com；
+微信：fy66881159；
+博客：https://blog.csdn.net/weixin_41827162
+
 学习文档：
-https://www.runoob.com/go/go-multi-dimensional-arrays.html
-https://www.tizi365.com/archives/250.html
+GO语言：https://www.runoob.com/go/go-multi-dimensional-arrays.html
+Gin框架：https://www.tizi365.com/archives/250.html
+GORM数据库操作：https://www.tizi365.com/archives/6.html
 
 获取源代码：
 git clone https://github.com/fyonecon/ginlaravel.git
@@ -18,6 +26,9 @@ go mod vendor
 
 运行http服务：
 go run server.go
+
+关闭/停止http服务：
+ctrl + c
 
 迁移项目呢时，需要更换项目名：
 -go.mod
