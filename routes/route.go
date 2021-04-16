@@ -2,6 +2,7 @@ package routes
 
 import (
 	"ginlaravel/app/http/Controller"
+	"ginlaravel/app/http/Controller/Gen1Controller"
 	"ginlaravel/app/http/Controller/TestController"
 	"github.com/gin-gonic/gin"
 )
@@ -27,7 +28,7 @@ func RegisterRoutes(route *gin.Engine) {
 		gen1.Any("", Controller.Null) // 空路由
 
 		//gen1.Any("app/list_user", Gen1Controller.ListUser)
-		//gen1.Any("app/that_user", Gen1Controller.ThatUser)
+		gen1.Any("app/that_user", Gen1Controller.ThatUser)
 		//gen1.Any("app/add_user", Gen1Controller.AddUser)
 		//gen1.Any("app/add_user", Gen1Controller.EditUser)
 		//gen1.Any("app/del_user", Gen1Controller.DelUser)
