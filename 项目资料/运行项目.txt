@@ -1,0 +1,45 @@
+
+联系作者fyonecon：
+长沙（2016-2017#WEB、2018-2020#PHP、2021—#GO）；
+邮箱：2652335796@qq.com、ikydee@yahoo.com；
+微信：fy66881159；
+博客：https://blog.csdn.net/weixin_41827162
+
+学习文档：
+GO语言：https://www.runoob.com/go/go-multi-dimensional-arrays.html
+Gin框架：https://www.tizi365.com/archives/250.html
+GORM数据库操作：https://www.tizi365.com/archives/6.html
+
+获取源代码：
+git clone https://github.com/fyonecon/ginlaravel.git
+cd ginlaravel
+
+使用 govendor 安装依赖包：
+go get -u -v github.com/kardianos/govendor
+govendor sync
+
+初始化项目：
+go mod init
+
+构建依赖：
+go mod tidy
+go build -mod=mod
+go mod vendor
+
+启动MySQL数据库：请自行启动。
+
+运行http服务：
+go run server.go
+
+关闭/停止http服务：
+ctrl + c
+
+迁移项目呢时，需要更换项目名：
+-go.mod
+-route.go
+-door.go
+-mysql.go
+--控制器里面的
+
+
+

@@ -1,6 +1,7 @@
 package door
 
 import (
+	"fmt"
 	"ginlaravel/config"
 	"ginlaravel/routes"
 	"github.com/gin-gonic/gin"
@@ -9,6 +10,8 @@ import (
 // 配置并启动http服务
 // 项目访问入口
 func Run(httpServer *gin.Engine) {
+	fmt.Println("检查中间件...")
+
 	// 服务配置
 	serverConfig := config.GetServerConfig()
 

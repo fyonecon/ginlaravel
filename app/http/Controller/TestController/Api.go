@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// 接口输出简单数据
 func Api(ctx *gin.Context) {
 
 	// 请求GET参数
@@ -34,4 +35,39 @@ func Api(ctx *gin.Context) {
 	}
 
 	ctx.JSON(200, back)
+}
+
+
+// 接口输出复杂数据
+type ArrayApi2 struct {
+	Name   string
+	Age    int64
+	Info   map[string]string
+}
+func Api2(ctx *gin.Context)  {
+	// 预定义接口解释类参数
+	var state int
+	var msg string
+
+	var info = map[string]string{
+		"job": "理发师",
+		"avatar_url": "http://img",
+	}
+
+	// 构建多维数据
+	back := ArrayApi2{
+		Name:   "托尼老师",
+		Age:    21,
+		Info:   info,
+	}
+
+	state = 1
+	msg = "请求成功"
+
+	// 接口返回
+	ctx.JSON(200, gin.H{
+		"state": state,
+		"msg": msg,
+		"content": back,
+	})
 }

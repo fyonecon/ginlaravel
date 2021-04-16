@@ -1,0 +1,46 @@
+
+模型示例
+
+读数据示例
+
+引用公共函数
+
+中间件与拦截器
+
+热更与打包上线
+
+kit自定义服务扩展
+
+docker
+
+k8s
+
+？？？http://dealctr.com/ext/rd.php?f=ga&t=3gtr1&c=03302107
+
+==========
+
+gin.H 实际上就是 map[string]interface{}
+map[string]interface{}
+
+==========
+
+c.JSON(http.StatusOK, gin.H{ "status": "登录成功"})
+c.JSON(200, gin.H{ "status": "登录成功"})
+
+==========
+
+c.JSON(http.StatusOK, gin.H{ "status": "登录成功"})
+等价于
+c.JSON(http.StatusOK, map[string]interface{}{ "status": "登录成功"})
+
+==========
+
+error是不会导致程序退出、panic会导致程序退出。
+
+==========
+
+
+
+
+
+
