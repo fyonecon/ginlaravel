@@ -9,13 +9,13 @@ import (
 
 var db *sql.DB = driver.MysqlDb
 
-// 用户列表
-type ListUserModel struct { // 参数名需大写
+// 查用户列表
+type ListUserKeys struct { // 参数名需大写
 	UserId int
 	Nickname string
 	CreatTime string
 }
-func (model *ListUserModel) ListUser(_page int, _userClassId int, _nickname string) (users []ListUserModel, err error) {
+func (model *ListUserKeys) ListUser(_page int, _userClassId int, _nickname string) (users []ListUserKeys, err error) {
 
 	// 处理分页
 	var limit int = common.Page["limit"]
@@ -33,10 +33,10 @@ func (model *ListUserModel) ListUser(_page int, _userClassId int, _nickname stri
 	//}else {
 	//	userClassId = ""
 	//}
-	nickname := "%" + _nickname + "%"
+	nickname := "%" + _nickname + "%" // 模糊查询
 
 	// 查询数据
-	users = make([]ListUserModel, 0)
+	users = make([]ListUserKeys, 0)
 	rows, err := db.Query("SELECT `user_id`, `nickname`, `create_time` FROM `gl_user` WHERE `state`=1 and `nickname` like ? LIMIT ?, ?", nickname, offset, limit)
 	defer rows.Close()
 
@@ -45,7 +45,7 @@ func (model *ListUserModel) ListUser(_page int, _userClassId int, _nickname stri
 		return
 	}
 
-	var user ListUserModel
+	var user ListUserKeys
 	for rows.Next() {
 		rows.Scan(&user.UserId, &user.Nickname, &user.CreatTime)
 		users = append(users, user)
@@ -58,14 +58,13 @@ func (model *ListUserModel) ListUser(_page int, _userClassId int, _nickname stri
 	return
 }
 
-
-// 哪个用户
-type ThatUserModel struct { // 参数名需大写
+// 查某用户
+type ThatUserKeys struct { // 参数名需大写
 	UserId int
 	Nickname string
 	CreatTime string
 }
-func (model *ThatUserModel) ThatUser(userId int) (user ThatUserModel, err error)  {
+func (model *ThatUserKeys) ThatUser(userId int) (user ThatUserKeys, err error)  {
 	 err = db.QueryRow("SELECT `user_id`, `nickname`, `create_time` FROM `gl_user` WHERE `state`=1 and `user_id`=?", userId).Scan(&user.UserId, &user.Nickname, &user.CreatTime)
 	if err != nil {
 		log.Println(err.Error())
@@ -73,3 +72,70 @@ func (model *ThatUserModel) ThatUser(userId int) (user ThatUserModel, err error)
 	}
 	return
 }
+
+// 新增
+type AddUserKeys struct {
+
+}
+func (model *AddUserKeys)AddUser(userClassId int64, nickname string, createTime string) (_id int64, err error)  {
+	data, err := db.Exec("INSERT INTO `gl_user`(`user_class_id`, `nickname`, `create_time`) VALUES (?, ?, ?)", userClassId, nickname, createTime)
+
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	_id, err = data.LastInsertId()
+	return
+}
+
+// 更新
+type UpdateUserKeys struct {
+
+}
+func (model *UpdateUserKeys)UpdateUser(userId int64, userClassId int64, nickname string, updateTime string) (res int64, err error) {
+	data, err := db.Exec("UPDATE `gl_user` SET `user_class_id`=?, `nickname`=?, `update_time`=? WHERE `state`=1 and `user_id` = ?", userClassId, nickname, updateTime, userId)
+
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	res, err = data.RowsAffected()
+	return
+}
+
+// 删除用户
+// 不是真正删除，仅不可见状态
+type DelUserKeys struct {
+
+}
+func (model *DelUserKeys)DelUser(userId int64, updateTime string) (res int64, err error) {
+	data, err := db.Exec("UPDATE `gl_user` SET `state`=2, `update_time`=? WHERE `state`=1 and `user_id` = ?", updateTime, userId)
+
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	res, err = data.RowsAffected()
+	return
+}
+
+// 彻底删除用户，清空用户数据
+type ClearUserKeys struct {
+
+}
+func (model *ClearUserKeys)ClearUser(userId int64,) (res int64, err error) {
+	data, err := db.Exec("DELETE FROM `gl_user` WHERE `user_id` = ?", userId)
+
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	res, err = data.RowsAffected()
+	return
+}
+
+

@@ -29,9 +29,10 @@ func RegisterRoutes(route *gin.Engine) {
 
 		gen1.Any("app/list_user", Gen1Controller.ListUser)
 		gen1.Any("app/that_user", Gen1Controller.ThatUser)
-		//gen1.Any("app/add_user", Gen1Controller.AddUser)
-		//gen1.Any("app/add_user", Gen1Controller.EditUser)
-		//gen1.Any("app/del_user", Gen1Controller.DelUser)
+		gen1.Any("app/add_user", Gen1Controller.AddUser)
+		gen1.Any("app/update_user", Gen1Controller.UpdateUser)
+		gen1.Any("app/del_user", Gen1Controller.DelUser)
+		gen1.Any("app/clear_user", Gen1Controller.ClearUser)
 
 	}
 
