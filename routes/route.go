@@ -3,6 +3,7 @@ package routes
 import (
 	"ginlaravel/app/http/Controller"
 	"ginlaravel/app/http/Controller/Gen1Controller"
+	"ginlaravel/app/http/Controller/Gen2Controller"
 	"ginlaravel/app/http/Controller/TestController"
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +18,7 @@ func RegisterRoutes(route *gin.Engine) {
 	test := route.Group("/test/")
 	{ // 按分组注册路由
 		test.Any("", Controller.Null)       // 空路由
+		test.Any("test1", TestController.Test1)       // 空路由
 		test.Any("tpl", TestController.Tpl) // 模版输出
 		test.Any("api", TestController.Api) // 接口输出-简单数据
 		test.Any("api2", TestController.Api2) // 直接接口输出-复杂数据
@@ -33,6 +35,20 @@ func RegisterRoutes(route *gin.Engine) {
 		gen1.Any("app/update_user", Gen1Controller.UpdateUser)
 		gen1.Any("app/del_user", Gen1Controller.DelUser)
 		gen1.Any("app/clear_user", Gen1Controller.ClearUser)
+
+	}
+
+	// ==版本2的接口分组==
+	gen2 := route.Group("/gen2/")
+	{
+		gen2.Any("", Controller.Null) // 空路由
+
+		gen2.Any("app/list_user", Gen2Controller.ListUser)
+		gen2.Any("app/that_user", Gen2Controller.ThatUser)
+		//gen2.Any("app/add_user", Gen2Controller.AddUser)
+		//gen2.Any("app/update_user", Gen2Controller.UpdateUser)
+		//gen2.Any("app/del_user", Gen2Controller.DelUser)
+		//gen2.Any("app/clear_user", Gen2Controller.ClearUser)
 
 	}
 

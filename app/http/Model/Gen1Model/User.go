@@ -26,13 +26,6 @@ func (model *ListUserKeys) ListUser(_page int, _userClassId int, _nickname strin
 	offset = limit*page
 
 	// 构建查询
-	//userClassId := ""
-	//if _userClassId != 0 {
-	//	__userClassId := common.IntToString(_userClassId)
-	//	userClassId = " `user_class_id`=" + __userClassId
-	//}else {
-	//	userClassId = ""
-	//}
 	nickname := "%" + _nickname + "%" // 模糊查询
 
 	// 查询数据
@@ -122,7 +115,7 @@ func (model *DelUserKeys)DelUser(userId int64, updateTime string) (res int64, er
 	return
 }
 
-// 彻底删除用户，清空用户数据
+// 彻底删除用户
 type ClearUserKeys struct {
 
 }

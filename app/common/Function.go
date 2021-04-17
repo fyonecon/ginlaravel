@@ -93,7 +93,7 @@ func MakePaging(_total int, _limit int, _page int) map[string]int{
 }
 
 // 获取日期时间戳，s
-func TimeDate(_format string) string {
+func GetTimeDate(_format string) string {
 	timer := time.Now()
 
 	var year int = timer.Year()
@@ -169,8 +169,81 @@ func TimeDate(_format string) string {
 	return _date
 }
 
-// 日期时间戳转时间戳，s
+// 获取秒时间戳
+func GetTimeS() int64 {
+	return time.Now().Unix()
+}
 
 // 获取毫秒时间戳，ms
+func GetTimeMS() int64 {
+	timeNS := time.Now().UnixNano() // 纳秒
+	timeMS := math.Floor(float64(timeNS / 1000000))
+	return int64(timeMS)
+}
 
-// 毫秒时间戳转日期，ms
+// 日期时间戳转时间戳，s
+func DateToTimeS(_date string, format string) int64 {
+	var date string
+	if len(_date) == 0 { //给一个默认值
+		date = GetTimeDate("YmdHis")
+	}else {
+		date = _date
+	}
+
+	var layout string
+	if format == "YmdHis" || format == "" {
+		layout = "20060102150405" // 转化所需内定模板
+	}else if format == "Y-m-d H:i:s" {
+		layout = "2006-01-02 15:04:05"
+	}else if format == "Y年m月d日 H:i:s" {
+		layout = "2006年01月02日 15:04:05"
+	}else {
+		layout = "20060102150405"
+	}
+
+	//日期转化为时间戳
+	loc, _ := time.LoadLocation("Local") //获取时区
+	tmp, _ := time.ParseInLocation(layout, date, loc)
+	timestamp := tmp.Unix() //转化为时间戳 类型是int64
+
+	return timestamp
+}
+
+// 秒时间戳转日期，ms
+func TimeSToDate(_timeS int64, format string) string {
+	var timeS int64
+	if _timeS == 0 { //给一个默认值
+		timeS = GetTimeS()
+	}else {
+		timeS = _timeS
+	}
+
+	var layout string
+	if format == "YmdHis" || format == "" {
+		layout = "20060102150405" // 转化所需内定模板
+	}else if format == "Y-m-d H:i:s" {
+		layout = "2006-01-02 15:04:05"
+	}else if format == "Y年m月d日 H:i:s" {
+		layout = "2006年01月02日 15:04:05"
+	}else {
+		layout = "20060102150405"
+	}
+
+	date := time.Unix(timeS, 0).Format(layout)
+	return date
+}
+
+// 将日期时间戳YmdHis转成日期时间戳Y-m-d H:i:s
+func DateToDate(_date string) string {
+	var date string
+	if len(_date) == 0 {
+		date = GetTimeDate("YmdHis")
+	}else {
+		date = _date
+	}
+
+	timeS := DateToTimeS(date, "")
+
+	return TimeSToDate(timeS, "Y-m-d H:i:s")
+}
+

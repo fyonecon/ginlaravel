@@ -99,7 +99,7 @@ func AddUser(ctx *gin.Context)  {
 	_userClassId := ctx.Query("user_class_id") // GET方法获得参数
 	userClassId := common.StringToInt(_userClassId)
 	_nickname := ctx.Query("nickname") // GET方法获得参数
-	createTime := common.TimeDate("YmdHis")
+	createTime := common.GetTimeDate("YmdHis")
 
 	if userClassId == 0 {
 		ctx.JSON(200, gin.H{
@@ -168,7 +168,7 @@ func UpdateUser(ctx *gin.Context)  {
 	_userClassId := ctx.Query("user_class_id") // GET方法获得参数
 	userClassId := common.StringToInt(_userClassId)
 	_nickname := ctx.Query("nickname") // GET方法获得参数
-	updateTime := common.TimeDate("YmdHis")
+	updateTime := common.GetTimeDate("YmdHis")
 
 	if userClassId == 0 {
 		ctx.JSON(200, gin.H{
@@ -233,7 +233,7 @@ func DelUser(ctx *gin.Context)  {
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
 	_userId := ctx.Query("user_id") // GET方法获得参数
 	userId := common.StringToInt(_userId)
-	updateTime := common.TimeDate("YmdHis")
+	updateTime := common.GetTimeDate("YmdHis")
 
 	userModel := Gen1Model.DelUserKeys{}
 	if err := ctx.ShouldBind(&userModel); err != nil {

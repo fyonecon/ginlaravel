@@ -9,6 +9,7 @@
 GO语言：https://www.runoob.com/go/go-multi-dimensional-arrays.html
 Gin框架：https://www.tizi365.com/archives/250.html
 GORM数据库操作：https://www.tizi365.com/archives/6.html
+官方SQL文档：https://studygolang.com/pkgdoc
 
 获取源代码：
 git clone https://github.com/fyonecon/ginlaravel.git
