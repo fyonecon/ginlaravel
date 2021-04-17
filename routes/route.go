@@ -1,5 +1,15 @@
 package routes
 
+/*
+	第二作者Author：fyonecon
+	博客Blog：https://blog.csdn.net/weixin_41827162
+	邮箱Email：2652335796@qq.com，ikydee@yahoo.com
+	微信WeChat：fy66881159
+	所在城市City：长沙ChangSha
+	==2021年04月17号==
+	==2016-2020#WEB、2018-2020#PHP、2021—#GO==
+*/
+
 import (
 	"ginlaravel/app/http/Controller"
 	"ginlaravel/app/http/Controller/Gen1Controller"
