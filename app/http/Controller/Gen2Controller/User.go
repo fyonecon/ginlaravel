@@ -3,7 +3,6 @@ package Gen2Controller
 import (
 	"database/sql"
 	"ginlaravel/app/common"
-	"ginlaravel/app/http/Controller"
 	"ginlaravel/app/kit"
 	"ginlaravel/app/provider/driver"
 	"github.com/gin-gonic/gin"
@@ -20,7 +19,6 @@ type ListUserKeys struct { // 结果集，参数名需大写
 	CreatTime string
 }
 func ListUser(ctx *gin.Context)  {
-	Controller.Gen2SafeCheck(ctx) // 检测请求是否安全
 
 	// 预定义参数
 	var state int
@@ -91,6 +89,7 @@ type ThatUserKeys struct { // 结果集，参数名需大写
 	CreatTime string
 }
 func ThatUser(ctx *gin.Context) {
+
 	// 预定义参数
 	var state int
 	var msg string
