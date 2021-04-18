@@ -23,7 +23,7 @@ func VerifyGen2(ctx *gin.Context) {
 		ctx.Next()
 	}else if method == "POST" || method == "OPTION" {
 		// 校验接口token
-		token := kit.Input(ctx, "token")
+		token := Kit.Input(ctx, "token")
 		if len(token) == 0 {
 			ctx.JSON(200, gin.H{
 				"state": 0,

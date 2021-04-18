@@ -11,7 +11,7 @@ func Test1(ctx *gin.Context){
 	body := ctx.Request.Body
 	header := ctx.Request.Header["Sec-Fetch-User"]
 
-	id := kit.Input(ctx, "id2") //
+	id := Kit.Input(ctx, "id2") //
 
 	// 接口返回
 	ctx.JSON(200, gin.H{

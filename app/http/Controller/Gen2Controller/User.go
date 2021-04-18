@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"ginlaravel/app/common"
 	"ginlaravel/app/kit"
-	"ginlaravel/app/provider/driver"
+	"ginlaravel/bootstrap/driver"
 	"github.com/gin-gonic/gin"
 	"log"
 	"reflect"
@@ -25,12 +25,12 @@ func ListUser(ctx *gin.Context)  {
 	var msg string
 	var testData map[string]string
 
-	_page := kit.Input(ctx, "page")
-	_nickname := kit.Input(ctx, "nickname")
+	_page := Kit.Input(ctx, "page")
+	_nickname := Kit.Input(ctx, "nickname")
 
 	// 处理分页
-	var limit int = common.Page["limit"]
-	var page int = common.StringToInt(_page)
+	var limit int = Common.Page["limit"]
+	var page int = Common.StringToInt(_page)
 	var offset int = 0 // 本页从第几个开始
 	if page <= 0 { page = 1 } else if page > 200 { page = 200 }
 	page = page - 1
@@ -61,7 +61,7 @@ func ListUser(ctx *gin.Context)  {
 		// 遍历切片中结构体，并改变结构体成员变量的值
 		for i := 0; i < len(users); i++ {
 			theCreateTime := users[i].CreatTime
-			newCreateTime := common.DateToDate(theCreateTime)
+			newCreateTime := Common.DateToDate(theCreateTime)
 			users[i].CreatTime = newCreateTime
 		}
 
@@ -95,8 +95,8 @@ func ThatUser(ctx *gin.Context) {
 	var msg string
 	var testData map[string]string
 
-	_userId := kit.Input(ctx, "user_id")
-	userId := common.StringToInt(_userId)
+	_userId := Kit.Input(ctx, "user_id")
+	userId := Common.StringToInt(_userId)
 
 	// 直接查询数据
 	user := ThatUserKeys{} // 构建结果集
@@ -111,7 +111,7 @@ func ThatUser(ctx *gin.Context) {
 
 		// 访问结构体并改变成员变量的值
 		createTime := user.CreatTime
-		createTime = common.DateToDate(createTime)
+		createTime = Common.DateToDate(createTime)
 		user.CreatTime = createTime
 
 	}

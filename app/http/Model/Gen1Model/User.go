@@ -3,7 +3,7 @@ package Gen1Model
 import (
 	"database/sql"
 	"ginlaravel/app/common"
-	"ginlaravel/app/provider/driver"
+	"ginlaravel/bootstrap/driver"
 	"log"
 )
 
@@ -18,7 +18,7 @@ type ListUserKeys struct { // 参数名需大写
 func (model *ListUserKeys) ListUser(_page int, _userClassId int, _nickname string) (users []ListUserKeys, err error) {
 
 	// 处理分页
-	var limit int = common.Page["limit"]
+	var limit int = Common.Page["limit"]
 	var page int = 0
 	var offset int = 0 // 本页从第几个开始
 	if _page <= 0 { page = 1 } else if _page > 200 { page = 200 }

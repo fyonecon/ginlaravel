@@ -22,9 +22,9 @@ func Api(ctx *gin.Context) {
 	}
 
 	// 引用公共函数和公共配置参数
-	name3 := common.Test("common==func==")
-	name4 := common.Config["test"]
-	name5 := common.Config["api"]
+	name3 := Common.Test("common==func==")
+	name4 := Common.Config["test"]
+	name5 := Common.Config["api"]
 
 	content := "name1==" + name1 + ", name2==" + name2 + ", name3=" + name3 + ", name4=" + name4+ ", name5=" + name5
 

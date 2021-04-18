@@ -1,4 +1,4 @@
-package common
+package Common
 
 // 代码参数配置
 var Config = map[string]string{

@@ -16,11 +16,11 @@ func ListUser(ctx *gin.Context)  {
 	var testData map[string]string
 
 	_userClassId := ctx.Query("user_class_id")
-	userClassId := common.StringToInt(_userClassId)
+	userClassId := Common.StringToInt(_userClassId)
 	_nickname := ctx.Query("nickname")
 	// _page := ctx.PostForm("page")
 	_page := ctx.Query("page")
-	page := common.StringToInt(_page)
+	page := Common.StringToInt(_page)
 	page = page - 1
 
 	listUserModel := Gen1Model.ListUserKeys{}
@@ -97,9 +97,9 @@ func AddUser(ctx *gin.Context)  {
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
 	_userClassId := ctx.Query("user_class_id") // GET方法获得参数
-	userClassId := common.StringToInt(_userClassId)
+	userClassId := Common.StringToInt(_userClassId)
 	_nickname := ctx.Query("nickname") // GET方法获得参数
-	createTime := common.GetTimeDate("YmdHis")
+	createTime := Common.GetTimeDate("YmdHis")
 
 	if userClassId == 0 {
 		ctx.JSON(200, gin.H{
@@ -163,12 +163,12 @@ func UpdateUser(ctx *gin.Context)  {
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
 	_userId := ctx.Query("user_id") // GET方法获得参数
-	userId := common.StringToInt(_userId)
+	userId := Common.StringToInt(_userId)
 
 	_userClassId := ctx.Query("user_class_id") // GET方法获得参数
-	userClassId := common.StringToInt(_userClassId)
+	userClassId := Common.StringToInt(_userClassId)
 	_nickname := ctx.Query("nickname") // GET方法获得参数
-	updateTime := common.GetTimeDate("YmdHis")
+	updateTime := Common.GetTimeDate("YmdHis")
 
 	if userClassId == 0 {
 		ctx.JSON(200, gin.H{
@@ -232,8 +232,8 @@ func DelUser(ctx *gin.Context)  {
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
 	_userId := ctx.Query("user_id") // GET方法获得参数
-	userId := common.StringToInt(_userId)
-	updateTime := common.GetTimeDate("YmdHis")
+	userId := Common.StringToInt(_userId)
+	updateTime := Common.GetTimeDate("YmdHis")
 
 	userModel := Gen1Model.DelUserKeys{}
 	if err := ctx.ShouldBind(&userModel); err != nil {
@@ -273,7 +273,7 @@ func ClearUser(ctx *gin.Context)  {
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
 	_userId := ctx.Query("user_id") // GET方法获得参数
-	userId := common.StringToInt(_userId)
+	userId := Common.StringToInt(_userId)
 
 	userModel := Gen1Model.ClearUserKeys{}
 	if err := ctx.ShouldBind(&userModel); err != nil {

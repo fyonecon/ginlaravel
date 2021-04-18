@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"ginlaravel/app/provider/door"
-	"ginlaravel/app/provider/driver"
+	"ginlaravel/bootstrap/app"
+	"ginlaravel/bootstrap/driver"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,5 +16,5 @@ func main() {
 	defer driver.MysqlDb.Close()
 
 	// 启动服务
-	door.Run(HttpServer)
+	app.Run(HttpServer)
 }

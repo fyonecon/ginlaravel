@@ -1,4 +1,4 @@
-package kit
+package Kit
 
 import "github.com/gin-gonic/gin"
 

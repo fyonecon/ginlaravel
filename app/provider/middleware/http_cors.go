@@ -1,5 +1,0 @@
-package middleware
-
-//func VerifyHttpCors() {
-//
-//}
