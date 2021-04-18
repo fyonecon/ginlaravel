@@ -1,6 +1,6 @@
 package config
 
-// 数据库配置
+// MySQL数据库配置
 func GetDbConfig() map[string]string {
 	// 初始化数据库配置map
 	dbConfig := make(map[string]string)
