@@ -29,8 +29,11 @@ go mod vendor
 
 启动MySQL数据库：请自行启动。
 
-运行http服务：
+直接启动http服务：
 go run server.go
+
+或热更刷新方式启动http服务：
+fresh
 
 关闭/停止http服务：
 ctrl + c
@@ -47,5 +50,6 @@ ctrl + z
 ===========
 
 https://github.com/didip/tollbooth
+go get github.com/pilu/fresh
 
 
