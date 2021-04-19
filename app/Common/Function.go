@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"net/url"
 	"strconv"
 	"time"
 )
@@ -15,6 +16,15 @@ func Test(txt string) string {
 	}
 	Config["test"] = txt
 	return txt
+}
+
+// 转义url
+func EncodeURL(_url string) string {
+	return url.QueryEscape(_url)
+}
+// 解析转义url
+func DecodeURL(_url string) (string, error) {
+	return url.QueryUnescape(_url)
 }
 
 // string转int
@@ -247,3 +257,8 @@ func DateToDate(_date string) string {
 	return TimeSToDate(timeS, "Y-m-d H:i:s")
 }
 
+// GET请求
+func RequestGet(requestUrl string)  {
+	//
+	
+}

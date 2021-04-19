@@ -1,7 +1,7 @@
 package Gen1Controller
 
 import (
-	"ginlaravel/app/common"
+	"ginlaravel/app/Common"
 	"ginlaravel/app/http/Model/Gen1Model"
 	"github.com/gin-gonic/gin"
 	"log"

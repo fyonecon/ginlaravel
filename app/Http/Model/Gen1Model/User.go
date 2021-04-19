@@ -2,7 +2,7 @@ package Gen1Model
 
 import (
 	"database/sql"
-	"ginlaravel/app/common"
+	"ginlaravel/app/Common"
 	"ginlaravel/bootstrap/driver"
 	"log"
 )

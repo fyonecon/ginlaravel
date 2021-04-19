@@ -11,11 +11,13 @@ package routes
 */
 
 import (
+	"ginlaravel/app/Http/Controller/Gen2"
+	"ginlaravel/app/Http/Controller/Gen3"
+	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
+	"ginlaravel/app/Http/Controller/Test"
 	"ginlaravel/app/Http/Middleware"
 	"ginlaravel/app/http/Controller"
 	"ginlaravel/app/http/Controller/Gen1Controller"
-	"ginlaravel/app/http/Controller/Gen2Controller"
-	"ginlaravel/app/http/Controller/TestController"
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth/limiter"
 	"github.com/didip/tollbooth_gin"
@@ -39,12 +41,12 @@ func RegisterRoutes(route *gin.Engine) {
 	// ==测试==
 	test := route.Group("/test/", tollbooth_gin.LimitHandler(lmt), Middleware.HttpCors, Controller.VerifyTest)
 	{ // 按分组注册路由
-		test.Any("", Controller.Null)             // 空路由
-		test.Any("test1", TestController.Test1)   // 空路由
-		test.Any("tpl", TestController.Tpl)       // 模版输出
-		test.Any("api", TestController.Api)       // 接口输出-简单数据
-		test.Any("api2", TestController.Api2)     // 直接接口输出-复杂数据
-		test.Any("init", TestController.Test2Run) // 直接接口输出-复杂数据
+		test.Any("", Controller.Null)   // 空路由
+		test.Any("test1", Test.Test1)   // 空路由
+		test.Any("tpl", Test.Tpl)       // 模版输出
+		test.Any("api", Test.Api)       // 接口输出-简单数据
+		test.Any("api2", Test.Api2)     // 直接接口输出-复杂数据
+		test.Any("init", Test.Test2Run) // 直接接口输出-复杂数据
 	}
 
 	// ==版本1的接口分组==
@@ -66,12 +68,23 @@ func RegisterRoutes(route *gin.Engine) {
 	{
 		gen2.Any("", Controller.Null) // 空路由
 
-		gen2.Any("app/list_user", Gen2Controller.ListUser)
-		gen2.Any("app/that_user", Gen2Controller.ThatUser)
-		//gen2.Any("app/add_user", Gen2Controller.AddUser)
-		//gen2.Any("app/update_user", Gen2Controller.UpdateUser)
-		//gen2.Any("app/del_user", Gen2Controller.DelUser)
-		//gen2.Any("app/clear_user", Gen2Controller.ClearUser)
+		gen2.Any("app/list_user", Gen2.ListUser)
+		gen2.Any("app/that_user", Gen2.ThatUser)
+		//gen2.Any("app/add_user", Gen2.AddUser)
+		//gen2.Any("app/update_user", Gen2.UpdateUser)
+		//gen2.Any("app/del_user", Gen2.DelUser)
+		//gen2.Any("app/clear_user", Gen2.ClearUser)
+
+	}
+
+	// ==版本3的接口分组==
+	route.Any("/gen3/app/get_app_token", tollbooth_gin.LimitHandler(lmt), Middleware.HttpCors, Gen3.VerifyOpen, Gen3App.GetAppToken)
+	route.Any("/gen3/user/user_login", tollbooth_gin.LimitHandler(lmt), Middleware.HttpCors, Gen3.VerifyOpen, Gen3App.GetAppToken)
+	gen3 := route.Group("/gen3/", tollbooth_gin.LimitHandler(lmt), Middleware.HttpCors, Gen3.VerifyApp)
+	{
+		gen3.Any("", Controller.Null) // 空路由
+
+		gen3.Any("app/list_user", Gen3App.ListUser)
 
 	}
 
