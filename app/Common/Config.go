@@ -1,9 +1,20 @@
 package Common
 
+import (
+	"os"
+	"runtime"
+)
+
 // 代码参数配置
 var Config = map[string]string{
 	"test": "test-config",
 	"api": "http",
+}
+
+// 服务器信息
+var ServerInfo = map[string]string{
+	"root_path": runtime.GOROOT(),
+	"storage_path": os.Getenv("GOPATH") + "/src/ginlaravel/storage/", // 文件存储在服务器的地址
 }
 
 // 分页参数

@@ -180,6 +180,12 @@ func GetTimeDate(_format string) string {
 	case "y-m-d h:i:s":
 		_date = _year1 + "-" + _month1 + "-" + _day1 + " " + _hour1 + ":" + _minute1 + ":" + _second1
 		break
+	case "Y-m-d":
+		_date = _year1 + "-" + _month + "-" + _day
+		break
+	case "H:i:s":
+		_date = _hour + ":" + _minute + ":" + _second
+		break
 	default:
 		_date = _year + "" + _month + "" + _day + "" + _hour + "" + _minute + "" + _second
 		break

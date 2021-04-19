@@ -38,7 +38,7 @@ SCK模型大多数情况下是面向Api等，具有接口安全、请求数据�
 #### 系统集文件夹名：小写
 
 ## 运行项目
->Go运行环境
+>Go运行环境。搭建请参考：https://blog.csdn.net/weixin_41827162/article/details/115693925
 
 > MySQL（请将/项目资料/ginlaravel.sql 文件导入到数据库）
 

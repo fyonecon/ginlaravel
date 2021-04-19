@@ -7,6 +7,8 @@ import (
 )
 
 func VerifyApp(ctx *gin.Context) {
+	IP := ctx.ClientIP()
+
 	// 校验接口访问方式
 	method := ctx.Request.Method
 	if method == "GET" {
@@ -29,6 +31,7 @@ func VerifyApp(ctx *gin.Context) {
 		}else {
 			if len(_msg) == 0 {
 				_msg = "token数据格式不正确"
+				Kit.Log(_msg, IP)
 			}
 			ctx.JSON(200, gin.H{
 				"state": _state,
@@ -48,6 +51,7 @@ func VerifyApp(ctx *gin.Context) {
 		}else {
 			if len(_msg) == 0 {
 				_msg = "token数据格式不正确"
+				Kit.Log(_msg, IP)
 			}
 			ctx.JSON(200, gin.H{
 				"state": _state,
@@ -57,12 +61,13 @@ func VerifyApp(ctx *gin.Context) {
 			ctx.Abort()
 		}
 	}else {
+		Kit.Log(method, IP)
 		ctx.JSON(200, gin.H{
 			"state": 0,
 			"msg": "未知的访问方法",
 			"content": map[string]string{
 				"method": method,
-				"IP": ctx.ClientIP(),
+				"IP": IP,
 			},
 		})
 		ctx.Abort() // 中断下一步函数运用
