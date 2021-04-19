@@ -21,7 +21,7 @@ import (
 // 代码公共函数
 func Test(txt string) string {
 	if len(txt) == 0 {
-		txt = "txt-nil"
+		txt = "txt-nil2"
 	}
 	Config["test"] = txt
 	return txt

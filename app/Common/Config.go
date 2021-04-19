@@ -1,4 +1,5 @@
 package Common
+// 项目函数（或第三方服务）运行所依赖的参数配置
 
 import (
 	"os"

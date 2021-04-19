@@ -56,7 +56,7 @@ func ListUser(ctx *gin.Context)  {
 		msg = "查询无数据"
 	}else {
 		state = 1
-		msg = "查询完成"
+		msg = "查询完成" + Common.Test("")
 
 		// 遍历切片中结构体，并改变结构体成员变量的值
 		for i := 0; i < len(users); i++ {
