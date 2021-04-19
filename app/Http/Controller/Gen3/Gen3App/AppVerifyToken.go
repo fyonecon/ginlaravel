@@ -2,7 +2,6 @@ package Gen3App
 // 解析AppToken
 
 import (
-	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
 	"strings"
@@ -33,9 +32,6 @@ func AppCheckToken(_appToken string) (int64, string, string) {
 
 		tokenTime = int64(Common.StringToInt(_timeMS))
 		nowTime := Common.GetTimeMS()
-		fmt.Println(nowTime)
-		fmt.Println(tokenTime)
-		fmt.Println(nowTime - tokenTime)
 
 		theTime := nowTime - tokenTime
 		if theTime < 1000*60*60*24*2 && theTime > 0 { // 有效

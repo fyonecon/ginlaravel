@@ -1,5 +1,14 @@
 package app
 
+/*
+第二作者Author：fyonecon
+博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
+Github：https://github.com/fyonecon/ginlaravel
+邮箱Email：2652335796@qq.com，ikydee@yahoo.com
+微信WeChat：fy66881159
+所在城市City：长沙ChangSha
+*/
+
 import (
 	"fmt"
 	"ginlaravel/config"
@@ -37,7 +46,7 @@ func Run(httpServer *gin.Engine) {
 	// 启动服务
 	err := httpServer.Run(serverAddr)
 
-	if nil != err {
-		panic("server run error: " + err.Error())
+	if err != nil {
+		panic("Run Error: " + err.Error())
 	}
 }

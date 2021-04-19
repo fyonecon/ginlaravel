@@ -1,14 +1,21 @@
-// mysql db driver
 package driver
+
+/*
+第二作者Author：fyonecon
+博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
+Github：https://github.com/fyonecon/ginlaravel
+邮箱Email：2652335796@qq.com，ikydee@yahoo.com
+微信WeChat：fy66881159
+所在城市City：长沙ChangSha
+*/
 
 import (
 	"database/sql"
 	"fmt"
 	"ginlaravel/config"
+	_ "github.com/go-sql-driver/mysql"
 	"strconv"
 	"time"
-
-	_ "github.com/go-sql-driver/mysql"
 )
 
 // query need rows.Close to release db ins

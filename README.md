@@ -51,6 +51,7 @@ SCK模型大多数情况下是面向Api等，具有接口安全、请求数据�
 ## 关于
 #### 第二作者Author：fyonecon
 #### 博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
+#### Github：https://github.com/fyonecon/ginlaravel
 ##### 长沙
 ##### 微信WeChat：fy66881159
 
