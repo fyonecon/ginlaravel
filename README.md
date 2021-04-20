@@ -38,7 +38,7 @@ SCK模型大多数情况下是面向Api等，具有接口安全、请求数据�
 #### 系统集文件夹名：小写
 
 ## 运行项目
->Go运行环境。搭建请参考：https://blog.csdn.net/weixin_41827162/article/details/115693925
+>Go运行环境。搭建Go和基础Gin环境请参考：https://blog.csdn.net/weixin_41827162/article/details/115693925
 
 > MySQL（请将/项目资料/ginlaravel.sql 文件导入到数据库）
 
@@ -47,6 +47,60 @@ SCK模型大多数情况下是面向Api等，具有接口安全、请求数据�
 > 访问"http://127.0.0.1:8090/gen2/app/list_user "
 
 > 项目上线：serverConfig["ENV"]的值改成release，然后使用以上同样方法运行。
+
+## 如何初始化项目
+以当前目录 /Users/fyonecon/go/src/ 为例
+```sybase
+获取源代码：
+git clone https://github.com/fyonecon/ginlaravel.git
+cd go/src/ginlaravel
+
+使用 govendor 安装依赖包：
+go get -u -v github.com/kardianos/govendor
+govendor sync
+
+初始化项目：
+go mod init
+
+构建依赖：
+go mod tidy
+go build -mod=mod
+go mod vendor
+
+启动MySQL数据库：请自行启动。
+
+在/config/db.go配置数据库信息，用来连接你的数据库。
+
+启动http服务：
+go run server.go
+
+
+
+
+```
+
+## 如何运行fresh热更服务
+以项目目录 /Users/fyonecon/go/src/ginlaravel 为例
+```sybase
+
+去.bash_profile文件目录：
+cd ~
+
+运行：
+source ~/.bash_profile
+
+切换到项目目录：
+cd go/src/ginlaravel
+
+开启热更：
+fresh
+
+退出http服务用快捷键：Ctrl + C 。或直接关闭终端窗口。
+
+```
+以上即可项目开启的fresh热更服务。
+若想一直开启终端窗口，请使用screen（yum install screen）来保持窗口。
+
 
 ## 关于
 #### 第二作者Author：fyonecon
