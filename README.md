@@ -67,8 +67,8 @@ go mod init
 
 构建依赖：
 go mod tidy
-go build -mod=mod
 go mod vendor
+go build -mod=mod
 
 启动MySQL数据库：请自行启动。
     
@@ -78,8 +78,6 @@ go mod vendor
 
 启动http服务：
 go run server.go
-
-
 
 
 ```
@@ -105,6 +103,24 @@ fresh
 ```
 以上即可项目开启的fresh热更服务。
 若想一直开启终端窗口，请使用screen（yum install screen）来保持窗口。
+
+热更服务文档：https://github.com/gravityblast/fresh 。
+
+## （Mac环境）将项目打包成二进制文件
+```sybase
+项目根目录：
+    go build -mod=mod
+
+此时，在项目目录生成或更新了ginlaravel二进制文件。
+开启文件的可执行权限：
+    chmod 773 ginlaravel
+        
+在根目录运行：
+    ./ginlaravel
+        
+即可开启二进制服务。
+
+```
 
 ## 关于
 #### 第二作者Author：fyonecon
