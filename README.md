@@ -1,7 +1,10 @@
 ## GinLaravel、GoLaravel
-基于GO框架Gin开发，项目结构和项目哲学参考Laravel，支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Safe——Controller——Kit"模式处理数据。
+基于GO框架Gin开发，项目结构和项目哲学参考Laravel，支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Safe—Controller—Kit"模式处理数据。
 
 SCK模型大多数情况下是面向Api等，具有接口安全、请求数据直接易懂、复杂格式数据易操作（批量处理）、请求宽进严出等特点。SCK没有model层，也不推荐使用model。/Gen1Controller/展示了使用MVC方式处理数据；/Gen2Controller/展示了使用SCK处理数据和请求。
+
+## 现已支持
+Go-MySQL、Go-Redis、热更、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、Form上传文件。
 
 ## 理念
 宽进严出，面向Api，能有效节约时间和保持秀发。
@@ -68,6 +71,8 @@ go build -mod=mod
 go mod vendor
 
 启动MySQL数据库：请自行启动。
+    
+启动Redis：请自行启动。
 
 在/config/db.go配置数据库信息，用来连接你的数据库。
 
@@ -100,7 +105,6 @@ fresh
 ```
 以上即可项目开启的fresh热更服务。
 若想一直开启终端窗口，请使用screen（yum install screen）来保持窗口。
-
 
 ## 关于
 #### 第二作者Author：fyonecon

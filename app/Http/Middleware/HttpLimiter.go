@@ -32,7 +32,11 @@ func HttpLimiter(_max float64) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		httpError := tollbooth.LimitByRequest(lmt, ctx.Writer, ctx.Request)
 		if httpError != nil {
-			ctx.Data(httpError.StatusCode, lmt.GetMessageContentType(), []byte(httpError.Message))
+			//ctx.Data(httpError.StatusCode, lmt.GetMessageContentType(), []byte(httpError.Message))
+			ctx.JSON(429, gin.H{
+				"state": 429, "msg": "访问频率限制", "content": "",
+			})
+
 			ctx.Abort()
 		} else {
 			ctx.Next()

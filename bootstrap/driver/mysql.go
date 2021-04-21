@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"ginlaravel/config"
 	_ "github.com/go-sql-driver/mysql"
+	"log"
 	"strconv"
 	"time"
 )
@@ -24,6 +25,8 @@ var MysqlDb *sql.DB  // db pool instance
 var MysqlDbErr error // db err instance
 
 func init() {
+	log.Println("初始化MySQL")
+
 	// get db config
 	dbConfig := config.GetDbConfig()
 
