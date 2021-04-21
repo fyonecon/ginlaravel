@@ -43,7 +43,8 @@ func RegisterRoutes(route *gin.Engine) {
 		test.Any("api2", Test.Api2)                           // 直接接口输出-复杂数据
 		test.Any("init", Test.Test2Run)                       // 直接接口输出-复杂数据
 		test.Any("upload_form_file", Gen3Open.UploadFormFile) // 直接接口输出-复杂数据
-		test.Any("go_redis", Test.GoRedis)
+		test.Any("redis_set", Test.RedisSet)
+		test.Any("redis_list", Test.RedisList)
 	}
 
 	// ==版本1的接口分组==

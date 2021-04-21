@@ -22,13 +22,6 @@ import (
 var rdbConfig map[string]string = config.GetRedisConfig()
 
 // 使用插件：https://github.com/go-redis/redis
-//var RedisDb *redis.Client = redis.NewClient(&redis.Options{ // 连接服务
-//	Addr:     rdbConfig["Addr"], // string
-//	Password: rdbConfig["Password"], // string
-//	DB:       Common.StringToInt(rdbConfig["DB"]), // int
-//})
-//var _, _ = RedisDb.Ping(context.Background()).Result() // 心跳
-
 var RedisDb *redis.Client
 
 func init() {
