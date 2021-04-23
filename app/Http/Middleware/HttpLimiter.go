@@ -34,7 +34,7 @@ func HttpLimiter(_max float64) gin.HandlerFunc {
 		if httpError != nil {
 			//ctx.Data(httpError.StatusCode, lmt.GetMessageContentType(), []byte(httpError.Message))
 			ctx.JSON(429, gin.H{
-				"state": 429, "msg": "访问频率限制", "content": "",
+				"state": 429, "msg": "触及访问频率限制", "content": ctx.ClientIP(),
 			})
 
 			ctx.Abort()

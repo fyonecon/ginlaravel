@@ -10,13 +10,13 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 import (
-	"ginlaravel/app/Http/Controller"
-	"ginlaravel/app/Http/Controller/Gen1Controller"
-	"ginlaravel/app/Http/Controller/Gen2"
+	"ginlaravel/app/Http/Controller/Gen1"
+	"ginlaravel/app/Http/Controller/Gen1/Gen1App"
+	"ginlaravel/app/Http/Controller/Gen1/Gen1User"
 	"ginlaravel/app/Http/Controller/Gen3"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3Open"
-	"ginlaravel/app/Http/Controller/Test"
+	_ "ginlaravel/app/Http/Controller/Gen3/Gen3User"
 	"ginlaravel/app/Http/Middleware"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -24,61 +24,73 @@ import (
 
 // 路由周期：请求路由名——>拦截请求频率——>header——>校验请求方法和Token参数——>运行目标函数
 func RegisterRoutes(route *gin.Engine) {
-	// ==默认路由==
-	route.Any("/", Middleware.HttpLimiter(1), Middleware.HttpCors(), func (ctx *gin.Context) {
-		ctx.String(http.StatusNotFound, "请先指定路由（404）")
-	})
-	route.NoRoute(Middleware.HttpLimiter(1), Middleware.HttpCors(), func (ctx *gin.Context) {
+	// ==系统必要路由==
+	route.NoRoute(Middleware.HttpCors(), Middleware.HttpLimiter(2), func (ctx *gin.Context) {
 		ctx.JSON(http.StatusNotFound, gin.H{
-			"state": 404, "msg": "未定义此名称的路由", "content": ctx.Request.URL,
+			"state": 404, "msg": "未定义此名称的路由名", "content": ctx.Request.URL.Path,
+		})
+	})
+	route.Any("/",  Middleware.HttpCors(), Middleware.HttpLimiter(2), func (ctx *gin.Context) {
+		//ctx.String(http.StatusNotFound, "请先指定路由（404），" + ctx.Request.Method + "。")
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"state": 403, "msg": "指定路由名后才可访问", "content": ctx.Request.Method,
 		})
 	})
 
-	// ==测试==
-	test := route.Group("/test/", Middleware.HttpLimiter(3), Middleware.HttpCors(), Controller.VerifyTest)
-	{ // 按分组注册路由
-		test.Any("test1", Test.Test1)                         // 空路由
-		test.Any("tpl", Test.Tpl)                             // 模版输出
-		test.Any("api", Test.Api)                             // 接口输出-简单数据
-		test.Any("api2", Test.Api2)                           // 直接接口输出-复杂数据
-		test.Any("init", Test.Test2Run)                       // 直接接口输出-复杂数据
-		test.Any("upload_form_file", Gen3Open.UploadFormFile) // 直接接口输出-复杂数据
-		test.Any("redis_set", Test.RedisSet)
-		test.Any("redis_list", Test.RedisList)
-	}
-
 	// ==版本1的接口分组==
-	gen1 := route.Group("/gen1/", Middleware.HttpLimiter(4), Middleware.HttpCors(), Controller.VerifyGen1)
+	gen1 := route.Group("/gen1/", Middleware.HttpCors())
 	{
-		gen1.Any("app/list_user", Gen1Controller.ListUser)
-		gen1.Any("app/that_user", Gen1Controller.ThatUser)
-		gen1.Any("app/add_user", Gen1Controller.AddUser)
-		gen1.Any("app/update_user", Gen1Controller.UpdateUser)
-		gen1.Any("app/del_user", Gen1Controller.DelUser)
-		gen1.Any("app/clear_user", Gen1Controller.ClearUser)
-	}
+		// 访问：域名/gen1/user/xxx
+		user := gen1.Group("/user/", Middleware.HttpLimiter(2), Gen1.VerifyGen1User)
+		{
+			user.Any("list_user", Gen1User.ListUser)
+			user.Any("that_user", Gen1User.ThatUser)
+			user.Any("add_user", Gen1User.AddUser)
+			user.Any("update_user", Gen1User.UpdateUser)
+			user.Any("del_user", Gen1User.DelUser)
+			user.Any("clear_user", Gen1User.ClearUser)
+		}
 
-	// ==版本2的接口分组==
-	gen2 := route.Group("/gen2/", Middleware.HttpLimiter(4), Middleware.HttpCors(), Controller.VerifyGen2)
-	{
-		gen2.Any("app/list_user", Gen2.ListUser)
-		gen2.Any("app/that_user", Gen2.ThatUser)
-		//gen2.Any("app/add_user", Gen2.AddUser)
-		//gen2.Any("app/update_user", Gen2.UpdateUser)
-		//gen2.Any("app/del_user", Gen2.DelUser)
-		//gen2.Any("app/clear_user", Gen2.ClearUser)
+		// 访问：域名/gen1/app/xxx
+		app := gen1.Group("/app/", Middleware.HttpLimiter(2), Gen1.VerifyGen1App)
+		{
+			app.Any("test1", Gen1App.Test1)                      // 空路由
+			app.Any("tpl", Gen1App.Tpl)                          // 模版输出
+			app.Any("api", Gen1App.Api)                          // 接口输出-简单数据
+			app.Any("api2", Gen1App.Api2)                        // 直接接口输出-复杂数据
+			app.Any("init", Gen1App.Test2Run)                    // 直接接口输出-复杂数据
+			app.Any("upload_form_file", Gen3Open.UploadFormFile) // 直接接口输出-复杂数据
+			app.Any("redis_set", Gen1App.RedisSet)
+			app.Any("redis_list", Gen1App.RedisList)
+		}
 
 	}
 
 	// ==版本3的接口分组==
-	route.Any("/gen3/app/get_app_token", Middleware.HttpLimiter(1), Middleware.HttpCors(), Gen3.VerifyOpen, Gen3App.GetAppToken)
-	route.Any("/gen3/user/user_login", Middleware.HttpLimiter(1), Middleware.HttpCors(), Gen3.VerifyOpen, Gen3App.GetAppToken)
-	route.Any("/gen3/open/upload_form_file", Middleware.HttpLimiter(1), Middleware.HttpCors(), Gen3.VerifyOpen, Gen3Open.UploadFormFile)
-
-	gen3 := route.Group("/gen3/", Middleware.HttpLimiter(4), Middleware.HttpCors(), Gen3.VerifyApp)
+	gen3 := route.Group("/gen3/", Middleware.HttpCors())
 	{
-		gen3.Any("app/list_user", Gen3App.ListUser)
-		//gen3.Any("app/list_user", Gen3App.thatUser)
+		gen3.Any("app/get_app_token", Middleware.HttpLimiter(2), Gen3.VerifyOpen, Gen3App.GetAppToken)
+		gen3.Any("user/user_login", Middleware.HttpLimiter(2), Gen3.VerifyOpen, Gen3App.GetAppToken)
+
+		// 访问：域名/gen3/open/xxx
+		open := gen3.Group("/open/", Middleware.HttpLimiter(2), Gen3.VerifyOpen)
+		{
+			open.Any("upload_form_file", Gen3Open.UploadFormFile)
+		}
+
+		//// 访问：域名/gen3/app/xxx
+		//app := gen3.Group("/user/", Middleware.HttpLimiter(4), Gen3.VerifyApp)
+		//{
+		//	app.Any("list_user", Gen3User.ListUser)
+		//	//app.Any("list_user", Gen3User.thatUser)
+		//}
+		//
+		//// 访问：域名/gen3/user/xxx
+		//user := gen3.Group("/user/", Middleware.HttpLimiter(4), Gen3.VerifyUser)
+		//{
+		//	user.Any("list_user", Gen3User.ListUser)
+		//	//user.Any("list_user", Gen3User.thatUser)
+		//}
 
 	}
 
