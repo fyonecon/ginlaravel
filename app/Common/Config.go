@@ -15,6 +15,7 @@ var Config = map[string]string{
 // 服务器信息
 var ServerInfo = map[string]string{
 	"root_path": runtime.GOROOT(),
+	"go_path": os.Getenv("GOPATH") + "/src/ginlaravel/",
 	"storage_path": os.Getenv("GOPATH") + "/src/ginlaravel/storage/", // 文件存储在服务器的地址
 }
 

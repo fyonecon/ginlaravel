@@ -10,6 +10,7 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 import (
+	"ginlaravel/app/Common"
 	"ginlaravel/app/Http/Controller/Gen1"
 	"ginlaravel/app/Http/Controller/Gen1/Gen1App"
 	"ginlaravel/app/Http/Controller/Gen1/Gen1User"
@@ -36,6 +37,9 @@ func RegisterRoutes(route *gin.Engine) {
 			"state": 403, "msg": "指定路由名后才可访问", "content": ctx.Request.Method,
 		})
 	})
+	route.Static("/static", Common.ServerInfo["go_path"] + "views/static/") // 多静态文件的主文件夹
+	route.StaticFile("/favicon.ico", Common.ServerInfo["go_path"] + "favicon.ico") // 单个静态文件
+
 
 	// ==版本1的接口分组==
 	gen1 := route.Group("/gen1/", Middleware.HttpCors())
@@ -56,6 +60,7 @@ func RegisterRoutes(route *gin.Engine) {
 		{
 			app.Any("test1", Gen1App.Test1)                      // 空路由
 			app.Any("tpl", Gen1App.Tpl)                          // 模版输出
+			app.Any("tpl_index", Gen1App.TplIndex)                          // 模版输出
 			app.Any("api", Gen1App.Api)                          // 接口输出-简单数据
 			app.Any("api2", Gen1App.Api2)                        // 直接接口输出-复杂数据
 			app.Any("init", Gen1App.Test2Run)                    // 直接接口输出-复杂数据
@@ -65,6 +70,7 @@ func RegisterRoutes(route *gin.Engine) {
 		}
 
 	}
+
 
 	// ==版本3的接口分组==
 	gen3 := route.Group("/gen3/", Middleware.HttpCors())
@@ -95,5 +101,5 @@ func RegisterRoutes(route *gin.Engine) {
 	}
 
 
-
+	//
 }
