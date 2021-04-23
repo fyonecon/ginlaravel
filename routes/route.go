@@ -10,14 +10,14 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 import (
+	"ginlaravel/app/Http/Controller"
+	"ginlaravel/app/Http/Controller/Gen1Controller"
 	"ginlaravel/app/Http/Controller/Gen2"
 	"ginlaravel/app/Http/Controller/Gen3"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3Open"
 	"ginlaravel/app/Http/Controller/Test"
 	"ginlaravel/app/Http/Middleware"
-	"ginlaravel/app/http/Controller"
-	"ginlaravel/app/http/Controller/Gen1Controller"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
