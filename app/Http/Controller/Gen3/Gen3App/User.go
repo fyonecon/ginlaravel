@@ -137,3 +137,52 @@ func ListUser(ctx *gin.Context)  {
 }
 
 
+
+// 某用户
+type ThatUserKeys struct { // 结果集，参数名需大写
+	UserId int
+	Nickname string
+	CreatTime string
+}
+func ThatUser(ctx *gin.Context) {
+
+	// 预定义参数
+	var state int
+	var msg string
+	var testData map[string]string
+
+	_userId := Kit.Input(ctx, "user_id")
+	userId := Common.StringToInt(_userId)
+
+	// 直接查询数据
+	user := ThatUserKeys{} // 构建结果集
+	err := DB.QueryRow("SELECT `user_id`, `nickname`, `create_time` FROM `gl_user` WHERE `state`=1 AND `user_id`=?", userId).Scan(&user.UserId, &user.Nickname, &user.CreatTime)
+
+	if err != nil {
+		state = 0
+		msg = "查询无数据"
+	}else {
+		state = 1
+		msg = "查询完成"
+
+		// 访问结构体并改变成员变量的值
+		createTime := user.CreatTime
+		createTime = Common.DateToDate(createTime)
+		user.CreatTime = createTime
+
+	}
+
+	// 返回一些测试数据
+	testData = map[string]string{
+		"user_id": _userId,
+	}
+
+	// 返回特殊格式意义的数据
+	ctx.JSON(200, gin.H{
+		"state":     state,
+		"msg":       msg,
+		"test_data": testData,
+		"content":   user,
+	})
+}
+

@@ -16,7 +16,7 @@ import (
 	"ginlaravel/app/Http/Controller/Gen3"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3Open"
-	_ "ginlaravel/app/Http/Controller/Gen3/Gen3User"
+	"ginlaravel/app/Http/Controller/Gen3/Gen3User"
 	"ginlaravel/app/Http/Middleware"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -78,19 +78,19 @@ func RegisterRoutes(route *gin.Engine) {
 			open.Any("upload_form_file", Gen3Open.UploadFormFile)
 		}
 
-		//// 访问：域名/gen3/app/xxx
-		//app := gen3.Group("/user/", Middleware.HttpLimiter(4), Gen3.VerifyApp)
-		//{
-		//	app.Any("list_user", Gen3User.ListUser)
-		//	//app.Any("list_user", Gen3User.thatUser)
-		//}
-		//
-		//// 访问：域名/gen3/user/xxx
-		//user := gen3.Group("/user/", Middleware.HttpLimiter(4), Gen3.VerifyUser)
-		//{
-		//	user.Any("list_user", Gen3User.ListUser)
-		//	//user.Any("list_user", Gen3User.thatUser)
-		//}
+		// 访问：域名/gen3/app/xxx
+		app := gen3.Group("/app/", Middleware.HttpLimiter(4), Gen3.VerifyApp)
+		{
+			app.Any("list_user", Gen3App.ListUser)
+			app.Any("that_user", Gen3App.ThatUser)
+		}
+
+		// 访问：域名/gen3/user/xxx
+		user := gen3.Group("/user/", Middleware.HttpLimiter(4), Gen3.VerifyUser)
+		{
+			user.Any("list_user", Gen3User.ListUser)
+			user.Any("that_user", Gen3User.ThatUser)
+		}
 
 	}
 
