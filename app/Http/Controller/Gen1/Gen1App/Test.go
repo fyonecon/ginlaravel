@@ -1,6 +1,7 @@
 package Gen1App
 
 import (
+	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
 )
@@ -19,5 +20,7 @@ func Test1(ctx *gin.Context){
 		"body": body,
 		"header": header,
 		"id": id,
+		"timezone": Common.ServerInfo["timezone"],
+		"date": Common.GetTimeDate("Y-m-d H:i:s"),
 	})
 }

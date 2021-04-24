@@ -14,6 +14,8 @@ var Config = map[string]string{
 
 // 服务器信息
 var ServerInfo = map[string]string{
+	"timezone": "Asia/Shanghai", // 时区
+	"go_version": runtime.Version(),
 	"root_path": runtime.GOROOT(),
 	"go_path": os.Getenv("GOPATH") + "/src/ginlaravel/",
 	"storage_path": os.Getenv("GOPATH") + "/src/ginlaravel/storage/", // 文件存储在服务器的地址

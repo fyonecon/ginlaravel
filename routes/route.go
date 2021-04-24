@@ -33,8 +33,9 @@ func RegisterRoutes(route *gin.Engine) {
 	// ==系统必要路由==
 	// 404路由
 	route.NoRoute(Middleware.HttpCors(), Middleware.HttpLimiter(2), func (ctx *gin.Context) {
+		var url string = ctx.Request.Host + ctx.Request.URL.Path
 		ctx.JSON(http.StatusNotFound, gin.H{
-			"state": 404, "msg": "未定义此名称的路由名", "content": ctx.Request.URL.Path,
+			"state": 404, "msg": "未定义此名称的路由名", "content": url,
 		})
 	})
 	// 默认根路由

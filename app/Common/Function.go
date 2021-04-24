@@ -113,7 +113,11 @@ func MakePaging(_total int, _limit int, _page int) map[string]int{
 
 // 获取日期时间戳，s
 func GetTimeDate(_format string) string {
-	timer := time.Now()
+	// 时区
+	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
+	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
+
+	timer := time.Now().In(timeZone)
 
 	var year int = timer.Year()
 	var month int = int(timer.Month())
@@ -196,12 +200,20 @@ func GetTimeDate(_format string) string {
 
 // 获取秒时间戳
 func GetTimeS() int64 {
-	return time.Now().Unix()
+	// 时区
+	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
+	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
+
+	return time.Now().In(timeZone).Unix()
 }
 
 // 获取毫秒时间戳，ms
 func GetTimeMS() int64 {
-	timeNS := time.Now().UnixNano() // 纳秒
+	// 时区
+	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
+	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
+
+	timeNS := time.Now().In(timeZone).UnixNano() // 纳秒
 	timeMS := math.Floor(float64(timeNS / 1000000))
 	return int64(timeMS)
 }
