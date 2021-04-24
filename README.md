@@ -128,10 +128,13 @@ fresh
 
 ```
 
+## 将项目部署在Centos7上（Go环境搭建、服务器环境搭建、数据库环境搭建）
+教程：https://blog.csdn.net/weixin_41827162/article/details/116048754
+
 ## 关于
-#### 第二作者Author：fyonecon
-#### 博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
+#### 作者Author：fyonecon
 #### Github：https://github.com/fyonecon/ginlaravel
+#### Gitee：https://gitee.com/fyonecon/ginlaravel
 ##### 长沙
 ##### 微信WeChat：fy66881159
 
