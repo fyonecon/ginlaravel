@@ -35,17 +35,28 @@ func RegisterRoutes(route *gin.Engine) {
 	// 404路由
 	route.NoRoute(Middleware.HttpCors(), Middleware.HttpLimiter(2), func (ctx *gin.Context) {
 		var url string = ctx.Request.Host + ctx.Request.URL.Path
-		Kit.Error("404路由：" + url, ctx.ClientIP())
+		var IP string = ctx.ClientIP()
+		Kit.Error("404路由：" + url, IP)
 		ctx.JSON(http.StatusNotFound, gin.H{
-			"state": 404, "msg": "未定义此名称的路由名", "content": url,
+			"state": 404,
+			"msg": "未定义此名称的路由名",
+			"content": gin.H{
+				"url": url,
+				"ip": IP,
+			},
 		})
 	})
 	// 默认根路由
 	route.Any("/",  Middleware.HttpCors(), Middleware.HttpLimiter(2), func (ctx *gin.Context) {
-		//ctx.String(http.StatusNotFound, "请先指定路由（404），" + ctx.Request.Method + "。")
 		Kit.Log("默认根路由", ctx.ClientIP())
 		ctx.JSON(http.StatusForbidden, gin.H{
-			"state": 403, "msg": "指定路由名后才可访问", "content": Common.ServerInfo["gl_version"],
+			"state": 403,
+			"msg": "指定路由名后才可访问",
+			"content": gin.H{
+				"gl_version": Common.ServerInfo["gl_version"],
+				"go_version": Common.ServerInfo["go_version"],
+				"timezone": Common.ServerInfo["timezone"],
+			},
 		})
 	})
 	route.Static("/static", Common.ServerInfo["go_path"] + "views/static/") // 多静态文件的主文件夹
@@ -110,6 +121,10 @@ func RegisterRoutes(route *gin.Engine) {
 		{
 			user.Any("list_user", Gen3User.ListUser)
 			user.Any("that_user", Gen3User.ThatUser)
+			user.Any("add_user", Gen3User.AddUser)
+			user.Any("update_user", Gen3User.UpdateUser)
+			user.Any("del_user", Gen3User.DelUser)
+			user.Any("clear_user", Gen3User.ClearUser)
 		}
 
 	}

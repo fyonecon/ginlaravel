@@ -14,7 +14,9 @@ import (
 	"math"
 	"math/rand"
 	"net/url"
+	"regexp"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -283,6 +285,87 @@ func DateToDate(_date string) string {
 
 	return TimeSToDate(timeS, "Y-m-d H:i:s")
 }
+
+// 将html标签大写转小写
+func FilterToLower(html string) string {
+	reg, _ := regexp.Compile("\\<[\\S\\s]+?\\>")
+	html = reg.ReplaceAllStringFunc(html, strings.ToLower)
+	return html
+}
+
+// 过滤iframe
+func FilterIframe(html string) string {
+	html = FilterToLower(html)
+	reg, _ := regexp.Compile("\\<iframe[\\S\\s]+?\\</iframe\\>")
+	html = reg.ReplaceAllString(html, "<p class='style'></p>")
+	return html
+}
+
+//过滤xml
+func FilterXML(html string) string {
+	html = FilterToLower(html)
+	reg, _ := regexp.Compile("\\<?xml[\\S\\s]+?\\?\\>")
+	html = reg.ReplaceAllString(html, "<p class='xml'></p>")
+	return html
+}
+
+// 过滤html中的style
+func FilterStyle(html string) string {
+	html = FilterToLower(html)
+	reg, _ := regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
+	html = reg.ReplaceAllString(html, "<p class='style'></p>")
+	return html
+}
+
+// 过滤html中的js
+func FilterJS(html string) string {
+	html = FilterToLower(html)
+	reg, _ := regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
+	html = reg.ReplaceAllString(html, "<p class='js'></p>")
+	return html
+}
+
+// 全部替换字符串中的某词
+func ReplaceString(text string, _old string, _new string) string {
+	if len(text) == 0 {
+		return ""
+	}
+	if len(_old) == 0 {
+		return text
+	}
+	if len(_new) == 0 {
+		_new = "「小嘴抹了蜜」"
+	}
+	text = strings.Replace(text, _old, _new, -1)
+	return text
+}
+
+// 替换字符串几位到几位
+func ReplaceRangeString(text string,_start int, _end int, _new string) string {
+	if len(text) <= _end {
+		_end = len(text)-1
+	}
+	if len(_new)==0 {
+		_new = "**"
+	}
+	return text[:_start] + _new + text[_end:]
+}
+
+// 打乱数组(字符串型数组)
+func ShuffleArray(strings []string) string {
+	for i := len(strings) - 1; i > 0; i-- {
+		num := rand.Intn(i + 1)
+		strings[i], strings[num] = strings[num], strings[i]
+	}
+
+	str := ""
+	for i := 0; i < len(strings); i++ {
+		str += strings[i]
+	}
+	return str
+}
+
+
 
 // GET请求
 func RequestGet(requestUrl string)  {

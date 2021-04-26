@@ -10,6 +10,7 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 import (
+	"ginlaravel/app/Common"
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth/limiter"
 	"github.com/gin-gonic/gin"
@@ -34,7 +35,12 @@ func HttpLimiter(_max float64) gin.HandlerFunc {
 		if httpError != nil {
 			//ctx.Data(httpError.StatusCode, lmt.GetMessageContentType(), []byte(httpError.Message))
 			ctx.JSON(429, gin.H{
-				"state": 429, "msg": "触及访问频率限制", "content": ctx.ClientIP(),
+				"state": 429,
+				"msg": "触及访问频率限制",
+				"content": gin.H{
+					"gl_version": Common.ServerInfo["gl_version"],
+					"ip": ctx.ClientIP(),
+				},
 			})
 
 			ctx.Abort()
