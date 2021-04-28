@@ -1,3 +1,6 @@
+#### Github：https://github.com/fyonecon/ginlaravel
+#### Gitee：https://gitee.com/fyonecon/ginlaravel
+
 ## GinLaravel、GoLaravel
 基于GO框架Gin开发，项目结构和项目哲学参考Laravel，支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Safe—Controller—Kit"模式处理数据。
 
@@ -10,7 +13,7 @@ Go-MySQL、Go-Redis、热更（fresh）、MVC、模版输出、Http访问频率�
 宽进严出，面向Api，能有效节约时间和保持秀发。
 
 ## 运行特点
-内存常驻，可似swoole，Golang开发速度是PHP的十分之一，支持热更。
+内存常驻，可似swoole，Golang开发速度是PHP的十分之一，可支持热更。
 
 ## 项目目录解释
 > -/app/Common/ 对go原生封装的公共函数、自定义必要数据参数配置
@@ -73,7 +76,7 @@ go mod init
 go mod tidy
 go mod vendor
 
-打包二进制文件：
+打包成二进制文件：
 go build -mod=mod
 
 启动MySQL数据库：请自行启动。
@@ -133,8 +136,6 @@ fresh
 
 ## 关于
 #### 作者Author：fyonecon
-#### Github：https://github.com/fyonecon/ginlaravel
-#### Gitee：https://gitee.com/fyonecon/ginlaravel
 ##### 长沙
 ##### 微信WeChat：fy66881159
 

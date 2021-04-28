@@ -29,7 +29,7 @@ func Test(txt string) string {
 	return txt
 }
 
-// 转义url
+// 转义url或转义其他字符
 func EncodeURL(_url string) string {
 	return url.QueryEscape(_url)
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<script>
+
+    const map = new Map([ // 要提交数据
+        ["id", 20221],
+        ["nickname", "map-body-k-v"],
+    ]);
+    const body = new URLSearchParams();
+    for (let [k, v] of map) { body.append(k, v+""); }
+    axios.post(post_api, body, {headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"}
+    }).then(function (back) {
+        let res = back.data;
+        console.log(res)
+
+    })
+        .catch(function (e) {
+            console.error(e);
+        });
+
+</script>
+
+</html>
