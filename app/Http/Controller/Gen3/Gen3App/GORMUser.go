@@ -10,12 +10,7 @@ import (
 
 var gDB *gorm.DB = driver.GDB
 
-// ThatGUserKeys 某用户
-type ThatGUserKeys struct { // 数据库键的结果集，需大写
-	UserId int
-	Nickname string
-	CreatTime string
-}
+// ThatGUser 某用户
 func ThatGUser(ctx *gin.Context) {
 	// 预定义参数
 	var state int
@@ -23,28 +18,41 @@ func ThatGUser(ctx *gin.Context) {
 
 	userId := Kit.Input(ctx, "user_id")
 
-	user := ThatUserKeys{} // 构建结果集
+	// 数据库表的字段（输出结果）
+	type ResKeys struct {
+		UserId int `json:"user_id"`
+		Nickname string `json:"nickname"`
+		UserClassId string `json:"user_class_id"`
+		CreateTime string `json:"create_time"`
+		UpdateTime string `json:"update_time"`
+	}
 
 	// 多查询条件
-	DBMap := map[string]interface{}{}
-	DBMap["state"] = 1
-	DBMap["user_id"] = userId
+	WhereMap := map[string]interface{}{}
+	WhereMap["state"] = 1
+	WhereMap["user_id"] = userId
 
 	// 操作数据库
-	gDB.Table("gl_user").Where(DBMap).Find(&user)
+	res := ResKeys{}
+	gDB.Table("gl_user").Where(WhereMap).Find(&res)
 
-	state = 1
-	msg = "查询完成"
+	if res.UserId == 0 {
+		state = 0
+		msg = "查询无数据"
+	}else {
+		state = 1
+		msg = "查询完成"
+	}
 
 	// 访问结构体并改变成员变量的值
-	createTime := user.CreatTime
+	createTime := res.CreateTime
 	createTime = Common.DateToDate(createTime)
-	user.CreatTime = createTime
+	res.CreateTime = createTime
 
 	// 返回一些测试数据
 	testData := gin.H{
 		"user_id": userId,
-		"DBMap": DBMap,
+		"WhereMap": WhereMap,
 	}
 
 	// 返回特殊格式意义的数据
@@ -52,7 +60,7 @@ func ThatGUser(ctx *gin.Context) {
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
-		"content":   user,
+		"content":   res,
 	})
 }
 

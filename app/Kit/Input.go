@@ -15,41 +15,41 @@ func Input(ctx *gin.Context, key string) string {
 	_method := ctx.Request.Method
 	_contentType := ctx.Request.Header["Content-Type"]
 
-	if len(_contentType) >= 1 { // 判断是否含有请求头信息
-		hasCt1 := strings.Contains(_contentType[0], "application/x-www-form-urlencoded")
-		hasCt2 := strings.Contains(_contentType[0], "multipart/form-data")
-		if !hasCt1 && !hasCt2 {
-			_value = "+0"
-			log.Println("POST方式时建议：Content-Type=「application/x-www-form-urlencoded 」或 「 multipart/form-data 」")
-		}else {
-			log.Println("当前请求头：" + _contentType[0])
+	if _method == "GET" {
+		value, hasKey = ctx.GetQuery(key)
+	}else if _method == "POST" || _method == "OPTIONS" {
+		value, hasKey = ctx.GetPostForm(key)
 
-			if _method == "GET" {
-				value, hasKey = ctx.GetQuery(key)
-			}else if _method == "POST" {
-				value, hasKey = ctx.GetPostForm(key)
-			}else if _method == "OPTIONS" {
-				value, hasKey = ctx.GetPostForm(key)
-			} else {
-				value, hasKey = "(only GET/POST/OPTIONS)", false
-			}
-
-			if hasKey == false { // 参数不存在
-				_value = ""
-
-				// 当参数键不存在时，可能时是因为传来的参数的格式不正确。
-				ctx.Request.ParseMultipartForm(128) //保存表单缓存的内存大小128M
-				data := ctx.Request.Form
-				log.Println("当参数键不存在时，可能时是因为传来的参数的格式不正确。请查看传来的GET+POST全部数据：")
-				log.Println(data)
-				log.Println("axios请参考：项目资料/其他示例/axios-post.html")
-
-			}else{
+		if len(_contentType) >= 1 { // 判断是否含有请求头信息
+			hasCt1 := strings.Contains(_contentType[0], "application/x-www-form-urlencoded")
+			hasCt2 := strings.Contains(_contentType[0], "multipart/form-data")
+			if !hasCt1 && !hasCt2 {
+				_value = "+0"
+				log.Println("POST方式时建议：Content-Type=「application/x-www-form-urlencoded 」或 「 multipart/form-data 」")
+			}else {
 				_value = value
+				log.Println("当前请求头：" + _contentType[0])
 			}
+		}else {
+			_value = "-0"
+			log.Println(_contentType)
 		}
+
 	}else {
-		_value = "-0"
+		value, hasKey = "", false
+
+	}
+
+	if hasKey == false { // 参数不存在
+		_value = ""
+		// 当参数键不存在时，可能时是因为传来的参数的格式不正确。
+		ctx.Request.ParseMultipartForm(128) //保存表单缓存的内存大小128M
+		data := ctx.Request.Form
+		log.Println("当参数键不存在时，可能时是因为传来的参数的格式不正确。请查看传来的GET+POST全部数据：")
+		log.Println(data)
+		log.Println("axios请参考：项目资料/其他示例/axios-post.html")
+	}else{
+		_value = value
 	}
 
 	return _value
