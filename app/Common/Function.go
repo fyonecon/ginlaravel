@@ -14,6 +14,7 @@ import (
 	"math"
 	"math/rand"
 	"net/url"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
@@ -365,6 +366,15 @@ func ShuffleArray(strings []string) string {
 	return str
 }
 
+// 判断文件或文件夹是否存在
+func HasFile(filePath string) (bool, string) {
+	_, err := os.Stat(filePath)
+	if err == nil {
+		return true, filePath
+	}else {
+		return false, "FileChecker:::NotFound " + filePath
+	}
+}
 
 
 // GET请求

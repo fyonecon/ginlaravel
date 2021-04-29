@@ -25,7 +25,7 @@ var rdbConfig map[string]string = config.GetRedisConfig()
 var RedisDb *redis.Client
 
 func init() {
-	log.Println("初始化GoRedis")
+	log.Println("尝试连接GoRedis...")
 
 	RedisDb = redis.NewClient(&redis.Options{ // 连接服务
 		Addr:     rdbConfig["Addr"], // string
@@ -34,10 +34,11 @@ func init() {
 	})
 	RedisPong, RedisErr := RedisDb.Ping(context.Background()).Result() // 心跳
 	if RedisErr != nil {
-		log.Println(">>>Redis服务未运行")
+		log.Println("Redis服务未运行。。。")
 		log.Println(RedisPong, RedisErr)
 		Kit.Log(">>>Redis服务出现问题。" + fmt.Sprintf("%s", RedisErr), "")
+		//os.Exit(200)
 	}else {
-		log.Println("GoRedis正常")
+		log.Println("GoRedis已连接 >>> ")
 	}
 }

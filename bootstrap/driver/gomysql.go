@@ -12,6 +12,7 @@ Github：https://github.com/fyonecon/ginlaravel
 import (
 	"database/sql"
 	"fmt"
+	"ginlaravel/app/Kit"
 	"ginlaravel/config"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
@@ -27,7 +28,7 @@ var MysqlDbErr error // db err instance
 
 
 func init() {
-	log.Println("初始化MySQL")
+	log.Println("尝试连接MySQL服务...")
 
 	// get db config
 	dbConfig := config.GetMySQLConfig()
@@ -64,6 +65,11 @@ func init() {
 	// check db connection at once avoid connect failed
 	// else error will be reported until db first sql operate
 	if MysqlDbErr = MysqlDb.Ping(); nil != MysqlDbErr {
-		panic("database connect failed: " + MysqlDbErr.Error())
+		log.Println("MySQL数据库连接失败。。。")
+		log.Println(MysqlDbErr.Error())
+		Kit.Log(">>> MySQL数据库连接失败。", "")
+		//os.Exit(200)
+	}else {
+		log.Println("MySQL已连接 >>> ")
 	}
 }
