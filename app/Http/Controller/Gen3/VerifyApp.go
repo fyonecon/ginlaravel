@@ -12,36 +12,17 @@ func VerifyApp(ctx *gin.Context) {
 	// 校验接口访问方式
 	method := ctx.Request.Method
 	if method == "GET" {
-		//ctx.JSON(200, gin.H{
-		//	"state": 0,
-		//	"msg": "不允许使用GET方法请求数据",
-		//	"content": map[string]string{
-		//		"method": method,
-		//		"IP": ctx.ClientIP(),
-		//	},
-		//})
-		//ctx.Abort() // 中断下一步函数运用
-
-		// 校验token
-		appToken := Kit.Input(ctx, "AppToken")
-		_state, _msg, _ := Gen3App.AppCheckToken(appToken)
-		if _state == 1 {
-			ctx.Next() // 检测通过，继续下一步操作
-
-		}else {
-			if len(_msg) == 0 {
-				_msg = "token数据格式不正确"
-				Kit.Log(_msg, IP)
-			}
-			ctx.JSON(200, gin.H{
-				"state": _state,
-				"msg": "" + _msg,
-				"content": appToken,
-			})
-			ctx.Abort()
-		}
-
+		ctx.JSON(200, gin.H{
+			"state": 0,
+			"msg": "不允许使用GET方法请求数据",
+			"content": map[string]string{
+				"method": method,
+				"IP": ctx.ClientIP(),
+			},
+		})
+		ctx.Abort() // 中断下一步函数运用
 	}else if method == "POST" || method == "OPTIONS" {
+
 		// 校验token
 		appToken := Kit.Input(ctx, "AppToken")
 		_state, _msg, _ := Gen3App.AppCheckToken(appToken)

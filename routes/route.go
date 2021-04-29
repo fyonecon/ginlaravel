@@ -114,6 +114,7 @@ func RegisterRoutes(route *gin.Engine) {
 		{
 			app.Any("list_user", Gen3App.ListUser)
 			app.Any("that_user", Gen3App.ThatUser)
+			app.Any("that_g_user", Gen3App.ThatGUser)
 		}
 
 		//

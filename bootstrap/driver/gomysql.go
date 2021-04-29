@@ -24,19 +24,22 @@ import (
 var MysqlDb *sql.DB  // db pool instance
 var MysqlDbErr error // db err instance
 
+
+
 func init() {
 	log.Println("初始化MySQL")
 
 	// get db config
 	dbConfig := config.GetMySQLConfig()
 
-	dbDSN := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s",
+	dbDSN := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&loc=Local&timeout=%s",
 		dbConfig["DB_USER"],
 		dbConfig["DB_PWD"],
 		dbConfig["DB_HOST"],
 		dbConfig["DB_PORT"],
 		dbConfig["DB_NAME"],
 		dbConfig["DB_CHARSET"],
+		dbConfig["DB_TIMEOUT"],
 	)
 
 	// connect and open db connection

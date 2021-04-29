@@ -20,6 +20,7 @@ func GetMySQLConfig() map[string]string {
 	MySQLConfig["DB_USER"] = "root2"
 	MySQLConfig["DB_PWD"] = "123456"
 	MySQLConfig["DB_CHARSET"] = "utf8mb4"
+	MySQLConfig["DB_TIMEOUT"] = "12s"
 
 	MySQLConfig["DB_MAX_OPEN_CONNS"] = "20"       // 连接池最大连接数
 	MySQLConfig["DB_MAX_IDLE_CONNS"] = "10"       // 连接池最大空闲数
