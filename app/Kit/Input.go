@@ -24,14 +24,14 @@ func Input(ctx *gin.Context, key string) string {
 			hasCt1 := strings.Contains(_contentType[0], "application/x-www-form-urlencoded")
 			hasCt2 := strings.Contains(_contentType[0], "multipart/form-data")
 			if !hasCt1 && !hasCt2 {
-				_value = "+0"
+				_value = ""
 				log.Println("POST方式时建议：Content-Type=「application/x-www-form-urlencoded 」或 「 multipart/form-data 」")
 			}else {
 				_value = value
 				log.Println("当前请求头：" + _contentType[0])
 			}
 		}else {
-			_value = "-0"
+			_value = ""
 			log.Println(_contentType)
 		}
 
