@@ -1,4 +1,5 @@
 package driver
+// mysql文档：http://www.topgoer.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/go%E6%93%8D%E4%BD%9Cmysql/mysql%E4%BD%BF%E7%94%A8.html
 
 /*
 第二作者Author：fyonecon
@@ -20,12 +21,8 @@ import (
 	"time"
 )
 
-// query need rows.Close to release db ins
-// exec will release automatic
-var MysqlDb *sql.DB  // db pool instance
-var MysqlDbErr error // db err instance
-
-
+var MysqlDb *sql.DB
+var MysqlDbErr error
 
 func init() {
 	log.Println("尝试连接MySQL服务...")
@@ -43,7 +40,6 @@ func init() {
 		dbConfig["DB_TIMEOUT"],
 	)
 
-	// connect and open db connection
 	MysqlDb, MysqlDbErr = sql.Open("mysql", dbDSN)
 
 	if MysqlDbErr != nil {
@@ -62,8 +58,6 @@ func init() {
 	dbMaxLifetimeConns, _ := strconv.Atoi(dbConfig["DB_MAX_LIFETIME_CONNS"])
 	MysqlDb.SetConnMaxLifetime(time.Duration(dbMaxLifetimeConns))
 
-	// check db connection at once avoid connect failed
-	// else error will be reported until db first sql operate
 	if MysqlDbErr = MysqlDb.Ping(); nil != MysqlDbErr {
 		log.Println("MySQL数据库连接失败。。。")
 		log.Println(MysqlDbErr.Error())

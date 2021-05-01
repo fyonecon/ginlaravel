@@ -8,9 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-var gDB *gorm.DB = driver.GDB
+var gDB *gorm.DB = driver.GDB // 连接gorm扩展
 
-// ThatGUser 某用户
+// 某用户
 func ThatGUser(ctx *gin.Context) {
 	// 预定义参数
 	var state int
@@ -50,13 +50,13 @@ func ThatGUser(ctx *gin.Context) {
 	res.CreateTime = createTime
 
 	// 返回一些测试数据
-	testData := gin.H{
+	testData := map[string]interface{}{
 		"user_id": userId,
 		"WhereMap": WhereMap,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,

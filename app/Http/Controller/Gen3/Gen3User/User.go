@@ -9,7 +9,7 @@ import (
 	"log"
 )
 
-var DB *sql.DB = driver.MysqlDb
+var DB *sql.DB = driver.MysqlDb // 连接gomysql扩展
 
 
 // 用户列表
@@ -25,7 +25,6 @@ func ListUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	_page := Kit.Input(ctx, "page")
 	_nickname := Kit.Input(ctx, "nickname")
@@ -119,18 +118,18 @@ func ListUser(ctx *gin.Context)  {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 		"userClassId": _userClassId,
 	}
 
 	// 分页数据
-	paging := map[string]int{
+	paging := map[string]interface{}{
 		"total": total,
 		"limit": limit,
 		"page": page+1,
 	}
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
@@ -173,12 +172,12 @@ func ThatUser(ctx *gin.Context) {
 	}
 
 	// 返回一些测试数据
-	testData := gin.H{
+	testData := map[string]interface{}{
 		"user_id": userId,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
@@ -210,12 +209,12 @@ func AddUser(ctx *gin.Context) {
 	}
 
 	// 返回一些测试数据
-	testData := gin.H{
+	testData := map[string]interface{}{
 		"res_err": resErr,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
@@ -251,13 +250,13 @@ func UpdateUser(ctx *gin.Context) {
 	}
 
 	// 返回一些测试数据
-	testData := gin.H{
+	testData := map[string]interface{}{
 		"res_err": resErr,
 		"user_id": userId,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
@@ -291,13 +290,13 @@ func DelUser(ctx *gin.Context) {
 	}
 
 	// 返回一些测试数据
-	testData := gin.H{
+	testData := map[string]interface{}{
 		"res_err": resErr,
 		"user_id": userId,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
@@ -330,13 +329,13 @@ func ClearUser(ctx *gin.Context) {
 	}
 
 	// 返回一些测试数据
-	testData := gin.H{
+	testData := map[string]interface{}{
 		"res_err": resErr,
 		"user_id": userId,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,

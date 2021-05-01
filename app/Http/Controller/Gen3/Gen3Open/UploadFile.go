@@ -16,7 +16,7 @@ func UploadFormFile(ctx *gin.Context)  {
 		if e := recover(); e != nil {
 			log.Println("文件上传接口报错。。")
 			// 返回特殊格式意义的数据
-			ctx.JSON(200, gin.H{
+			ctx.JSONP(200, map[string]interface{}{
 				"state": 0,
 				"msg": "文件上传接口报错。。",
 				"content": e,
@@ -39,7 +39,7 @@ func UploadFormFile(ctx *gin.Context)  {
 	ctx.SaveUploadedFile(file, Common.ServerInfo["storage_path"] + "upload/" + _filename)
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state": 1,
 		"msg": "文件上传完成",
 		"content": _filename,

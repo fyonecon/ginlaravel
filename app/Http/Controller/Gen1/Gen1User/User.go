@@ -13,7 +13,6 @@ func ListUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	_userClassId := ctx.Query("user_class_id")
 	userClassId := Common.StringToInt(_userClassId)
@@ -35,7 +34,7 @@ func ListUser(ctx *gin.Context)  {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 		"page": _page,
 		"user_class_id": _userClassId,
 		"nickname": _nickname,
@@ -54,7 +53,6 @@ func ThatUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
@@ -74,7 +72,7 @@ func ThatUser(ctx *gin.Context)  {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 		"user_id": _userId,
 	}
 
@@ -92,7 +90,6 @@ func AddUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
@@ -140,7 +137,7 @@ func AddUser(ctx *gin.Context)  {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 
 	}
 
@@ -158,7 +155,6 @@ func UpdateUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	// 处理请求参数
 	// _userId := ctx.PostForm("user_id") // Post方法获得参数
@@ -208,7 +204,7 @@ func UpdateUser(ctx *gin.Context)  {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 
 	}
 

@@ -30,7 +30,7 @@ func UserLogin(ctx *gin.Context) {
 	}
 
 	// 接口返回
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state": 1,
 		"msg": "UserToken已生成",
 		"content": back,

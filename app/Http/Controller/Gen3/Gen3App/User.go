@@ -9,7 +9,7 @@ import (
 	"log"
 )
 
-var DB *sql.DB = driver.MysqlDb
+var DB *sql.DB = driver.MysqlDb // 连接gomysql扩展
 
 // 用户列表
 type ListUserKeys struct { // 结果集，参数名需大写
@@ -24,7 +24,6 @@ func ListUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	_page := Kit.Input(ctx, "page")
 	_nickname := Kit.Input(ctx, "nickname")
@@ -116,18 +115,18 @@ func ListUser(ctx *gin.Context)  {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 		"userClassId": _userClassId,
 	}
 
 	// 分页数据
-	paging := map[string]int{
+	paging := map[string]interface{}{
 		"total": total,
 		"limit": limit,
 		"page": page+1,
 	}
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,
@@ -149,7 +148,6 @@ func ThatUser(ctx *gin.Context) {
 	// 预定义参数
 	var state int
 	var msg string
-	var testData map[string]string
 
 	_userId := Kit.Input(ctx, "user_id")
 	userId := Common.StringToInt(_userId)
@@ -173,12 +171,12 @@ func ThatUser(ctx *gin.Context) {
 	}
 
 	// 返回一些测试数据
-	testData = map[string]string{
+	testData := map[string]interface{}{
 		"user_id": _userId,
 	}
 
 	// 返回特殊格式意义的数据
-	ctx.JSON(200, gin.H{
+	ctx.JSONP(200, map[string]interface{}{
 		"state":     state,
 		"msg":       msg,
 		"test_data": testData,

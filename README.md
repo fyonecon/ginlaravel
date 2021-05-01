@@ -5,7 +5,7 @@
 ## GinLaravel（GoLaravel）介绍
 基于Golang框架Gin（Gin学习文档：https://learnku.com/docs/gin-gonic/2019 ）开发，项目结构和项目理念参考Laravel。学习本项目时建议从阅读本项目源码开始，并具备Golang、Gin、go mod、centos+nginx、redis、mysql、加密解密、http等必要知识。GinLaravel的构建和运行周期与Beego、Vue、React、Laravel、ThinkPHP、Django等都会有类似的引导思路、参数设置、插件扩展、服务部署、代码统一性、生态护城河等。GinLaravel尽量减少汉字造词、功能造词、贤者造词，不会用描述华丽、中英文混杂的造词方式去包装一个功能平常的老东西（比如 http+header、cookie/localstorage/sqlite+token、加密与解密、数据缓存+队列、负载均衡+docker、内存常驻与微服务、接口安全与前后端分离等）。
 
-整个开发以人为本，方便功能模块化扩展，渐进式提升访问量。
+整个开发以人为本，功能模块化扩展，系统安全可控，渐进式提升访问量。
 
 GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Safe—Controller—Kit"模式处理数据。
 
