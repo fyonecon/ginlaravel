@@ -116,6 +116,7 @@ func RegisterRoutes(route *gin.Engine) {
 			app.Any("that_user", Gen3App.ThatUser, Middleware.HttpAbort)
 			app.Any("that_g_user", Gen3App.ThatGUser, Middleware.HttpAbort)
 
+			app.Any("list_gm_user", Gen3App.ListGMUser, Middleware.HttpAbort)
 			app.Any("that_gm_user", Gen3App.ThatGMUser, Middleware.HttpAbort)
 			app.Any("add_gm_user", Gen3App.AddGMUser, Middleware.HttpAbort)
 			app.Any("update_gm_user", Gen3App.UpdateGMUser, Middleware.HttpAbort)

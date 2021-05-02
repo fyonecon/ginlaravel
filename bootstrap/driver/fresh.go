@@ -13,7 +13,6 @@ Github：https://github.com/fyonecon/ginlaravel
 
 import (
 	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
 	"log"
 	"os"
 	"os/exec"
@@ -36,7 +35,6 @@ func init()  {
 		if err != nil {
 			log.Println(err)
 			log.Println("请运行安装fresh热更服务，请手动运行如下命令：\n go get github.com/pilu/fresh \n")
-			Kit.Log("fresh==nil", "main")
 			os.Exit(200)
 		}else {
 			// 创建文件
@@ -52,7 +50,6 @@ func init()  {
 			}
 
 			log.Println("fresh热更服务已启动 >>> ")
-			Kit.Log("fresh==ok", "main")
 		}
 
 	}else {

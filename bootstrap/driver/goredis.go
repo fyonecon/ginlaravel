@@ -11,9 +11,7 @@ Github：https://github.com/fyonecon/ginlaravel
 
 import (
 	"context"
-	"fmt"
 	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
 	"ginlaravel/config"
 	"github.com/go-redis/redis/v8"
 	"log"
@@ -36,7 +34,6 @@ func init() {
 	if RedisErr != nil {
 		log.Println("Redis服务未运行。。。")
 		log.Println(RedisPong, RedisErr)
-		Kit.Log(">>>Redis服务出现问题。" + fmt.Sprintf("%s", RedisErr), "")
 		//os.Exit(200)
 	}else {
 		log.Println("GoRedis已连接 >>> ")

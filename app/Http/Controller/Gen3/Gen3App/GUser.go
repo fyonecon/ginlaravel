@@ -6,8 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//var gDB *gorm.DB = driver.GDB // 连接gorm扩展
-
 // 某用户
 func ThatGUser(ctx *gin.Context) {
 	// 预定义参数
@@ -32,7 +30,7 @@ func ThatGUser(ctx *gin.Context) {
 
 	// 操作数据库
 	res := ResKeys{}
-	gDB.Table("gl_user").Where(WhereMap).Find(&res)
+	Kit.DB.Table("gl_user").Where(WhereMap).Find(&res)
 
 	if res.UserId == 0 {
 		state = 0

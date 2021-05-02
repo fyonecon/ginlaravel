@@ -141,7 +141,7 @@ func ListUser(ctx *gin.Context)  {
 type ThatUserKeys struct { // 结果集，参数名需大写
 	UserId int
 	Nickname string
-	CreatTime string
+	CreateTime string
 }
 func ThatUser(ctx *gin.Context) {
 
@@ -154,7 +154,7 @@ func ThatUser(ctx *gin.Context) {
 
 	// 直接查询数据
 	user := ThatUserKeys{} // 构建结果集
-	err := DB.QueryRow("SELECT `user_id`, `nickname`, `create_time` FROM `gl_user` WHERE `state`=1 AND `user_id`=?", userId).Scan(&user.UserId, &user.Nickname, &user.CreatTime)
+	err := DB.QueryRow("SELECT `user_id`, `nickname`, `create_time` FROM `gl_user` WHERE `state`=1 AND `user_id`=?", userId).Scan(&user.UserId, &user.Nickname, &user.CreateTime)
 
 	if err != nil {
 		state = 0
@@ -164,9 +164,9 @@ func ThatUser(ctx *gin.Context) {
 		msg = "查询完成"
 
 		// 访问结构体并改变成员变量的值
-		createTime := user.CreatTime
+		createTime := user.CreateTime
 		createTime = Common.DateToDate(createTime)
-		user.CreatTime = createTime
+		user.CreateTime = createTime
 
 	}
 

@@ -4,13 +4,71 @@ import (
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Http/Model/Gen3"
 	"ginlaravel/app/Kit"
-	"ginlaravel/bootstrap/driver"
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 	"log"
 )
 
-var gDB *gorm.DB = driver.GDB // 连接gorm扩展
+// 用户列表
+func ListGMUser(ctx *gin.Context)  {
+	// 预定义参数
+	var state int
+	var msg string
+
+	type ListUserKeys struct { // 结果集，参数名需大写
+		UserId int
+		UserClassId int
+		UserClassName string
+		Nickname string
+		CreatTime string
+	}
+
+	_userClassId := Kit.Input(ctx, "user_class_id")
+	userClassId := Common.StringToInt(_userClassId)
+	nickname := Kit.Input(ctx, "nickname")
+
+	_page := Kit.Input(ctx, "page")
+	page := int(Common.StringToInt(_page))
+
+	// 处理分页
+	var limit int = Common.Page["limit"]
+	var offset int = 0 // 本页从第几个开始
+	if page <= 0 { page = 1 } else if page > 200 { page = 200 }
+	page = page - 1
+	offset = limit*page
+
+	listUserModel := Gen3.ListUserKeys{}
+	res, total, err := listUserModel.ListUser(limit, offset, userClassId, nickname)
+
+	if err != nil {
+		state = 0
+		msg = "查询无数据"
+	}else {
+		state = 1
+		msg = "查询完成"
+	}
+
+	// 返回一些测试数据
+	testData := map[string]interface{}{
+		"page": _page,
+		"user_class_id": userClassId,
+		"nickname": nickname,
+	}
+
+	// 分页数据
+	paging := map[string]interface{}{
+		"total": total,
+		"limit": limit,
+		"page": page+1,
+	}
+	// 返回数据
+	ctx.JSONP(200, map[string]interface{}{
+		"state": state,
+		"msg": msg,
+		"paging": paging,
+		"test_data": testData,
+		"content": res,
+	})
+}
 
 // 某用户
 func ThatGMUser(ctx *gin.Context)  {
