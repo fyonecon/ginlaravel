@@ -32,7 +32,7 @@ func ListUser(ctx *gin.Context)  {
 
 	// 处理分页
 	var limit int = Common.Page["limit"]
-	var page int = Common.StringToInt(_page)
+	var page int = int(Common.StringToInt(_page))
 	var offset int = 0 // 本页从第几个开始
 	if page <= 0 { page = 1 } else if page > 200 { page = 200 }
 	page = page - 1
@@ -60,8 +60,8 @@ func ListUser(ctx *gin.Context)  {
 	DBOrder = " ORDER BY `create_time` DESC, `nickname` ASC"
 	// DBOrder = " ORDER BY `create_time` DESC"
 	// 分页
-	_offset := Common.IntToString(offset)
-	_limit := Common.IntToString(limit)
+	_offset := Common.IntToString(int64(offset))
+	_limit := Common.IntToString(int64(limit))
 	DBLimit = " LIMIT " + _offset + ", " + _limit
 
 	// 拼装完整MySQL语句（注意查询语句顺序）

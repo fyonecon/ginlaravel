@@ -39,7 +39,7 @@ func RedisList(ctx *gin.Context)  {
 
 	// 按序写入数据
 	for i:=0; i<3; i++ {
-		_i := Common.IntToString(i)
+		_i := Common.IntToString(int64(i))
 		err := redisDb.LPush(ctx, "list_name_" + _i, Common.GetTimeDate("Y-m-d H:i:s")).Err()
 		if err != nil {
 			fmt.Println(err)
@@ -60,6 +60,6 @@ func RedisList(ctx *gin.Context)  {
 	ctx.JSON(200, gin.H{
 		"state": 1,
 		"msg": "GORedis示例",
-		"content": [...]string{Common.IntToString(int(_len)), _val[0], _val[1], _val[2], _val[3]},
+		"content": [...]string{Common.IntToString(_len), _val[0], _val[1], _val[2], _val[3]},
 	})
 }

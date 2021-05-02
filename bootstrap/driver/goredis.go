@@ -28,9 +28,9 @@ func init() {
 	log.Println("尝试连接GoRedis...")
 
 	RedisDb = redis.NewClient(&redis.Options{ // 连接服务
-		Addr:     rdbConfig["Addr"], // string
-		Password: rdbConfig["Password"], // string
-		DB:       Common.StringToInt(rdbConfig["DB"]), // int
+		Addr:     rdbConfig["Addr"],                        // string
+		Password: rdbConfig["Password"],                    // string
+		DB: int(Common.StringToInt(rdbConfig["DB"])), 		// int
 	})
 	RedisPong, RedisErr := RedisDb.Ping(context.Background()).Result() // 心跳
 	if RedisErr != nil {

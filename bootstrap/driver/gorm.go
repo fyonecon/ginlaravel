@@ -10,6 +10,7 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 // GORM文档：https://learnku.com/docs/gorm/v2/advanced_query/9757
+// GORM文档：https://www.cnblogs.com/zisefeizhu/category/1747066.html
 
 import (
 	"database/sql"

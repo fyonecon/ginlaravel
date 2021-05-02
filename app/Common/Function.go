@@ -40,37 +40,37 @@ func DecodeURL(_url string) (string, error) {
 }
 
 // string转int
-func StringToInt(_str string) int {
+func StringToInt(_str string) int64 {
 	_int, err := strconv.ParseInt(_str, 10, 64) // string转int
 	if err != nil { // 报错则默认返回0
 		_int = 0
 		fmt.Println("格式转换错误：")
 		fmt.Println(err)
 	}
-	return int(_int)
+	return _int
 }
 
 // int转string
-func IntToString(_int int) string {
-	_str := strconv.FormatInt(int64(_int),10)
+func IntToString(_int int64) string {
+	_str := strconv.FormatInt(_int,10)
 	return _str
 }
 
 // 获取指定范围内的可变随机整数数，正负都行
-func RandRange(_min int, _max int) int {
-	var _rand int
+func RandRange(_min int64, _max int64) int64 {
+	var _rand int64
 	if _min >= _max {
 		_rand = 0
 	}else {
 		rand.Seed(time.Now().UnixNano())
-		_rand = rand.Intn(_max - _min) + _min
+		_rand = rand.Int63n(_max - _min) + _min
 	}
 	return _rand
 }
 
 // 生成指定长度的字符串
-func RandString(_length int) string {
-	var length int
+func RandString(_length int64) string {
+	var length int64
 	if _length >= 1 {
 		length = _length
 	}else {
@@ -80,8 +80,8 @@ func RandString(_length int) string {
 	bytes := []byte(str)
 	var result []byte
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	for i := 0; i < length; i++ {
-		result = append(result, bytes[r.Intn(len(bytes))])
+	for i := 0; i < int(length); i++ {
+		result = append(result, bytes[r.Int63n(int64(len(bytes)))])
 	}
 	return string(result)
 }
@@ -122,12 +122,12 @@ func GetTimeDate(_format string) string {
 
 	timer := time.Now().In(timeZone)
 
-	var year int = timer.Year()
-	var month int = int(timer.Month())
-	var day int = timer.Day()
-	var hour int = timer.Hour()
-	var minute int = timer.Minute()
-	var second int = timer.Second()
+	var year int64 = int64(timer.Year())
+	var month int64 = int64(timer.Month())
+	var day int64 = int64(timer.Day())
+	var hour int64 = int64(timer.Hour())
+	var minute int64 = int64(timer.Minute())
+	var second int64 = int64(timer.Second())
 
 	var _year string
 	var _month string

@@ -39,9 +39,9 @@ func Run(httpServer *gin.Engine) {
 
 	serverAddr := serverConfig["HOST"] + ":" + serverConfig["PORT"]
 
-	log.Println("提示：Gin服务内存常驻，请提前使用screen会话服务(need yum install screen)来继续保留终端窗口；退出服务请按：'Ctrl + C' 。\n")
 	log.Println("GinLaravel is Working >>> ")
-	log.Println("访问地址示例：http://" + serverAddr + "/gen1/app/api")
+	log.Println("提示：\nGin服务内存常驻，请提前使用screen会话服务(need yum install screen)来继续保留终端窗口；退出服务请按：'Ctrl + C' ")
+	log.Println("访问地址示例：http://" + serverAddr + "/gen1/app/api \n")
 
 	// 启动服务
 	err := httpServer.Run(serverAddr)

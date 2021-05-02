@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-
+// 用户列表
 func ListUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
@@ -23,7 +23,7 @@ func ListUser(ctx *gin.Context)  {
 	page = page - 1
 
 	listUserModel := Gen1.ListUserKeys{}
-	users, err := listUserModel.ListUser(page, userClassId, _nickname)
+	users, err := listUserModel.ListUser(int(page), int(userClassId), _nickname)
 
 	if err != nil {
 		state = 0

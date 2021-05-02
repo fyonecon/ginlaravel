@@ -14,7 +14,7 @@ type UserLoginKeys struct {
 }
 func UserLogin(ctx *gin.Context) {
 	_timeMS := Common.GetTimeMS()
-	timeMS := Common.IntToString(int(_timeMS))
+	timeMS := Common.IntToString(_timeMS)
 	IP := ctx.ClientIP()
 	where := "Gen3User"
 	randString := Common.RandString(Common.RandRange(7, 9))
