@@ -55,11 +55,7 @@ func ListGMUser(ctx *gin.Context)  {
 	}
 
 	// 分页数据
-	paging := map[string]interface{}{
-		"total": total,
-		"limit": limit,
-		"page": page+1,
-	}
+	paging := Common.MakePaging(int(total), limit, page)
 	// 返回数据
 	ctx.JSONP(200, map[string]interface{}{
 		"state": state,

@@ -89,27 +89,57 @@ func RandString(_length int64) string {
 // 生成分页数据
 // (数据总条数，每页多少条数据，当前第几页)
 // 首页1、上一页N-1、N-2、N-1、本页N、N+1、N+2、下一页N+1、最后一页
-func MakePaging(_total int, _limit int, _page int) map[string]int{
+func MakePaging(_total int, _limit int, _page int) map[string]interface{}{
 	// 总页数
 	pageTotal := int(math.Ceil(float64(_total / _limit)))
+	if pageTotal < 1 {
+		pageTotal = 1
+	}
 	// 第一页
 	firstPage := 1
 	// 最后一页
 	lastPage := pageTotal
 	// 上一页
-	beforePage := _page - 1
+	beforePage := _page
+	if beforePage < 1 {
+		beforePage = 1
+	}
+	// 当前页
+	nowPage := _page + 1
 	// 下一页
-	afterPage := _page + 1
+	afterPage := _page + 2
+	// 数字分页：1，2，3，4，当前，6，7，8，9
+	footPage := ""
+	footLen := 4
+	// 前4页
+	for a:=0; a<footLen; a++ {
+		p := nowPage - footLen + a
+		if p < nowPage && p >= 1 {
+			footPage = footPage + IntToString(int64(p)) + ","
+		}
+	}
+	//footPage = footPage + IntToString(int64(nowPage)) + ","
+	// 后4页
+	for b:=0; b<footLen; b++ {
+		p := nowPage + b
+		if p >= 1 && p <= pageTotal {
+			footPage = footPage + IntToString(int64(p)) + ","
+		}
+	}
 
-	var back = map[string]int{
+	var back = map[string]interface{}{
 		"total":       _total,
-		"page":        _page,
+		"page":        _page+1,
 		"limit":       _limit,
-		"page_total":  pageTotal,
-		"first_page":  firstPage,
-		"last_page":   lastPage,
-		"before_page": beforePage,
-		"after_page":  afterPage,
+		"calc": map[string]interface{}{
+			"total_page":  pageTotal,
+			"first_page":  firstPage,
+			"last_page":   lastPage,
+			"before_page": beforePage,
+			"now_page": nowPage,
+			"after_page":  afterPage,
+			"foot_page": footPage,
+		},
 	}
 	return back
 }
