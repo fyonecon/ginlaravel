@@ -26,7 +26,7 @@ func Run(httpServer *gin.Engine) {
 	// Gin运行时：release、debug、test
 	gin.SetMode(serverConfig["ENV"])
 	// 配置模版视图
-	if "" != serverConfig["VIEWS_PATTERN"] {
+	if serverConfig["VIEWS_PATTERN"] != "" {
 		httpServer.LoadHTMLGlob(serverConfig["VIEWS_PATTERN"])
 	}
 	// 注册路由

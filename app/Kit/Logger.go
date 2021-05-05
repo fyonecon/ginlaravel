@@ -45,7 +45,7 @@ func Log(_txt string, _ip string) {
 
 }
 
-// Error 记录错误日志，错误日志不自动删除
+// Error 记录错误日志
 func Error(_txt string, _ip string) {
 
 	// 文件信息
@@ -63,23 +63,23 @@ func Error(_txt string, _ip string) {
 	// 写入文件内容
 	file.WriteString(txt + "\n")
 
-	// 删除老文件，默认存放2个月
-	//_oldMonth := -2
-	//day21 := time.Now().AddDate(0, _oldMonth, -1).Format("2006-01-02")
-	//day22 := time.Now().AddDate(0, _oldMonth, -2).Format("2006-01-02")
-	//day23 := time.Now().AddDate(0, _oldMonth, -3).Format("2006-01-02")
-	//day24 := time.Now().AddDate(0, _oldMonth, -4).Format("2006-01-02")
-	//day25 := time.Now().AddDate(0, _oldMonth, -5).Format("2006-01-02")
-	//day26 := time.Now().AddDate(0, _oldMonth, -6).Format("2006-01-02")
-	//day27 := time.Now().AddDate(0, _oldMonth, -7).Format("2006-01-02")
-	//dayArray := [7]string{day25, day24, day23, day22, day21, day26, day27}
-	//for d:=0; d<len(dayArray); d++ {
-	//	err := os.Remove(filePath + "error_" + dayArray[d]+".log")
-	//	// os.Remove(filePath +"2021-04-10.log")
-	//	// fmt.Println(filePath + dayArray[d]+".log")
-	//	if err != nil {
-	//		// 删除失败
-	//	}
-	//}
+	// 删除老文件，默认存放13个月
+	_oldMonth := -13
+	day21 := time.Now().AddDate(0, _oldMonth, -1).Format("2006-01-02")
+	day22 := time.Now().AddDate(0, _oldMonth, -2).Format("2006-01-02")
+	day23 := time.Now().AddDate(0, _oldMonth, -3).Format("2006-01-02")
+	day24 := time.Now().AddDate(0, _oldMonth, -4).Format("2006-01-02")
+	day25 := time.Now().AddDate(0, _oldMonth, -5).Format("2006-01-02")
+	day26 := time.Now().AddDate(0, _oldMonth, -6).Format("2006-01-02")
+	day27 := time.Now().AddDate(0, _oldMonth, -7).Format("2006-01-02")
+	dayArray := [7]string{day25, day24, day23, day22, day21, day26, day27}
+	for d:=0; d<len(dayArray); d++ {
+		err := os.Remove(filePath + "error_" + dayArray[d]+".log")
+		// os.Remove(filePath +"2021-04-10.log")
+		// fmt.Println(filePath + dayArray[d]+".log")
+		if err != nil {
+			// 删除失败
+		}
+	}
 
 }
