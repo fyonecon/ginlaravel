@@ -470,6 +470,30 @@ func ShuffleArray(strings []string) string {
 	return str
 }
 
+// FilterInput 过滤Input输入的值
+// 转义%、"、'、(、)、!、/、^、*、.、
+func FilterInput(_value string) string {
+	value := _value
+
+	blackArray := [...]string{ // 这些符号将被转义
+		"%", "(",")", "!", "/", "^", "*", ".", "|", "=",
+	}
+	changArray := [...]string{ // 这些符号将被替代
+		"select", "delete", "char", "insert", "count", "exec", "declare", "update",
+	}
+
+	for i:=0; i<len(blackArray); i++ {
+		txt := blackArray[i]
+		value = ReplaceString(value, txt, EncodeURL(txt))
+	}
+	for j:=0; j<len(changArray); j++ {
+		txt := changArray[j]
+		value = ReplaceString(value, txt, "_" + txt)
+	}
+
+	return value
+}
+
 // HasFile 判断文件或文件夹是否存在
 func HasFile(filePath string) (bool, string) {
 	_, err := os.Stat(filePath)
@@ -479,6 +503,24 @@ func HasFile(filePath string) (bool, string) {
 		return false, "FileChecker:::NotFound " + filePath
 	}
 }
+
+// MakeRedisKey 生成一个Redis的键
+func MakeRedisKey(_array interface{}) string {
+	key := ArrayInterfaceToString(_array)
+	key = EncodeURL(key)
+	return key
+}
+
+// StringToMap String格式的json转Map，并不能直接转Json
+func StringToMap(_string string) map[string]interface{} {
+	var data map[string]interface{}
+	err := json.Unmarshal([]byte(_string), &data)
+	if err == nil {
+		fmt.Println(data)
+	}
+	return data
+}
+
 
 // RequestGet GET请求
 func RequestGet(requestUrl string)  {

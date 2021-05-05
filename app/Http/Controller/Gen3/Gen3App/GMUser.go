@@ -1,7 +1,10 @@
 package Gen3App
 
 import (
+	"encoding/json"
+	"fmt"
 	"ginlaravel/app/Common"
+	"ginlaravel/app/Http/Middleware"
 	"ginlaravel/app/Http/Model/Gen3"
 	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
@@ -36,34 +39,54 @@ func ListGMUser(ctx *gin.Context)  {
 	page = page - 1
 	offset = limit*page
 
-	listUserModel := Gen3.ListUserKeys{}
-	res, total, err := listUserModel.ListUser(limit, offset, userClassId, nickname)
+	// 将多查询条件转换成string
+	keyArray := [...]interface{}{userClassId, nickname, page}
+	keyString := Common.MakeRedisKey(keyArray)
 
-	if err != nil {
-		state = 0
-		msg = "查询无数据"
+	// 查询redis中是否存在该键
+	hasValue := Middleware.GetCacheInput(ctx, keyString)
+	if len(hasValue) != 0 {
+		fmt.Println(hasValue)
+		hasValue["msg"] = "获取缓存数据成功"
+		ctx.JSONP(200, hasValue)
 	}else {
-		state = 1
-		msg = "查询完成"
+
+		listUserModel := Gen3.ListUserKeys{}
+		res, total, err := listUserModel.ListUser(limit, offset, userClassId, nickname)
+
+		if err != nil {
+			state = 0
+			msg = "查询无数据"
+		}else {
+			state = 1
+			msg = "查询完成"
+		}
+
+		// 返回一些测试数据
+		testData := map[string]interface{}{
+			"page": _page,
+			"user_class_id": userClassId,
+			"nickname": nickname,
+		}
+
+		// 分页数据
+		paging := Common.MakePaging(int(total), limit, page)
+		// 返回数据
+		back := map[string]interface{}{
+			"state": state,
+			"msg": msg,
+			"paging": paging,
+			"test_data": testData,
+			"content": res,
+		}
+
+		backJson, _ := json.Marshal(back)
+		cc := Middleware.CreateCacheInput(ctx, keyString, backJson)
+		fmt.Println(cc)
+
+		ctx.JSONP(200, back)
 	}
 
-	// 返回一些测试数据
-	testData := map[string]interface{}{
-		"page": _page,
-		"user_class_id": userClassId,
-		"nickname": nickname,
-	}
-
-	// 分页数据
-	paging := Common.MakePaging(int(total), limit, page)
-	// 返回数据
-	ctx.JSONP(200, map[string]interface{}{
-		"state": state,
-		"msg": msg,
-		"paging": paging,
-		"test_data": testData,
-		"content": res,
-	})
 }
 
 // ThatGMUser 某用户

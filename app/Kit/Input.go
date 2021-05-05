@@ -52,5 +52,9 @@ func Input(ctx *gin.Context, key string) string {
 		_value = value
 	}
 
-	return _value
+	if key == "app_token" || key == "user_token" || key == "web_token" || key == "appToken" || key == "userToken" || key == "webToken" || key == "token" || key == "Token" { // 这些键不转义
+		return _value
+	}else {
+		return Common.FilterInput(_value)
+	}
 }

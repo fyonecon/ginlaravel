@@ -3,23 +3,20 @@ package Gen1App
 import (
 	"fmt"
 	"ginlaravel/app/Common"
-	"ginlaravel/bootstrap/driver"
+	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis/v8"
 	"time"
 )
 
-var redisDb *redis.Client = driver.RedisDb
-
-// redis无序不重复
+// RedisSet redis无序不重复
 func RedisSet(ctx *gin.Context){
 
-	err := redisDb.Set(ctx, "date", Common.GetTimeDate("Y-m-d H:i:s"), 0).Err()
+	err := Kit.RDB.Set(ctx, "date", Common.GetTimeDate("Y-m-d H:i:s"), 0).Err()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	val, err := redisDb.Get(ctx, "date").Result()
+	val, err := Kit.RDB.Get(ctx, "date").Result()
 	if err != nil {
 		val = fmt.Sprintf("%s", err)
 	}
@@ -34,13 +31,13 @@ func RedisSet(ctx *gin.Context){
 	})
 }
 
-// redis有序队列
+// RedisList redis有序队列
 func RedisList(ctx *gin.Context)  {
 
 	// 按序写入数据
 	for i:=0; i<3; i++ {
 		_i := Common.IntToString(int64(i))
-		err := redisDb.LPush(ctx, "list_name_" + _i, Common.GetTimeDate("Y-m-d H:i:s")).Err()
+		err := Kit.RDB.LPush(ctx, "list_name_" + _i, Common.GetTimeDate("Y-m-d H:i:s")).Err()
 		if err != nil {
 			fmt.Println(err)
 			break
@@ -49,8 +46,8 @@ func RedisList(ctx *gin.Context)  {
 	}
 
 	// 按序读出数据
-	_len, _:= redisDb.LLen(ctx, "list_name_1").Result() // 获取表中元素的个数
-	_val, _err := redisDb.LRange(ctx, "list_name_1", 0, _len-1).Result()
+	_len, _:= Kit.RDB.LLen(ctx, "list_name_1").Result() // 获取表中元素的个数
+	_val, _err := Kit.RDB.LRange(ctx, "list_name_1", 0, _len-1).Result()
 	if _err != nil {
 		fmt.Println(_err)
 	}

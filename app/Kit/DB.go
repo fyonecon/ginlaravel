@@ -5,9 +5,10 @@ package Kit
 import (
 	"database/sql"
 	"ginlaravel/bootstrap/driver"
+	"github.com/go-redis/redis/v8"
 	"gorm.io/gorm"
 )
 
-var Db *sql.DB = driver.MysqlDb // 连接gomysql扩展
+var Db *sql.DB = driver.MysqlDb // 连接mysql扩展
 var DB *gorm.DB = driver.GDB    // 连接gorm扩展
-
+var RDB *redis.Client = driver.RedisDb // 连接Redis扩展
