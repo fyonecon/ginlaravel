@@ -5,7 +5,7 @@ import (
 	"ginlaravel/app/Kit"
 )
 
-// 查用户列表
+// ListUserKeys 查用户列表
 type ListUserKeys struct { // 参数名需大写
 	UserId int64 `json:"user_id"`
 	Nickname string `json:"nickname"`
@@ -52,7 +52,7 @@ func (model *ListUserKeys) ListUser(_limit int, _offset int, _userClassId int64,
 	return
 }
 
-// 某用户
+// ThatUserKeys 某用户
 type ThatUserKeys struct { // 数据库表的字段（输出结果）
 	UserId int64 `json:"user_id"`
 	Nickname string `json:"nickname"`
@@ -80,7 +80,7 @@ func (model *ThatUserKeys) ThatGMUser(userId int64) (res ThatUserKeys, err error
 	return
 }
 
-// 新增
+// AddUserKeys 新增
 type AddUserKeys struct {
 	ID int64 // 要返回的主键值
 	UserClassId int64 `json:"user_class_id"`
@@ -104,7 +104,7 @@ func (model *AddUserKeys)AddUser(userClassId int64, nickname string, createTime 
 	return
 }
 
-// 更新
+// UpdateUserKeys 更新
 type UpdateUserKeys struct {}
 func (model *UpdateUserKeys)UpdateUser(userId int64, userClassId int64, nickname string, updateTime string) (res int64, err error) {
 
@@ -128,8 +128,7 @@ func (model *UpdateUserKeys)UpdateUser(userId int64, userClassId int64, nickname
 	return
 }
 
-// 删除用户
-// 不是真正删除，仅不可见状态
+// DelUserKeys 删除用户。不是真正删除，仅不可见状态
 type DelUserKeys struct {}
 func (model *DelUserKeys)DelUser(userId int64, updateTime string) (res int64, err error) {
 
@@ -152,7 +151,7 @@ func (model *DelUserKeys)DelUser(userId int64, updateTime string) (res int64, er
 	return
 }
 
-// 彻底删除用户，按条件删除
+// ClearUserKeys 彻底删除用户，按条件删除
 type ClearUserKeys struct {}
 func (model *ClearUserKeys)ClearUser(userId int64,) (res int64, err error) {
 

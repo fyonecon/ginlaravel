@@ -16,37 +16,31 @@ import (
 	"log"
 )
 
-// 配置并启动http服务
+// Run 配置并启动http服务
 // 项目访问入口
 func Run(httpServer *gin.Engine) {
-	log.Println("检查中间件")
-
-	// 服务配置
-	serverConfig := config.GetServerConfig()
-
-	// gin 运行时 release debug test
-	gin.SetMode(serverConfig["ENV"])
-
+	// Gin服务
 	httpServer = gin.Default()
-
-	// 配置视图
+	// 参数
+	serverConfig := config.GetServerConfig()
+	// Gin运行时：release、debug、test
+	gin.SetMode(serverConfig["ENV"])
+	// 配置模版视图
 	if "" != serverConfig["VIEWS_PATTERN"] {
 		httpServer.LoadHTMLGlob(serverConfig["VIEWS_PATTERN"])
 	}
-
 	// 注册路由
-	routes.RegisterRoutes(httpServer)
-
+	routes.Must(httpServer) // 必要路由
+	routes.Api(httpServer) // 面向Api
+	routes.Web(httpServer) // 面向模版输出
+	// 访问网址和端口
 	serverAddr := serverConfig["HOST"] + ":" + serverConfig["PORT"]
-
-	log.Println("GinLaravel is Working >>> ")
-	log.Println("提示：\nGin服务内存常驻，请提前使用screen会话服务(need yum install screen)来继续保留终端窗口；退出服务请按：'Ctrl + C' ")
-	log.Println("访问地址示例：http://" + serverAddr + "/gen1/app/api \n")
-
-	// 启动服务
+	// 终端提示
+	log.Println("访问地址示例>>> \n tpl模版输出：http://" + serverAddr + "/web/gen1/app/tpl \n api前后端分离：http://" + serverAddr + "/api/gen1/app/api \n")
+	// 启动http服务
 	err := httpServer.Run(serverAddr)
-
 	if err != nil {
 		panic("Run Error: " + err.Error())
 	}
+
 }

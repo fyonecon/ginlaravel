@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-// Form法上传文件
+// UploadFormFile Form法上传文件
 // <form action="http://127.0.0.1:8090/test/upload_form_file" method="post" enctype="multipart/form-data">
 //    文件: <input type="file" name="file"><br><br>
 //    <input type="submit" value="上传文件">

@@ -6,8 +6,7 @@ import (
 	"time"
 )
 
-// 记录一般日志
-// 定期自动删除
+// Log 记录一般日志，定期自动删除
 func Log(_txt string, _ip string) {
 
 	// 文件信息
@@ -46,8 +45,7 @@ func Log(_txt string, _ip string) {
 
 }
 
-// 记录错误日志
-// 错误日志不自动删除
+// Error 记录错误日志，错误日志不自动删除
 func Error(_txt string, _ip string) {
 
 	// 文件信息

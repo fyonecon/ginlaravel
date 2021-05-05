@@ -9,7 +9,7 @@ Github：https://github.com/fyonecon/ginlaravel
 所在城市City：长沙ChangSha
 */
 
-// MySQL数据库配置
+// GetMySQLConfig MySQL数据库配置
 func GetMySQLConfig() map[string]string {
 	// 初始化数据库配置map
 	MySQLConfig := make(map[string]string)

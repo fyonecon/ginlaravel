@@ -2,6 +2,7 @@ package Gen1App
 
 import (
 	"ginlaravel/app/Common"
+	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
 )
 
@@ -9,8 +10,7 @@ import (
 func Api(ctx *gin.Context) {
 
 	// 请求GET参数
-	name1 := ctx.Query("name1")
-	name1 = string(name1)
+	name1 := Kit.Input(ctx, "name1")
 	if len(name1) == 0 {
 		name1 = "name1参数为空"
 	}
@@ -22,11 +22,10 @@ func Api(ctx *gin.Context) {
 	}
 
 	// 引用公共函数和公共配置参数
-	name3 := Common.Test("common==func==")
-	name4 := Common.Config["test"]
-	name5 := Common.Config["api"]
+	_name5 := Common.Config["api"]
+	name5 := Common.ValueInterfaceToString(_name5)
 
-	content := "name1==" + name1 + ", name2==" + name2 + ", name3=" + name3 + ", name4=" + name4+ ", name5=" + name5
+	content := "name1==" + name1 + ", name2==" + name2 + ", name5=" + name5
 
 	var back = map[string]string{
 		"state": "1",

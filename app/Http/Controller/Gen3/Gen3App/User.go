@@ -11,7 +11,7 @@ import (
 
 var DB *sql.DB = driver.MysqlDb // 连接gomysql扩展
 
-// 用户列表
+// ListUserKeys 用户列表
 type ListUserKeys struct { // 结果集，参数名需大写
 	UserId int
 	UserClassId int
@@ -135,9 +135,7 @@ func ListUser(ctx *gin.Context)  {
 	})
 }
 
-
-
-// 某用户
+// ThatUserKeys 某用户
 type ThatUserKeys struct { // 结果集，参数名需大写
 	UserId int
 	Nickname string

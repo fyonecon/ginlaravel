@@ -11,8 +11,7 @@ import (
 
 var DB *sql.DB = driver.MysqlDb // 连接gomysql扩展
 
-
-// 用户列表
+// ListUserKeys 用户列表
 type ListUserKeys struct { // 结果集，参数名需大写
 	UserId int
 	UserClassId int
@@ -138,8 +137,7 @@ func ListUser(ctx *gin.Context)  {
 	})
 }
 
-
-// 某用户信息
+// ThatUserKeys 某用户信息
 type ThatUserKeys struct { // 结果集，参数名需大写
 	UserId int
 	Nickname string
@@ -185,8 +183,7 @@ func ThatUser(ctx *gin.Context) {
 	})
 }
 
-
-// 新增用户信息
+// AddUser 新增用户信息
 func AddUser(ctx *gin.Context) {
 	// 预定义参数
 	var state int
@@ -224,8 +221,7 @@ func AddUser(ctx *gin.Context) {
 	})
 }
 
-
-// 修改用户信息
+// UpdateUser 修改用户信息
 func UpdateUser(ctx *gin.Context) {
 	// 预定义参数
 	var state int
@@ -266,8 +262,7 @@ func UpdateUser(ctx *gin.Context) {
 	})
 }
 
-
-// 删除用户
+// DelUser 删除用户
 // 不是真正删除，只是不可见
 func DelUser(ctx *gin.Context) {
 	// 预定义参数
@@ -306,8 +301,7 @@ func DelUser(ctx *gin.Context) {
 	})
 }
 
-
-// 清除用户
+// ClearUser 清除用户
 // 直接删除
 func ClearUser(ctx *gin.Context) {
 	// 预定义参数

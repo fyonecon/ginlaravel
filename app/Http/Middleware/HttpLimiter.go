@@ -17,7 +17,7 @@ import (
 	"time"
 )
 
-// 拦截http请求频率
+// HttpLimiter 拦截http请求频率
 func HttpLimiter(_max float64) gin.HandlerFunc {
 	var max float64
 	var tbOptions limiter.ExpirableOptions

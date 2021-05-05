@@ -24,7 +24,7 @@ func VerifyApp(ctx *gin.Context) {
 	}else if method == "POST" || method == "OPTIONS" {
 
 		// 校验token
-		appToken := Kit.Input(ctx, "AppToken")
+		appToken := Kit.Input(ctx, "app_token")
 		_state, _msg, _ := Gen3App.AppCheckToken(appToken)
 		if _state == 1 {
 			ctx.Next() // 检测通过，继续下一步操作

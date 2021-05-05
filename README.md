@@ -47,7 +47,7 @@ Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Ht
 
 --/config/ MySQL数据库、Redis缓存、http端口号等配置
 
---/routes/ 路由，同时支持模版型路由、Api型路由。推荐三层路由命名。
+--/routes/ 路由，同时支持模版型路由（web.go）、Api型路由（api.go）。推荐4层路由命名。
 
 --/tmp/ fresh热更的缓存日志目录
 

@@ -10,7 +10,9 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"math"
 	"math/rand"
 	"net/url"
@@ -21,42 +23,114 @@ import (
 	"time"
 )
 
-// 代码公共函数
-func Test(txt string) string {
-	if len(txt) == 0 {
-		txt = "txt-nil2"
+// Log 自定义终端打印日志
+func Log(txt interface{}) {
+	if Config["debug"] == true {
+		log.Println(txt)
 	}
-	Config["test"] = txt
-	return txt
 }
 
-// 转义url或转义其他字符
+// EncodeURL 转义url或转义其他字符
 func EncodeURL(_url string) string {
 	return url.QueryEscape(_url)
 }
-// 解义url
+
+// DecodeURL 解义url
 func DecodeURL(_url string) (string, error) {
 	return url.QueryUnescape(_url)
 }
 
-// string转int
+// ValueInterfaceToString interface转string，非map[string]interface{}
+func ValueInterfaceToString(value interface{}) string {
+	var key string
+	if value == nil {
+		return key
+	}
+
+	switch value.(type) {
+	case float64:
+		ft := value.(float64)
+		key = strconv.FormatFloat(ft, 'f', -1, 64)
+	case float32:
+		ft := value.(float32)
+		key = strconv.FormatFloat(float64(ft), 'f', -1, 64)
+	case int:
+		it := value.(int)
+		key = strconv.Itoa(it)
+	case uint:
+		it := value.(uint)
+		key = strconv.Itoa(int(it))
+	case int8:
+		it := value.(int8)
+		key = strconv.Itoa(int(it))
+	case uint8:
+		it := value.(uint8)
+		key = strconv.Itoa(int(it))
+	case int16:
+		it := value.(int16)
+		key = strconv.Itoa(int(it))
+	case uint16:
+		it := value.(uint16)
+		key = strconv.Itoa(int(it))
+	case int32:
+		it := value.(int32)
+		key = strconv.Itoa(int(it))
+	case uint32:
+		it := value.(uint32)
+		key = strconv.Itoa(int(it))
+	case int64:
+		it := value.(int64)
+		key = strconv.FormatInt(it, 10)
+	case uint64:
+		it := value.(uint64)
+		key = strconv.FormatUint(it, 10)
+	case string:
+		key = value.(string)
+	case []byte:
+		key = string(value.([]byte))
+	default:
+		newValue, _ := json.Marshal(value)
+		key = string(newValue)
+	}
+
+	return key
+}
+
+// ValueInterfaceToInt interface转int，map[string]interface{}
+func ValueInterfaceToInt(_value interface{}) int64 {
+	return StringToInt(ValueInterfaceToString(_value))
+}
+
+// MapInterfaceToString interface转string，针对map[string]interface{}的某个键
+func MapInterfaceToString(_map map[string]interface{}, _key string) string {
+	value := _map[_key].(string)
+	return value
+}
+
+// ArrayInterfaceToString interface转string，准对一维数组[]string{}或[]int{}
+func ArrayInterfaceToString(_array interface{}) string {
+	value := fmt.Sprintf("%v", _array)
+	return value
+}
+
+// StringToInt string转int
 func StringToInt(_str string) int64 {
 	_int, err := strconv.ParseInt(_str, 10, 64) // string转int
 	if err != nil { // 报错则默认返回0
 		_int = 0
-		fmt.Println("格式转换错误：")
-		fmt.Println(err)
+		//fmt.Println("格式转换错误，默认为0。")
+		//fmt.Println(err)
 	}
 	return _int
 }
 
-// int转string
+// IntToString int转string
 func IntToString(_int int64) string {
 	_str := strconv.FormatInt(_int,10)
 	return _str
 }
 
-// 获取指定范围内的可变随机整数数，正负都行
+// RandRange 获取指定范围内的可变随机整数数，正负都行
 func RandRange(_min int64, _max int64) int64 {
 	var _rand int64
 	if _min >= _max {
@@ -68,7 +142,7 @@ func RandRange(_min int64, _max int64) int64 {
 	return _rand
 }
 
-// 生成指定长度的字符串
+// RandString 生成指定长度的字符串
 func RandString(_length int64) string {
 	var length int64
 	if _length >= 1 {
@@ -86,7 +160,7 @@ func RandString(_length int64) string {
 	return string(result)
 }
 
-// 生成分页数据
+// MakePaging 生成分页数据
 // (数据总条数，每页多少条数据，当前第几页)
 // 首页1、上一页N-1、N-2、N-1、本页N、N+1、N+2、下一页N+1、最后一页
 func MakePaging(_total int, _limit int, _page int) map[string]interface{}{
@@ -144,7 +218,7 @@ func MakePaging(_total int, _limit int, _page int) map[string]interface{}{
 	return back
 }
 
-// 获取日期时间戳，s
+// GetTimeDate 获取日期时间戳，s
 func GetTimeDate(_format string) string {
 	// 时区
 	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
@@ -231,7 +305,7 @@ func GetTimeDate(_format string) string {
 	return _date
 }
 
-// 获取秒时间戳
+// GetTimeS 获取秒时间戳
 func GetTimeS() int64 {
 	// 时区
 	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
@@ -240,7 +314,7 @@ func GetTimeS() int64 {
 	return time.Now().In(timeZone).Unix()
 }
 
-// 获取毫秒时间戳，ms
+// GetTimeMS 获取毫秒时间戳，ms
 func GetTimeMS() int64 {
 	// 时区
 	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
@@ -251,7 +325,7 @@ func GetTimeMS() int64 {
 	return int64(timeMS)
 }
 
-// 日期时间戳转时间戳，s
+// DateToTimeS 日期时间戳转时间戳，s
 func DateToTimeS(_date string, format string) int64 {
 	var date string
 	if len(_date) == 0 { //给一个默认值
@@ -279,7 +353,7 @@ func DateToTimeS(_date string, format string) int64 {
 	return timestamp
 }
 
-// 秒时间戳转日期，ms
+// TimeSToDate 秒时间戳转日期，ms
 func TimeSToDate(_timeS int64, format string) string {
 	var timeS int64
 	if _timeS == 0 { //给一个默认值
@@ -303,7 +377,7 @@ func TimeSToDate(_timeS int64, format string) string {
 	return date
 }
 
-// 将日期时间戳YmdHis转成日期时间戳Y-m-d H:i:s
+// DateToDate 将日期时间戳YmdHis转成日期时间戳Y-m-d H:i:s
 func DateToDate(_date string) string {
 	var date string
 	if len(_date) == 0 {
@@ -317,14 +391,14 @@ func DateToDate(_date string) string {
 	return TimeSToDate(timeS, "Y-m-d H:i:s")
 }
 
-// 将html标签大写转小写
+// FilterToLower 将html标签大写转小写
 func FilterToLower(html string) string {
 	reg, _ := regexp.Compile("\\<[\\S\\s]+?\\>")
 	html = reg.ReplaceAllStringFunc(html, strings.ToLower)
 	return html
 }
 
-// 过滤iframe
+// FilterIframe 过滤iframe
 func FilterIframe(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<iframe[\\S\\s]+?\\</iframe\\>")
@@ -332,7 +406,7 @@ func FilterIframe(html string) string {
 	return html
 }
 
-//过滤xml
+// FilterXML 过滤xml
 func FilterXML(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<?xml[\\S\\s]+?\\?\\>")
@@ -340,7 +414,7 @@ func FilterXML(html string) string {
 	return html
 }
 
-// 过滤html中的style
+// FilterStyle 过滤html中的style
 func FilterStyle(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
@@ -348,7 +422,7 @@ func FilterStyle(html string) string {
 	return html
 }
 
-// 过滤html中的js
+// FilterJS 过滤html中的js
 func FilterJS(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
@@ -356,7 +430,7 @@ func FilterJS(html string) string {
 	return html
 }
 
-// 全部替换字符串中的某词
+// ReplaceString 全部替换字符串中的某词
 func ReplaceString(text string, _old string, _new string) string {
 	if len(text) == 0 {
 		return ""
@@ -371,7 +445,7 @@ func ReplaceString(text string, _old string, _new string) string {
 	return text
 }
 
-// 替换字符串几位到几位
+// ReplaceRangeString 替换字符串几位到几位
 func ReplaceRangeString(text string,_start int, _end int, _new string) string {
 	if len(text) <= _end {
 		_end = len(text)-1
@@ -382,7 +456,7 @@ func ReplaceRangeString(text string,_start int, _end int, _new string) string {
 	return text[:_start] + _new + text[_end:]
 }
 
-// 打乱数组(字符串型数组)
+// ShuffleArray 打乱数组(字符串型数组)
 func ShuffleArray(strings []string) string {
 	for i := len(strings) - 1; i > 0; i-- {
 		num := rand.Intn(i + 1)
@@ -396,7 +470,7 @@ func ShuffleArray(strings []string) string {
 	return str
 }
 
-// 判断文件或文件夹是否存在
+// HasFile 判断文件或文件夹是否存在
 func HasFile(filePath string) (bool, string) {
 	_, err := os.Stat(filePath)
 	if err == nil {
@@ -406,8 +480,7 @@ func HasFile(filePath string) (bool, string) {
 	}
 }
 
-
-// GET请求
+// RequestGet GET请求
 func RequestGet(requestUrl string)  {
 	//
 	

@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-// 用户列表
+// ListGMUser 用户列表
 func ListGMUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
@@ -66,7 +66,7 @@ func ListGMUser(ctx *gin.Context)  {
 	})
 }
 
-// 某用户
+// ThatGMUser 某用户
 func ThatGMUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
@@ -102,7 +102,7 @@ func ThatGMUser(ctx *gin.Context)  {
 	})
 }
 
-// 新增用户信息
+// AddGMUser 新增用户信息
 func AddGMUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
@@ -166,8 +166,7 @@ func AddGMUser(ctx *gin.Context)  {
 	})
 }
 
-
-// 更新用户信息
+// UpdateGMUser 更新用户信息
 func UpdateGMUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int
@@ -234,8 +233,7 @@ func UpdateGMUser(ctx *gin.Context)  {
 
 }
 
-
-// 删除用户
+// DelGMUser 删除用户
 // 不是真正删除
 func DelGMUser(ctx *gin.Context)  {
 	// 预定义参数
@@ -277,7 +275,7 @@ func DelGMUser(ctx *gin.Context)  {
 	})
 }
 
-// 彻底删除用户
+// ClearGMUser 彻底删除用户
 func ClearGMUser(ctx *gin.Context)  {
 	// 预定义参数
 	var state int

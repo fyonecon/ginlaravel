@@ -1,12 +1,12 @@
 package Kit
 
 import (
+	"ginlaravel/app/Common"
 	"github.com/gin-gonic/gin"
-	"log"
 	"strings"
 )
 
-// 自动判断请求类型并自动输出参数值
+// Input 自动判断请求类型并自动输出参数值
 func Input(ctx *gin.Context, key string) string {
 	var _value string
 	var value string
@@ -25,14 +25,14 @@ func Input(ctx *gin.Context, key string) string {
 			hasCt2 := strings.Contains(_contentType[0], "multipart/form-data")
 			if !hasCt1 && !hasCt2 {
 				_value = ""
-				log.Println("POST方式时建议：Content-Type=「application/x-www-form-urlencoded 」或 「 multipart/form-data 」")
+				Common.Log("POST方式时建议：Content-Type=「application/x-www-form-urlencoded 」或 「 multipart/form-data 」")
 			}else {
 				_value = value
-				log.Println("当前请求头：" + _contentType[0])
+				Common.Log("当前请求头：" + _contentType[0])
 			}
 		}else {
 			_value = ""
-			log.Println(_contentType)
+			Common.Log(_contentType)
 		}
 
 	}else {
@@ -45,9 +45,9 @@ func Input(ctx *gin.Context, key string) string {
 		// 当参数键不存在时，可能时是因为传来的参数的格式不正确。
 		ctx.Request.ParseMultipartForm(128) //保存表单缓存的内存大小128M
 		data := ctx.Request.Form
-		log.Println("当参数键不存在时，可能时是因为传来的参数的格式不正确。请查看传来的GET+POST全部数据：")
-		log.Println(data)
-		log.Println("axios请参考：项目资料/其他示例/axios-post.html")
+		//Common.Log("当参数键不存在时，可能时是因为传来的参数的格式不正确。请查看传来的GET+POST全部数据：")
+		Common.Log(data)
+		//Common.Log("axios请参考：项目资料/其他示例/axios-post.html")
 	}else{
 		_value = value
 	}

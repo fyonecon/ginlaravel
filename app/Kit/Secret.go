@@ -13,7 +13,7 @@ import (
 
 // 默认密钥
 const _KEY string = "fy2021GL" // 占8字节
-// 加密
+// Encode 加密
 func Encode(text string, key string) string {
 	if len(key) != 8 {
 		key = _KEY
@@ -30,7 +30,8 @@ func Encode(text string, key string) string {
 	// fmt.Printf("加密后字节数组：%v\n", cipherArr)
 	// fmt.Printf("加密后16进制：%x\n", cipherArr)
 }
-// 解密
+
+// Decode 解密
 func Decode(text string, key string) string {
 	if len(key) != 8 {
 		key = _KEY

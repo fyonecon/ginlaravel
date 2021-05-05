@@ -6,10 +6,6 @@ import (
 )
 
 var initData = "initData=="
-func init() { // init()会自动运行
-	fmt.Println("init")
-	initData = initData + "init"
-}
 
 func Test2Run(ctx *gin.Context)  {
 	fmt.Println("run")

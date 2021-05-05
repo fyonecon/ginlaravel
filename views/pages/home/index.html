@@ -1,4 +1,4 @@
-{{ define "home/index.html" }}
+{{ define "pages/home/index.html" }}
 
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -9,12 +9,13 @@
     <meta http-equiv="Cache-Control" content="max-age=60" />
     <meta name="robots" content="noindex, nofollow"/>
     <title>tpl示例-{{ .title }}</title>
-    <link href="../../static/css/test.css" rel="stylesheet">
-    <script src="../../static/js/test.js"></script>
+    <link href="{{ .static_path }}static/css/test.css" rel="stylesheet">
+    <script src="{{ .static_path }}static/js/test.js"></script>
 </head>
 <body>
     <h3 style="color: blue;">{{ .msg }}</h3>
     <p>Golang模板引擎快速入门教程：https://www.tizi365.com/archives/85.html</p>
+    <p id="p">1</p>
 </body>
 </html>
 

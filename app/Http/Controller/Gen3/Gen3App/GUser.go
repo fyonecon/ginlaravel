@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 某用户
+// ThatGUser 某用户
 func ThatGUser(ctx *gin.Context) {
 	// 预定义参数
 	var state int

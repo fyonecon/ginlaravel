@@ -1,4 +1,5 @@
 package driver
+// 使用插件：https://github.com/go-redis/redis
 
 /*
 第二作者Author：fyonecon
@@ -18,8 +19,6 @@ import (
 )
 
 var rdbConfig map[string]string = config.GetRedisConfig()
-
-// 使用插件：https://github.com/go-redis/redis
 var RedisDb *redis.Client
 
 func init() {

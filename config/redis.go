@@ -1,6 +1,6 @@
 package config
 
-// Redis数据库配置
+// GetRedisConfig Redis数据库配置
 func GetRedisConfig() map[string]string {
 	rdbConfig := make(map[string]string)
 
