@@ -1,7 +1,6 @@
 package Gen3App
 
 import (
-	"encoding/json"
 	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Http/Middleware"
@@ -79,9 +78,7 @@ func ListGMUser(ctx *gin.Context)  {
 			"test_data": testData,
 			"content": res,
 		}
-
-		backJson, _ := json.Marshal(back)
-		cc := Middleware.CreateCacheInput(ctx, keyString, backJson)
+		cc := Middleware.CreateCacheInput(ctx, keyString, back)
 		fmt.Println(cc)
 
 		ctx.JSONP(200, back)

@@ -2,6 +2,7 @@ package Middleware
 // 利用redis缓存来定期存储耗时任务的结果
 
 import (
+	"encoding/json"
 	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
@@ -21,8 +22,9 @@ func GetCacheInput(ctx *gin.Context, key string) map[string]interface{} {
 }
 
 // CreateCacheInput 创建缓存
-func CreateCacheInput(ctx *gin.Context, key string, back []byte) interface{} {
-	err := Kit.RDB.Set(ctx, key, back, 0).Err()
+func CreateCacheInput(ctx *gin.Context, key string, back map[string]interface{}) interface{} {
+	backJson, _ := json.Marshal(back)
+	err := Kit.RDB.Set(ctx, key, backJson, 0).Err()
 	if err != nil {
 		fmt.Println(err)
 		return 0
