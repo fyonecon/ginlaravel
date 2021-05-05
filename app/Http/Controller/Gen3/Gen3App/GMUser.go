@@ -3,7 +3,6 @@ package Gen3App
 import (
 	"fmt"
 	"ginlaravel/app/Common"
-	"ginlaravel/app/Http/Middleware"
 	"ginlaravel/app/Http/Model/Gen3"
 	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
@@ -43,7 +42,7 @@ func ListGMUser(ctx *gin.Context)  {
 	keyString := Common.MakeRedisKey(keyArray)
 
 	// 查询redis中是否存在该键
-	hasValue := Middleware.GetCacheInput(ctx, keyString)
+	hasValue := Kit.GetCacheInput(ctx, keyString)
 	if len(hasValue) != 0 {
 		fmt.Println(hasValue)
 		hasValue["msg"] = "获取缓存数据成功"
@@ -78,7 +77,7 @@ func ListGMUser(ctx *gin.Context)  {
 			"test_data": testData,
 			"content": res,
 		}
-		cc := Middleware.CreateCacheInput(ctx, keyString, back)
+		cc := Kit.CreateCacheInput(ctx, keyString, back)
 		fmt.Println(cc)
 
 		ctx.JSONP(200, back)
