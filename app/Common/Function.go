@@ -10,11 +10,16 @@ Github：https://github.com/fyonecon/ginlaravel
 */
 
 import (
+	"crypto/md5"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
 	"math"
 	"math/rand"
+	"net/http"
 	"net/url"
 	"os"
 	"regexp"
@@ -511,8 +516,14 @@ func MakeRedisKey(_array interface{}) string {
 	return key
 }
 
-// StringToMap String格式的json转Map，并不能直接转Json
-func StringToMap(_string string) map[string]interface{} {
+// MapInterfaceToJson map[string]interface{}转Json
+func MapInterfaceToJson(_map map[string]interface{}) []byte {
+	_json, _ := json.Marshal(_map)
+	return _json
+}
+
+// JsonStringToMap String格式的json转Map，并不能直接转Json
+func JsonStringToMap(_string string) map[string]interface{} {
 	var data map[string]interface{}
 	err := json.Unmarshal([]byte(_string), &data)
 	if err == nil {
@@ -521,9 +532,70 @@ func StringToMap(_string string) map[string]interface{} {
 	return data
 }
 
+// MD5 生成md5
+func MD5(_string string) string {
+	h := md5.New()
+	io.WriteString(h, _string)
+	return fmt.Sprintf("%x", h.Sum(nil))
+}
+
+// EncodeBase64 生成base64（标准方式）
+func EncodeBase64(_string string) string {
+	res := base64.StdEncoding.EncodeToString([]byte(_string))
+	return res
+}
+
+// DecodeBase64 解密base64（标准方式）
+func DecodeBase64(_string string) string {
+	res, err := base64.StdEncoding.DecodeString(_string)
+	if err != nil {
+		fmt.Printf("DecodeBase64 Error: %s ", err.Error())
+		return ""
+	}
+	return string(res)
+}
+
+// EncodeUrlBase64 加密文件和url名安全型base64
+func EncodeUrlBase64(_string string) string {
+	res := base64.URLEncoding.EncodeToString([]byte(_string))
+	return res
+}
+
+// DecodeUrlBase64 解密文件和url名安全型base64
+func DecodeUrlBase64(_string string) string {
+	res, err := base64.URLEncoding.DecodeString(_string)
+	if err != nil {
+		fmt.Printf("DecodeUrlBase64 Error: %s ", err.Error())
+		return ""
+	}
+	return string(res)
+}
 
 // RequestGet GET请求
-func RequestGet(requestUrl string)  {
-	//
-	
+// 参考博客：https://blog.csdn.net/qq_29176323/article/details/109745009
+func RequestGet(urlNoParams string, body map[string][]string) string {
+	params := url.Values{}
+	params = body
+	//params.Set("aaa", "aaa") // 设置参数
+	parseURL, err := url.Parse(urlNoParams)
+	if err != nil {
+		log.Println(err)
+		return ""
+	}
+	parseURL.RawQuery = params.Encode()
+	urlPathWithParams := parseURL.String()
+	resp, err := http.Get(urlPathWithParams)
+	if err != nil {
+		log.Println(err)
+		return ""
+	}
+	defer resp.Body.Close()
+
+	res, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Println(err)
+		return ""
+	}
+
+	return string(res)
 }

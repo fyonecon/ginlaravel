@@ -21,10 +21,10 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、三层路由等。
 
 ## 理念
-宽进严出，面向Api，适合复杂项目。
+宽进严出，面向Api，适合复杂项目，任何参数或服务都会有默认值。
 
 ## 运行特点
-内存常驻似swoole，Golang开发速度是PHP的十分之一，支持fresh热更，空间命名分布明确适合复杂业务项目，整个项目运行需go+mysql+redis。
+内存常驻似swoole，Golang开发速度是PHP的十分之一，支持fresh热更，空间命名分布明确适合复杂业务项目，整个项目运行需go+mysql+redis，遇到参数或服务不可用时不会立即中断请求。
 
 ## 项目目录解释
 --/app/Common/ 对go原生封装的公共函数、自定义必要数据参数配置

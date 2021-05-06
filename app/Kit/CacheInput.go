@@ -17,7 +17,7 @@ func GetCacheInput(ctx *gin.Context, key string) map[string]interface{} {
 		//back = fmt.Sprintf("%s", err)
 		back = ""
 	}
-	return Common.StringToMap(back)
+	return Common.JsonStringToMap(back)
 }
 
 // CreateCacheInput 创建缓存
@@ -29,8 +29,8 @@ func CreateCacheInput(ctx *gin.Context, key string, back map[string]interface{})
 		return 0
 	}else {
 		// 设置键过期时间，s
-		timeout := 1200*time.Second // s，默认每20min可更新一次
-		res := RDB.Expire(ctx, key, timeout)
+		timeout := 1200*1000*time.Millisecond // ms，默认每20min可更新一次
+		res := RDB.PExpire(ctx, key, timeout)
 		fmt.Println(res)
 		return res
 		//return 1

@@ -15,7 +15,7 @@ import (
 	"net/http"
 )
 
-// HttpCors 处理http-header信息
+// HttpCorsWeb 处理http-header信息
 func HttpCorsWeb(ctx *gin.Context) { // 面向模版
 	method := ctx.Request.Method
 
