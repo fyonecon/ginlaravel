@@ -8,10 +8,8 @@ import (
 	"net/http"
 )
 
-// Must 路由访问原则：宽进严出，所以都用Any，在拦截器里面拦截（VerifyXXX.go）具体请求事件。
-// 路由周期：请求路由名——>header过滤——>拦截请求频率——>校验请求方法和Token参数——>运行目标函数——>程序达到终点，关闭此次请求。
-// 路由写法 ：Any(路由名（必选）, header参数（可选）, 访问频率限制（可选）, 拦截器参数验证（可选）, 目标函数handler（必选）)
-func Must(route *gin.Engine) { // ==系统必要路由==
+// Must ==系统必要路由==
+func Must(route *gin.Engine) {
 
 	// 默认根路由
 	route.Any("/", Middleware.HttpCorsApi, Middleware.HttpLimiter(2), func (ctx *gin.Context) {

@@ -1,4 +1,5 @@
 package Common
+// 解决一些原生Go方法没「有默认值」而直接panic的问题；「从晦涩到好用」。
 
 /*
 第二作者Author：fyonecon

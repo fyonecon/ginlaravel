@@ -1,5 +1,5 @@
 package Kit
-// 利用redis缓存来定期存储耗时任务的结果
+// 利用redis-RAM缓存来定期存储耗时任务的结果
 
 import (
 	"encoding/json"
