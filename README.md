@@ -18,7 +18,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 /Gen1/展示了使用MVC方式处理数据；/Gen3/展示了使用"SCK"处理数据和请求。
 
 ## 现已支持
-Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、三层路由等。
+Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由等。
 
 ## 理念
 宽进严出，面向Api，适合复杂项目，任何参数或服务都会有默认值。
