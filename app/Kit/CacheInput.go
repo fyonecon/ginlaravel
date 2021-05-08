@@ -9,17 +9,6 @@ import (
 	"time"
 )
 
-// GetCacheInput 查询缓存
-func GetCacheInput(ctx *gin.Context, key string) map[string]interface{} {
-	back, err := RDB.Get(ctx, key).Result()
-	if err != nil {
-		fmt.Println(err)
-		//back = fmt.Sprintf("%s", err)
-		back = ""
-	}
-	return Common.JsonStringToMap(back)
-}
-
 // CreateCacheInput 创建缓存
 func CreateCacheInput(ctx *gin.Context, key string, back map[string]interface{}) interface{} {
 	backJson, _ := json.Marshal(back)
@@ -35,4 +24,15 @@ func CreateCacheInput(ctx *gin.Context, key string, back map[string]interface{})
 		return res
 		//return 1
 	}
+}
+
+// GetCacheInput 查询缓存
+func GetCacheInput(ctx *gin.Context, key string) map[string]interface{} {
+	back, err := RDB.Get(ctx, key).Result()
+	if err != nil {
+		fmt.Println(err)
+		//back = fmt.Sprintf("%s", err)
+		back = ""
+	}
+	return Common.JsonStringToMap(back)
 }

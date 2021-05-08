@@ -1,9 +1,26 @@
 package routes
+/*
+路由访问原则：宽进严出，所以都用Any，在拦截器里面拦截（VerifyXXX.go）具体请求事件。
+路由周期：请求路由名——>header过滤——>拦截请求频率——>校验请求方法和Token参数——>运行目标函数——>程序达到终点，关闭此次请求。
+路由写法 ：Any(路由名（必选）, header参数（可选）, 访问频率限制（可选）, 拦截器参数验证（可选）, 目标函数handler（必选）)
+路由命名原则：推荐使用4层路由。第1层：api类还是web类；第2层：接口版本名；第3层：不同拦截器下的不同空间命名；第4层：目标函数handler。
+*/
+
+/*
+第二作者Author：fyonecon
+博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
+Github：https://github.com/fyonecon/ginlaravel
+邮箱Email：2652335796@qq.com，ikydee@yahoo.com
+微信WeChat：fy66881159
+所在城市City：长沙ChangSha
+*/
 
 import (
 	"ginlaravel/app/Common"
-	"ginlaravel/app/Http/Middleware"
+	"ginlaravel/app/Http/Controller"
 	"ginlaravel/app/Kit"
+	"ginlaravel/app/Middleware"
+	"ginlaravel/config"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -12,17 +29,18 @@ import (
 func Must(route *gin.Engine) {
 
 	// 默认根路由
-	route.Any("/", Middleware.HttpCorsApi, Middleware.HttpLimiter(2), func (ctx *gin.Context) {
+	route.Any("/", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), func (ctx *gin.Context) {
 		Kit.Log("进入了默认根路由", ctx.ClientIP())
-		ctx.JSONP(http.StatusForbidden, gin.H{
-			"state": 403,
-			"msg": "指定路由名后才可访问",
-			"content": map[string]interface{}{
-				"gl_version": Common.ServerInfo["gl_version"],
-				"go_version": Common.ServerInfo["go_version"],
-				"timezone": Common.ServerInfo["timezone"],
-			},
+
+		name := Kit.Input(ctx, "name")
+		if len(name) == 0 { name = "name为空"}
+		id := Kit.Input(ctx, "id")
+
+		ctx.HTML(200, "pages/welcome/index.html", gin.H{
+			"title": "Welcome GinLaravel !",
+			"msg": "name=" + name + "；id=" + id,
 		})
+
 	}, Middleware.HttpAbort)
 
 	// 404路由
@@ -41,6 +59,18 @@ func Must(route *gin.Engine) {
 	}, Middleware.HttpAbort)
 
 	// ico图标
-	route.StaticFile("/favicon.ico", Common.ServerInfo["go_path"] + "favicon.ico") // 单个静态文件
+	route.StaticFile("/favicon.ico", Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"] + "favicon.ico")
+
+	// robots文件
+	route.StaticFile("/robots.txt", Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"] + "robots.txt")
+
+	// js、css、img等多个静态文件夹
+	route.Static("/static/", Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"])
+
+	// 示例-模版视图输出
+	route.Any("tpl", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), Controller.Tpl, Middleware.HttpAbort)
+
+	// 示例-api_json数据输出
+	route.Any("api", Middleware.HttpCorsApi, Middleware.HttpLimiter(2), Controller.Api, Middleware.HttpAbort)
 
 }

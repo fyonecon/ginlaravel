@@ -1,6 +1,8 @@
-## 欢迎star本项目
+## 欢迎 Star 本项目
 #### Github（推荐）：https://github.com/fyonecon/ginlaravel
 #### Gitee（备用）：https://gitee.com/fyonecon/ginlaravel
+
+## 版本：v1.3
 
 [comment]: <> (## 官网)
 
@@ -11,11 +13,7 @@
 
 整个开发以人为本，功能模块化扩展，系统安全可控，渐进式提升访问量。
 
-GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Safe—Controller—Kit"模式处理数据。
-
-"SCK"模型大多数情况下是面向Api等，具有接口安全、请求数据直接易懂、复杂格式数据易操作（批量处理）、请求宽进严出等特点。"SCK"没有model层，也不推荐使用model。
-
-/Gen1/展示了使用MVC方式处理数据；/Gen3/展示了使用"SCK"处理数据和请求。
+GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Verify—Controller—Kit"模式处理数据。
 
 ## 现已支持
 Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由等。
@@ -33,13 +31,13 @@ Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Ht
 
 --/app/Http/Controller/ 控制器
 
---/app/Http/Controller/Gen1 版本1的控制器文件夹
+--/app/Http/Controller/Example 示例
 
 --/app/Http/Controller/Gen3 版本3的控制器文件夹
 
 --/app/Http/Model/ 数据模型
 
---/app/Http/Middleware/ 中间件，含有cors、http限速
+--/app/Middleware/ 中间件，含有cors、http限速
 
 --/app/Kit/ 自定义系统服务，包含第三方服务和系统功能服务
 
@@ -85,7 +83,7 @@ Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、MVC、模版输出、Ht
 
 > cmd中运行"go run server.go"即可启动项目。或使用热更方式启动http服务，在cmd中目录运行"fresh"。
 
-> 访问：http://127.0.0.1:8090/gen1/user/list_user
+> 访问：http://127.0.0.1:8090
 
 > 项目上线：serverConfig["ENV"]的值改成release，然后使用以上同样方法运行。
 

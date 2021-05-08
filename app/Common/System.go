@@ -14,13 +14,12 @@ var Config = map[string]interface{}{
 
 // ServerInfo 服务器信息
 var ServerInfo = map[string]string{
-	"timezone": "Asia/Shanghai", // 时区
-	"gl_version": "gl-1.21.0506.14", // GinLaravel版本信息
+	"timezone": "Asia/Shanghai", 		// 时区
+	"gl_version": "gl-1.3.21.0508.17", 	// GinLaravel版本信息
 	"go_version": runtime.Version(),
 	"root_path": runtime.GOROOT(),
 	"go_path": os.Getenv("GOPATH") + "/src/ginlaravel/",
 	"storage_path": os.Getenv("GOPATH") + "/src/ginlaravel/storage/", // 文件存储在服务器的地址
-	"static_path": "../../../", // 静态文件http目录
 }
 
 // Page 分页参数
