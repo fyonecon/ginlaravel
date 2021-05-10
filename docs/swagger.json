@@ -3,5 +3,11 @@
     "info": {
         "contact": {}
     },
-    "paths": {}
+    "paths": {
+        "/": {
+            "get": {
+                "description": "CorsApi示例"
+            }
+        }
+    }
 }

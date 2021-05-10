@@ -1,4 +1,7 @@
 info:
   contact: {}
-paths: {}
+paths:
+  /:
+    get:
+      description: CorsApi示例
 swagger: "2.0"

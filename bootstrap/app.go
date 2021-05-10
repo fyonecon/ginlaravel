@@ -29,8 +29,8 @@ func App(httpServer *gin.Engine) {
 	httpServer.LoadHTMLGlob(config.GetViewConfig()["View_Pattern"])
 	// 注册路由
 	routes.Must(httpServer) // 必要路由
-	routes.Api(httpServer) // 面向Api
 	routes.Web(httpServer) // 面向模版输出
+	routes.Api(httpServer) // 面向Api
 	// 访问网址和端口
 	serverAddr := serverConfig["HOST"] + ":" + serverConfig["PORT"]
 	// 终端提示

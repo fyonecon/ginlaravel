@@ -6,7 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Tpl 模版视图输出
+// Tpl
+// @title 模版视图输出
+// @description CorsWeb示例
+// @Router / [GET]
 func Tpl(ctx *gin.Context) {
 
 	name := Kit.Input(ctx, "name")
@@ -19,7 +22,10 @@ func Tpl(ctx *gin.Context) {
 	})
 }
 
-// Api 接口输出简单数据
+// Api
+// @title 接口输出简单数据
+// @description CorsApi示例
+// @Router / [GET]
 func Api(ctx *gin.Context) {
 
 	name := Kit.Input(ctx, "name")

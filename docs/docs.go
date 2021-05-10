@@ -23,7 +23,13 @@ var doc = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/": {
+            "get": {
+                "description": "CorsApi示例"
+            }
+        }
+    }
 }`
 
 type swaggerInfo struct {
