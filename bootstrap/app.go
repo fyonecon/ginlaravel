@@ -39,6 +39,7 @@ func App(httpServer *gin.Engine) {
 		"1) tpl模版视图输出：http://" + serverAddr + "/tpl?name=danchaofan&id=1949 \n " +
 		"2) api前后端分离：http://" + serverAddr + "/api?name=gl&id=2021 \n " +
 		"3) 静态文件输出：http://" + serverAddr + "/favicon.ico \n " +
+		"4) Swagger接口文档：http://" + serverAddr + "/swagger/index.html \n " +
 		"")
 	// 启动http服务
 	err := httpServer.Run(serverAddr)
