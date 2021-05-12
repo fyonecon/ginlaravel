@@ -28,7 +28,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 > 请求路由名 ➡️ header过滤 ➡️ 拦截请求频率 ➡️ 校验请求方法和Token参数 ➡️ 运行目标函数 ➡️ 程序达到终点，关闭此次请求。
 
 ## 项目目录
-+ /app/Common/ ※ 对go原生封装的公共函数、自定义必要数据参数配置
++ /app/Common/ ※ 对go原生封装的公共函数、自定义必要数据参数配置。有很多用Go解释Go的公用函数。
 
 + /app/Http/ ※ 控制器、模型、拦截器
 
@@ -139,24 +139,31 @@ go run main.go
 
 ```
 
-## Go包管理工具Vendor
-```apacheconf
-下载govendor工具到本地：
-go get -u github.com/kardianos/govendor
+[comment]: <> (## Go包管理工具Vendor)
 
-生成vendor文件夹（存放你项目需要的依赖包）和vendor.json：
-govendor init
+[comment]: <> (```apacheconf)
 
-将GOPATH文件夹中的包添加到vendor目录下：
-govendor add +external
-或者govendor add +e
+[comment]: <> (下载govendor工具到本地：)
 
-快速查看项目中的外部依赖包：
-govendor list
+[comment]: <> (go get -u github.com/kardianos/govendor)
 
-# govendor fetch github.com/xxx
+[comment]: <> (生成vendor文件夹（存放你项目需要的依赖包）和vendor.json：)
 
-```
+[comment]: <> (govendor init)
+
+[comment]: <> (将GOPATH文件夹中的包添加到vendor目录下：)
+
+[comment]: <> (govendor add +external)
+
+[comment]: <> (或者govendor add +e)
+
+[comment]: <> (快速查看项目中的外部依赖包：)
+
+[comment]: <> (govendor list)
+
+[comment]: <> (# govendor fetch github.com/xxx)
+
+[comment]: <> (```)
 
 ## 运行fresh热更服务（Mac环境）
 以项目目录 /Users/fyonecon/go/src/ginlaravel 为例
@@ -242,6 +249,13 @@ chmod 773 ginlaravel
 
 ## 将Go项目部署在Centos7上（Go环境搭建、服务器环境搭建、数据库环境搭建）
 > 教程：https://blog.csdn.net/weixin_41827162/article/details/116048754
+
+## 如何将GOPATH里面的"go get xxx"扩展引用到vendor里面
+> 先在项目中import引入"xxx"扩展
+> 
+> 再在项目跟目录运行 go mod vendor
+> 
+> 这样就可以将扩展自动引用到vendor目录下而不用govendor。
 
 ## 作者Author
 > fyonecon

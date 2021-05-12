@@ -20,8 +20,6 @@ github.com/didip/tollbooth
 github.com/didip/tollbooth/errors
 github.com/didip/tollbooth/libstring
 github.com/didip/tollbooth/limiter
-# github.com/fyonecon/ginlaravel-KitLib v0.0.0-20210511015750-ba9b9fad576f
-## explicit
 # github.com/gin-contrib/sse v0.1.0
 github.com/gin-contrib/sse
 # github.com/gin-gonic/gin v1.7.1
@@ -103,6 +101,15 @@ github.com/patrickmn/go-cache
 ## explicit
 # github.com/pkg/errors v0.8.1
 ## explicit
+# github.com/robertkrimen/otto v0.0.0-20200922221731-ef014fd054ac
+## explicit
+github.com/robertkrimen/otto
+github.com/robertkrimen/otto/ast
+github.com/robertkrimen/otto/dbg
+github.com/robertkrimen/otto/file
+github.com/robertkrimen/otto/parser
+github.com/robertkrimen/otto/registry
+github.com/robertkrimen/otto/token
 # github.com/russross/blackfriday/v2 v2.1.0
 ## explicit
 # github.com/swaggo/files v0.0.0-20190704085106-630677cd5c14
@@ -198,6 +205,10 @@ google.golang.org/protobuf/reflect/protoregistry
 google.golang.org/protobuf/runtime/protoiface
 google.golang.org/protobuf/runtime/protoimpl
 google.golang.org/protobuf/types/descriptorpb
+# gopkg.in/sourcemap.v1 v1.0.5
+## explicit
+gopkg.in/sourcemap.v1
+gopkg.in/sourcemap.v1/base64vlq
 # gopkg.in/yaml.v2 v2.4.0
 ## explicit
 gopkg.in/yaml.v2
