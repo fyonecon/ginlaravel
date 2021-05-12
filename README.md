@@ -157,7 +157,9 @@ go run main.go
 
 [comment]: <> (或者govendor add +e)
 
-[comment]: <> (快速查看项目中的外部依赖包：)
+[comment]: <> (或者govendor add +e)
+
+[comment]: <> (govendor update +vendor # 更新vendor的包命令)
 
 [comment]: <> (govendor list)
 
@@ -197,6 +199,7 @@ fresh
 安装教程（GinLaravel v1.4已经集成swagger，在/routes/must.go路由文件里面，不需要再次安装和引入。）如下：
 ```apacheconf
 1。进入项目跟目录
+
 2。安装swag命令：
 go get -u github.com/swaggo/swag/cmd/swag
 
@@ -251,9 +254,9 @@ chmod 773 ginlaravel
 > 教程：https://blog.csdn.net/weixin_41827162/article/details/116048754
 
 ## 如何将GOPATH里面的"go get xxx"扩展引用到vendor里面
-> 先在项目中import引入"xxx"扩展
+> 先运行"go get 扩展github地址"，在项目中import引入"xxx"扩展
 > 
-> 再在项目跟目录运行 go mod vendor
+> 再在项目跟目录运行"go mod vendor"
 > 
 > 这样就可以将扩展自动引用到vendor目录下而不用govendor。
 
