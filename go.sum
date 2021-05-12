@@ -24,6 +24,10 @@ github.com/didip/tollbooth v4.0.2+incompatible/go.mod h1:A9b0665CE6l1KmzpDws2++e
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
 github.com/fsnotify/fsnotify v1.4.9 h1:hsms1Qyu0jgnwNXIxa+/V/PDsU6CfLf6CNO8H7IWoS4=
 github.com/fsnotify/fsnotify v1.4.9/go.mod h1:znqG4EE+3YCdAaPaxE2ZRY/06pZUdp0tY4IgpuI1SZQ=
+github.com/fyonecon/ginlaravel-KitLib v0.0.0-20210511014719-307b03b49193 h1:5MLx0PvzkhlMQFyvNB62fjl9G8lclGWD1qtHjf4bxdA=
+github.com/fyonecon/ginlaravel-KitLib v0.0.0-20210511014719-307b03b49193/go.mod h1:0ZhAs7rWl26qn67WeBf8+R+ivixTciwmKBek0rdZkXE=
+github.com/fyonecon/ginlaravel-KitLib v0.0.0-20210511015750-ba9b9fad576f h1:FJrdWaM6DDqtr0sb+/bQCfQht3M/K+MaoC73KBIeJNU=
+github.com/fyonecon/ginlaravel-KitLib v0.0.0-20210511015750-ba9b9fad576f/go.mod h1:0ZhAs7rWl26qn67WeBf8+R+ivixTciwmKBek0rdZkXE=
 github.com/ghodss/yaml v1.0.0 h1:wQHKEahhL6wmXdzwWG11gIVCkOv05bNOh+Rxn0yngAk=
 github.com/ghodss/yaml v1.0.0/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/gin-contrib/gzip v0.0.1/go.mod h1:fGBJBCdt6qCZuCAOwWuFhBB4OOq9EFqlo5dEaFhhu5w=

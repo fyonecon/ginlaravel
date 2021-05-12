@@ -1,4 +1,5 @@
 package main
+// Author：fyonecon；Blog：https://ginlaravel.com
 
 import (
 	"ginlaravel/app/Kit"

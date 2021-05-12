@@ -6,15 +6,6 @@ package routes
 路由命名原则：推荐使用4层路由。第1层：api类还是web类；第2层：接口版本名；第3层：不同拦截器下的不同空间命名；第4层：目标函数handler。
 */
 
-/*
-第二作者Author：fyonecon
-博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
-Github：https://github.com/fyonecon/ginlaravel
-邮箱Email：2652335796@qq.com，ikydee@yahoo.com
-微信WeChat：fy66881159
-所在城市City：长沙ChangSha
-*/
-
 import (
 	"ginlaravel/app/Http/Controller/Example"
 	"ginlaravel/app/Http/Controller/Example/Tpl"

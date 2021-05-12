@@ -1,15 +1,6 @@
 package driver
 // mysql文档：http://www.topgoer.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/go%E6%93%8D%E4%BD%9Cmysql/mysql%E4%BD%BF%E7%94%A8.html
 
-/*
-第二作者Author：fyonecon
-博客Blog：https://blog.csdn.net/weixin_41827162/article/details/115712700
-Github：https://github.com/fyonecon/ginlaravel
-邮箱Email：2652335796@qq.com，ikydee@yahoo.com
-微信WeChat：fy66881159
-所在城市City：长沙ChangSha
-*/
-
 import (
 	"database/sql"
 	"fmt"

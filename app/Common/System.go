@@ -15,7 +15,7 @@ var Config = map[string]interface{}{
 // ServerInfo 服务器信息
 var ServerInfo = map[string]string{
 	"timezone": "Asia/Shanghai", 		// 时区
-	"gl_version": "gl-1.4.21.0510.11", 	// GinLaravel版本信息
+	"gl_version": "gl-1.5.21.0512.09", 	// GinLaravel版本信息
 	"go_version": runtime.Version(),
 	"root_path": runtime.GOROOT(),
 	"go_path": os.Getenv("GOPATH") + "/src/ginlaravel/",

@@ -20,6 +20,8 @@ github.com/didip/tollbooth
 github.com/didip/tollbooth/errors
 github.com/didip/tollbooth/libstring
 github.com/didip/tollbooth/limiter
+# github.com/fyonecon/ginlaravel-KitLib v0.0.0-20210511015750-ba9b9fad576f
+## explicit
 # github.com/gin-contrib/sse v0.1.0
 github.com/gin-contrib/sse
 # github.com/gin-gonic/gin v1.7.1
@@ -109,7 +111,6 @@ github.com/swaggo/files
 # github.com/swaggo/gin-swagger v1.3.0
 ## explicit
 github.com/swaggo/gin-swagger
-github.com/swaggo/gin-swagger/example/basic/docs
 # github.com/swaggo/swag v1.7.0
 ## explicit
 github.com/swaggo/swag
