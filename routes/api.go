@@ -10,7 +10,9 @@ import (
 	"ginlaravel/app/Http/Controller/Example"
 	"ginlaravel/app/Http/Controller/Example/ControllerGorm"
 	"ginlaravel/app/Http/Controller/Example/ControllerMySQL"
+	"ginlaravel/app/Http/Controller/Example/Recommend"
 	"ginlaravel/app/Http/Controller/Example/Redis"
+	"ginlaravel/app/Http/Controller/Example/Segment"
 	"ginlaravel/app/Http/Controller/Example/Test"
 	"ginlaravel/app/Http/Controller/Gen3"
 	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
@@ -61,6 +63,21 @@ func Api(route *gin.Engine) {
 			test := example.Group("/test/", Middleware.HttpLimiter(2), Example.VerifyExample)
 			{
 				test.Any("test1", Test.Test1)
+			}
+
+			//
+			seg := example.Group("/seg/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			{
+				seg.Any("save_seg1", Segment.SaveSeg1)
+				seg.Any("search_seg1", Segment.SearchSeg1)
+				seg.Any("seg2", Segment.Seg2)
+			}
+
+			//
+			segment := example.Group("/rec/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			{
+				segment.Any("save_seg1", Recommend.SaveSeg1)
+				segment.Any("search_seg1", Recommend.SearchSeg1)
 			}
 
 		}
