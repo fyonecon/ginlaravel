@@ -416,10 +416,10 @@ func GetBeforeTime(_day int) (int64, string) {
 	return beforeTimeS, beforeDate
 }
 
-// DatesBetweenDay 计算两个日期之间有多少天间隔
+// GetDatesBetweenDay 计算两个日期之间有多少天间隔
 // 支持YmdHis、Y-m-d H:i:s格式日期，startDate开始日期，endDate结束日期
 // ±天数取决于开始时间和结束时间谁大
-func DatesBetweenDay(startDate string, endDate string, format string) (day int64) {
+func GetDatesBetweenDay(startDate string, endDate string, format string) (day int64) {
 	// 日期转秒时间戳
 	startTime := DateToTimeS(startDate, format)
 	endTime := DateToTimeS(endDate, format)
