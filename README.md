@@ -1,6 +1,6 @@
 ## 欢迎 Star🌟 本项目
 #### Github（推荐）：https://github.com/fyonecon/ginlaravel
-#### Gitee（大陆用户）：https://gitee.com/fyonecon/ginlaravel
+#### Github（大陆）：https://hub.fastgit.org/fyonecon/ginlaravel
 
 ## 版本
 #### v1.5
