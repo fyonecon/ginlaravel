@@ -38,6 +38,18 @@ func DecodeURL(_url string) (string, error) {
 	return url.QueryUnescape(_url)
 }
 
+// GetUrlParam 获取url中的参数（非解码）
+func GetUrlParam(_url string, _key string) (value string) {
+	u, err := url.Parse(_url)
+	values := u.Query()
+	if err != nil {
+		value = ""
+	}else {
+		value = values.Get(_key)
+	}
+	return
+}
+
 // ValueInterfaceToString interface转string，非map[string]interface{}
 func ValueInterfaceToString(value interface{}) string {
 	var key string
@@ -389,6 +401,35 @@ func DateToDate(_date string) string {
 	return TimeSToDate(timeS, "Y-m-d H:i:s")
 }
 
+// GetBeforeTime 获取_day天前的秒时间戳、日期时间戳
+// _day为负则代表取前几天，为正则代表取后几天，0则为今天
+func GetBeforeTime(_day int) (int64, string) {
+	// 时区
+	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
+	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
+	// 前n天
+	nowTime := time.Now().In(timeZone)
+	beforeTime := nowTime.AddDate(0, 0, _day)
+	// 时间转换格式
+	beforeTimeS := beforeTime.Unix() // 秒时间戳
+	beforeDate := TimeSToDate(beforeTimeS, "YmdHis") // 日期时间戳
+	return beforeTimeS, beforeDate
+}
+
+// DatesBetweenDay 计算两个日期之间有多少天间隔
+// 支持YmdHis、Y-m-d H:i:s格式日期，startDate开始日期，endDate结束日期
+// ±天数取决于开始时间和结束时间谁大
+func DatesBetweenDay(startDate string, endDate string, format string) (day int64) {
+	// 日期转秒时间戳
+	startTime := DateToTimeS(startDate, format)
+	endTime := DateToTimeS(endDate, format)
+	// 获取日期秒之差
+	dayTime := endTime - startTime
+	// 时分秒将被忽略，只取天的部分
+	day = int64(math.Floor(float64(dayTime / (24 * 60 * 60))))
+	return
+}
+
 // FilterToLower 将html标签大写转小写
 func FilterToLower(html string) string {
 	reg, _ := regexp.Compile("\\<[\\S\\s]+?\\>")
@@ -396,6 +437,26 @@ func FilterToLower(html string) string {
 	return html
 }
 
+// FilterHTML 过滤html标签、去除\n\t\r\n。
+func FilterHTML(html string) string {
+	//将HTML标签全转换成小写
+	re, _ := regexp.Compile("\\<[\\S\\s]+?\\>")
+	html = re.ReplaceAllStringFunc(html, strings.ToLower)
+	//去除STYLE
+	re, _ = regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
+	html = re.ReplaceAllString(html, "")
+	//去除SCRIPT
+	re, _ = regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
+	html = re.ReplaceAllString(html, "")
+	//去除所有尖括号内的HTML代码，并换成换行符
+	re, _ = regexp.Compile("\\<[\\S\\s]+?\\>")
+	html = re.ReplaceAllString(html, "\n")
+	//去除连续的换行符
+	re, _ = regexp.Compile("\\s{2,}")
+	html = re.ReplaceAllString(html, "\n")
+
+	return strings.TrimSpace(html)
+}
 // FilterIframe 过滤iframe
 func FilterIframe(html string) string {
 	html = FilterToLower(html)
@@ -408,7 +469,7 @@ func FilterIframe(html string) string {
 func FilterXML(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<?xml[\\S\\s]+?\\?\\>")
-	html = reg.ReplaceAllString(html, "<p class='xml'></p>")
+	html = reg.ReplaceAllString(html, " ")
 	return html
 }
 
@@ -416,7 +477,7 @@ func FilterXML(html string) string {
 func FilterStyle(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
-	html = reg.ReplaceAllString(html, "<p class='style'></p>")
+	html = reg.ReplaceAllString(html, " ")
 	return html
 }
 
@@ -424,7 +485,7 @@ func FilterStyle(html string) string {
 func FilterJS(html string) string {
 	html = FilterToLower(html)
 	reg, _ := regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")
-	html = reg.ReplaceAllString(html, "<p class='js'></p>")
+	html = reg.ReplaceAllString(html, " ")
 	return html
 }
 
@@ -591,4 +652,43 @@ func RequestGet(urlNoParams string, body map[string][]string) string {
 	}
 
 	return string(res)
+}
+
+// RemoveRepeatedStringArray String数组去重
+func RemoveRepeatedStringArray(arr []string) (newArr []string) {
+	newArr = make([]string, 0)
+	for i := 0; i < len(arr); i++ {
+		repeat := false
+		for j := i + 1; j < len(arr); j++ {
+			if arr[i] == arr[j] {
+				repeat = true
+				break
+			}
+		}
+		if !repeat {
+			newArr = append(newArr, arr[i])
+		}
+	}
+	return
+}
+
+// RemoveRepeatedIntArray Int数组去重
+func RemoveRepeatedIntArray(array []int) []int {
+	newArray := make([]int, 0)
+
+	for _, i := range array {
+		if len(newArray) == 0 {
+			newArray = append(newArray, i)
+		} else {
+			for k, v := range newArray {
+				if i == v {
+					break
+				}
+				if k == len(newArray)-1 {
+					newArray = append(newArray,i)
+				}
+			}
+		}
+	}
+	return newArray
 }

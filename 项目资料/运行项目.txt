@@ -92,5 +92,12 @@ route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 5.3。访问：http://127.0.0.1:8090/swagger/index.html
 
 ============
+找view
+// 设置表的初始行号
+alter table users AUTO_INCREMENT=1;
+然后按preview
+
+
+
 
 
