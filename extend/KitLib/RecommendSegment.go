@@ -17,13 +17,13 @@ func MakeSeg(_text string) []string {
 
 	// 分词插件1（最短分词）
 	//var seg sego.Segmenter
-	//seg.LoadDictionary(Common.ServerInfo["storage_path"] + "seg/data/dictionary.txt")
+	//seg.LoadDictionary(Common.ServerInfo["storage_path"] + "sys_file/seg/data/dictionary.txt")
 	//segments := seg.Segment(text)
 	//wordSeg := sego.SegmentsToString(segments, false) // 支持普通模式和搜索模式两种分词，false普通模式
 
 	// 分词插件2（最短分词）
 	var seg gse.Segmenter
-	seg.LoadDict(Common.ServerInfo["storage_path"] + "gse/data/dict/zh/dict.txt")
+	seg.LoadDict(Common.ServerInfo["storage_path"] + "sys_file/gse/data/dict/zh/dict.txt")
 	seg.LoadStop()
 	//seg.LoadDictEmbed()
 	//seg.LoadStopEmbed()

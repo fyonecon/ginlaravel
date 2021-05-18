@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Test1(ctx *gin.Context){
+func Test1(ctx *gin.Context) {
 
 	//fmt.Println("====1===")
 	//
@@ -35,6 +35,10 @@ func Test1(ctx *gin.Context){
 
 	id := Kit.Input(ctx, "id") //
 	nickname := Kit.Input(ctx, "nickname")
+
+	//
+	Kit.MakeCaptcha(ctx, "123")
+	//fmt.Println(imgCode)
 
 	// 接口返回
 	ctx.JSON(200, gin.H{

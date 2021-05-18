@@ -140,7 +140,7 @@ func IntToString(_int int64) string {
 	return _str
 }
 
-// RandRange 获取指定范围内的可变随机整数数，正负都行
+// RandRange 获取指定范围内的可变随机整数数，正负都行。[a, b]
 func RandRange(_min int64, _max int64) int64 {
 	var _rand int64
 	if _min >= _max {
@@ -160,7 +160,7 @@ func RandString(_length int64) string {
 	}else {
 		length = 1
 	}
-	str := "0123456789-abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	str := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	bytes := []byte(str)
 	var result []byte
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
@@ -692,3 +692,18 @@ func RemoveRepeatedIntArray(array []int) []int {
 	}
 	return newArray
 }
+
+// MakeSMSCode 随机生成短信验证码
+// _len 验证码多少个数字
+func MakeSMSCode(_len int) (code string) {
+	_array := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+	if _len <= 4 {
+		_len = 4
+	}
+	for i:=0; i<_len; i++{
+		theNumber := _array[RandRange(0, int64(len(_array)-1))]
+		code = code + theNumber
+	}
+	return
+}
+

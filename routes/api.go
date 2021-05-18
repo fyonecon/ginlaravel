@@ -8,6 +8,7 @@ package routes
 
 import (
 	"ginlaravel/app/Http/Controller/Example"
+	"ginlaravel/app/Http/Controller/Example/Captcha"
 	"ginlaravel/app/Http/Controller/Example/ControllerGorm"
 	"ginlaravel/app/Http/Controller/Example/ControllerMySQL"
 	"ginlaravel/app/Http/Controller/Example/Recommend"
@@ -63,6 +64,12 @@ func Api(route *gin.Engine) {
 			test := example.Group("/test/", Middleware.HttpLimiter(2), Example.VerifyExample)
 			{
 				test.Any("test1", Test.Test1)
+			}
+
+			// 图形验证码
+			cap := example.Group("/cap/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			{
+				cap.Any("cap", Captcha.Captcha)
 			}
 
 			//
