@@ -120,11 +120,13 @@ git clone https://github.com/fyonecon/ginlaravel.git
 初始化项目：
 go mod init
 
-构建依赖，必要扩展入库：
+清除不需要的vendor中的第三方扩展：
 go mod tidy
+    
+重新载入vendor中的第三方扩展：
 go mod vendor
 
-打包成二进制文件：
+将项目打包成二进制文件：
 go build -mod=mod
 
 在/config/mysql.go配置数据库信息。
