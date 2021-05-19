@@ -301,6 +301,9 @@ func GetTimeDate(_format string) string {
 	case "y-m-d h:i:s":
 		_date = _year1 + "-" + _month1 + "-" + _day1 + " " + _hour1 + ":" + _minute1 + ":" + _second1
 		break
+	case "Ymd":
+		_date = _year1 + "" + _month + "" + _day
+		break
 	case "Y-m-d":
 		_date = _year1 + "-" + _month + "-" + _day
 		break

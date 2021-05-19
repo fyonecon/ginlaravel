@@ -1,7 +1,7 @@
 package Gen3Open
 
 import (
-	"ginlaravel/app/Common"
+	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
 	"log"
 )
@@ -24,19 +24,8 @@ func UploadFormFile(ctx *gin.Context)  {
 		}
 	}()
 	// 获取上传文件，返回的是multipart.FileHeader对象，代表一个文件，里面包含了文件名之类的详细信息
-	// file是表单字段名字
-	file, _ := ctx.FormFile("file")
-	// 文件名
-	filename := file.Filename
-	// 文件格式
-	fileSize := file.Size
-
-	// 打印上传的文件名
-	log.Println(filename)
-	log.Println(fileSize)
-
-	_filename := "2021-04_" + Common.RandString(Common.RandRange(5, 7)) + "_" + filename
-	ctx.SaveUploadedFile(file, Common.ServerInfo["storage_path"] + "upload/" + _filename)
+	file, _ := ctx.FormFile("file") // file是表单字段名字，如<input type="file" name="file">
+	_filename := Kit.SaveFile(ctx, file)
 
 	// 返回特殊格式意义的数据
 	ctx.JSONP(200, map[string]interface{}{

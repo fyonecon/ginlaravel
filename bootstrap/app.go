@@ -3,6 +3,7 @@ package bootstrap
 
 import (
 	"fmt"
+	"ginlaravel/app/Middleware"
 	"ginlaravel/config"
 	"ginlaravel/routes"
 	"github.com/gin-gonic/gin"
@@ -15,6 +16,8 @@ func App(httpServer *gin.Engine) {
 
 	// Gin服务
 	httpServer = gin.Default()
+	// 拦截服务器500报错，使之可视化
+	httpServer.Use(Middleware.Server500)
 	// Gin运行时：release、debug、test
 	gin.SetMode(serverConfig["ENV"])
 	// 配置模版视图
