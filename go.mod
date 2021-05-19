@@ -3,6 +3,7 @@ module ginlaravel
 go 1.16
 
 require (
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.4.0
 	github.com/adamzy/cedar-go v0.0.0-20170805034717-80a9c64b256d // indirect
 	github.com/afocus/captcha v0.0.0-20191010092841-4bd1f21c8868
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751

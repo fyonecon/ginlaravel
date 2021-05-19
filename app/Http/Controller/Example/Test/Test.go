@@ -1,6 +1,7 @@
 package Test
 
 import (
+	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
 )
@@ -37,8 +38,12 @@ func Test1(ctx *gin.Context) {
 	nickname := Kit.Input(ctx, "nickname")
 
 	//
-	Kit.MakeCaptcha(ctx, "123")
+	//Kit.MakeCaptcha(ctx, "123")
 	//fmt.Println(imgCode)
+
+	//
+	excelName := Kit.MakeExcel()
+	excelState, _:= Common.HasFile(Common.ServerInfo["storage_path"] + "cache_file/"+excelName)
 
 	// 接口返回
 	ctx.JSON(200, gin.H{
@@ -47,6 +52,8 @@ func Test1(ctx *gin.Context) {
 		"header": header,
 		"id": id,
 		"nickname": nickname,
+		"excel_name": excelName,
+		"excel_state": excelState,
 		//"timezone": Common.ServerInfo["timezone"],
 		//"date": Common.GetTimeDate("Y-m-d H:i:s"),
 	})

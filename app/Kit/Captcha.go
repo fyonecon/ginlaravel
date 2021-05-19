@@ -8,7 +8,7 @@ import (
 	"image/png"
 )
 
-// MakeCaptcha 获取图形验证码
+// MakeCaptcha 生成图形验证码
 // _code自定义的图片显示的文字
 // 调用：Kit.MakeCaptcha(ctx, "123456") ，并且不需要任何return或ctx.JSON()
 // 返回image/png
@@ -51,5 +51,6 @@ func MakeCaptcha(ctx *gin.Context, _code string) *captcha.Image {
 	if err != nil {
 		return nil
 	} // 将pix格式转换成png
+
 	return pixImg
 }
