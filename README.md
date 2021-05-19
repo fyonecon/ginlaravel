@@ -17,7 +17,7 @@ GinLaravel基于Golang框架Gin（Gin学习文档：https://learnku.com/docs/gin
 GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Verify—Controller—Kit"模式处理数据。
 
 ## 现已支持
-> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、图形验证码等。
+> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、图形验证码、生成和读取Excel等。
 
 > 测试过的客户端环境等：Vue3+Axios、Fetch、POST（x-www-form-urlencoded）、GET、Centos7、Mac。
 
