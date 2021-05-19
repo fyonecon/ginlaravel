@@ -13,10 +13,10 @@ import (
 	"ginlaravel/app/Kit"
 	"ginlaravel/app/Middleware"
 	"ginlaravel/config"
-	_ "ginlaravel/docs" // 跟目录执行「swag init」生成的docs文件夹路径，_引包表示只执行init函数。
+	//swaggerFiles "github.com/swaggo/files"
+	//ginSwagger "github.com/swaggo/gin-swagger"
+	//_ "ginlaravel/docs" // 跟目录执行「swag init」生成的docs文件夹路径，_引包表示只执行init函数。
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
 	"net/http"
 )
 
@@ -58,7 +58,7 @@ func Must(route *gin.Engine) {
 
 	// swagger接口文档，适配于GinLaravel
 	//url := ginSwagger.URL("http://" + serverAddr + "/swagger/doc.json") // The url pointing to API definition
-	route.GET("/swagger/*any", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//route.GET("/swagger/*any", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// ico图标
 	route.StaticFile("/favicon.ico", Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"] + "favicon.ico")
