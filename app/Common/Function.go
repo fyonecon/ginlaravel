@@ -229,10 +229,16 @@ func MakePaging(_total int, _limit int, _page int) map[string]interface{}{
 }
 
 // GetTimeDate 获取日期时间戳，s
-func GetTimeDate(_format string) string {
+// Y年m月d号 H:i:s.ms.ns 星期W
+func GetTimeDate(_format string) (date string) {
+	if len(_format) == 0 {
+		_format = "YmdHis"
+	}
+	date = _format
+
 	// 时区
-	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
-	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
+	//timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
+	timeZone := time.FixedZone("CST", 8*3600) // 东八区
 
 	timer := time.Now().In(timeZone)
 
@@ -242,6 +248,11 @@ func GetTimeDate(_format string) string {
 	var hour int64 = int64(timer.Hour())
 	var minute int64 = int64(timer.Minute())
 	var second int64 = int64(timer.Second())
+	var week int64 = int64(timer.Weekday())
+	var ms int64 = int64(timer.UnixNano() / 1e6)
+	var ns int64 = int64(timer.UnixNano() / 1e9)
+	msTmp := IntToString(int64(math.Floor(float64(ms/1000))))
+	nsTmp := IntToString(int64(math.Floor(float64(ns/1000000))))
 
 	var _year string
 	var _month string
@@ -249,6 +260,10 @@ func GetTimeDate(_format string) string {
 	var _hour string
 	var _minute string
 	var _second string
+	var _week string // 英文星期
+	var _Week string // 中文星期
+	var _ms string // 毫秒
+	var _ns string // 纳秒
 
 	_year = IntToString(year)
 	if month < 10 {
@@ -281,41 +296,25 @@ func GetTimeDate(_format string) string {
 	}else {
 		_second = IntToString(second)
 	}
+	_week = IntToString(week)
+	WeekZh := [...]string{"日", "一", "二", "三", "四", "五", "六"} // 默认从"日"开始
+	_Week = WeekZh[week]
+	_ms = strings.Replace(IntToString(ms), msTmp, "", -1)
+	_ns = strings.Replace(IntToString(ns), nsTmp, "", -1)
 
-	_year1 := IntToString(year)
-	_month1 := IntToString(month)
-	_day1 := IntToString(day)
-	_hour1 := IntToString(hour)
-	_minute1 := IntToString(minute)
-	_second1 := IntToString(second)
+	// 替换关键词
+	date = strings.Replace(date, "ms", _ms, -1)
+	date = strings.Replace(date, "ns", _ns, -1)
+	date = strings.Replace(date, "Y", _year, -1)
+	date = strings.Replace(date, "m", _month, -1)
+	date = strings.Replace(date, "d", _day, -1)
+	date = strings.Replace(date, "H", _hour, -1)
+	date = strings.Replace(date, "i", _minute, -1)
+	date = strings.Replace(date, "s", _second, -1)
+	date = strings.Replace(date, "W", _Week, -1)
+	date = strings.Replace(date, "w", _week, -1)
 
-	var _date string
-
-	switch _format {
-	case "YmdHis":
-		_date = _year + "" + _month + "" + _day + "" + _hour + "" + _minute + "" + _second
-		break
-	case "Y-m-d H:i:s":
-		_date = _year + "-" + _month + "-" + _day + " " + _hour + ":" + _minute + ":" + _second
-		break
-	case "y-m-d h:i:s":
-		_date = _year1 + "-" + _month1 + "-" + _day1 + " " + _hour1 + ":" + _minute1 + ":" + _second1
-		break
-	case "Ymd":
-		_date = _year1 + "" + _month + "" + _day
-		break
-	case "Y-m-d":
-		_date = _year1 + "-" + _month + "-" + _day
-		break
-	case "H:i:s":
-		_date = _hour + ":" + _minute + ":" + _second
-		break
-	default:
-		_date = _year + "" + _month + "" + _day + "" + _hour + "" + _minute + "" + _second
-		break
-	}
-
-	return _date
+	return
 }
 
 // GetTimeS 获取秒时间戳
@@ -333,9 +332,20 @@ func GetTimeMS() int64 {
 	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
 	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
 
-	timeNS := time.Now().In(timeZone).UnixNano() // 纳秒
-	timeMS := math.Floor(float64(timeNS / 1000000))
-	return int64(timeMS)
+	timer := time.Now().In(timeZone)
+	timeMS := int64(timer.UnixNano() / 1e6)
+	return timeMS
+}
+
+// GetTimeNS 获取纳秒时间戳，ms
+func GetTimeNS() int64 {
+	// 时区
+	timeZone, _ := time.LoadLocation(ServerInfo["timezone"])
+	//timeZone := time.FixedZone("CST", 8*3600) // 东八区
+
+	timer := time.Now().In(timeZone)
+	timeNS := int64(timer.UnixNano() / 1e9)
+	return timeNS
 }
 
 // DateToTimeS 日期时间戳转时间戳，s

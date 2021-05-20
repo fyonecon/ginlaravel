@@ -1,4 +1,5 @@
 package Middleware
+// 接管服务器500错误，使错误可视化
 
 import (
 	"fmt"
@@ -8,8 +9,7 @@ import (
 	"strings"
 )
 
-// 拦截服务器500错误，使错误可视化
-
+// HideServerInfo 隐藏必要关键词
 func HideServerInfo( _info string) (info string)  {
 	_info = strings.Replace(_info, "ginlaravel", "*", -1)
 	_info = strings.Replace(_info, "app", "**", -1)
@@ -26,6 +26,7 @@ func HideServerInfo( _info string) (info string)  {
 	return
 }
 
+// Server500 抛出500错误
 func Server500 (ctx *gin.Context) {
 	defer func() {
 		if err := recover(); err != nil {
