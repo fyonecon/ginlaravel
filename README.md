@@ -17,15 +17,15 @@ GinLaravel基于Golang框架Gin（Gin学习文档：https://learnku.com/docs/gin
 GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Verify—Controller—Kit"模式处理数据。
 
 ## 现已支持
-> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、图形验证码、生成和读取Excel等。
+> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、运行时监控、图形验证码、生成和读取Excel等。
 
 > 测试过的客户端环境等：Vue3+Axios、Fetch、POST（x-www-form-urlencoded）、GET、Centos7、Mac。
 
 ## 设计理念
-> 宽进严出，面向Api，适合复杂项目，任何参数或服务都会有默认值。整个项目运行需go+mysql+redis。
+> 宽进严出，面向Api，适合复杂项目，任何参数或服务都会有默认值。整个项目运行需go+mysql+redis！
 
 ## 路由周期
-> 请求路由名 ➡️ header过滤 ➡️ 拦截请求频率 ➡️ 校验请求方法和Token参数 ➡️ 运行目标函数 ➡️ 程序达到终点，关闭此次请求。
+> 请求路由名 ➡️ header过滤 ➡️ 拦截请求频率 ➡️ 校验请求方法和Token参数 ➡️ 运行目标函数 ➡️ Controller程序并返回Json ➡️ 治理或运行时监控服务 ➡️ 程序结束️
 
 ## 项目目录
 + /app/Common/ ※ 对go原生封装的公共函数、自定义必要数据参数配置。有很多用Go解释Go的公用函数。
