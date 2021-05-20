@@ -3,7 +3,7 @@ package Middleware
 
 import (
 	"ginlaravel/app/Common"
-	"ginlaravel/app/Govern"
+	"ginlaravel/app/Runtime"
 	"ginlaravel/config"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -27,10 +27,10 @@ func StatLatency(ctx *gin.Context) {
 	//fmt.Println("本次运行耗时=", latency, "ms")
 
 	// 进入Http服务自我治理
-	Govern.HttpGovern(ctx)
+	Runtime.HttpServer(ctx)
 
 	// 进入硬件自我治理服务
-	Govern.GoGovern(ctx)
+	Runtime.Hardware(ctx)
 
 	// 计时完成，中断所有后续函数调用
 	ctx.Abort()
