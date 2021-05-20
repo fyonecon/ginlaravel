@@ -3,7 +3,7 @@ package Middleware
 
 import (
 	"ginlaravel/app/Common"
-	"ginlaravel/app/Http/Govern"
+	"ginlaravel/app/Govern"
 	"ginlaravel/config"
 	"github.com/gin-gonic/gin"
 	"time"
