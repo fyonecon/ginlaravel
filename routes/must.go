@@ -39,7 +39,7 @@ func Must(route *gin.Engine) {
 			"msg": "name=" + name + "；id=" + id,
 		})
 
-	}, Middleware.HttpAbort)
+	})
 
 	// 404路由
 	route.NoRoute(Middleware.HttpCorsApi, Middleware.HttpLimiter(2), func (ctx *gin.Context) {
@@ -54,7 +54,7 @@ func Must(route *gin.Engine) {
 				"ip": IP,
 			},
 		})
-	}, Middleware.HttpAbort)
+	})
 
 	// swagger接口文档，适配于GinLaravel
 	//url := ginSwagger.URL("http://" + serverAddr + "/swagger/doc.json") // The url pointing to API definition
@@ -70,9 +70,9 @@ func Must(route *gin.Engine) {
 	route.Static("/static/", Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"])
 
 	// 示例-模版视图输出
-	route.Any("tpl", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), Controller.Tpl, Middleware.HttpAbort)
+	route.Any("tpl", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), Controller.Tpl)
 
 	// 示例-api_json数据输出
-	route.Any("api", Middleware.HttpCorsApi, Middleware.HttpLimiter(2), Controller.Api, Middleware.HttpAbort)
+	route.Any("api", Middleware.HttpCorsApi, Middleware.HttpLimiter(2), Controller.Api)
 
 }

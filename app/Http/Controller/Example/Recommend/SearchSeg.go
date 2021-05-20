@@ -39,6 +39,10 @@ func SearchSeg1(ctx *gin.Context)  {
 	paging := Common.MakePaging(int(total), limit, page)
 	idArray := allIdsIntArray[offset: offset+limit] // 本页内的词条id
 
+	// 获取运行耗时，ms
+	StatStart, _ := ctx.Get("stat_start")
+	StatLatency, _ := ctx.Get("stat_latency")
+
 	// 接口返回
 	ctx.JSON(200, gin.H{
 		"state": 1,
@@ -47,6 +51,8 @@ func SearchSeg1(ctx *gin.Context)  {
 		"content": map[string]interface{}{
 			"txt": wordArray,
 			"id": idArray,
+			"state_start": StatStart,
+			"state_latency": StatLatency,
 			//"id_array": allIdsIntArray,
 		},
 	})

@@ -1,8 +1,6 @@
 package Test
 
 import (
-	"fmt"
-	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
 	"github.com/gin-gonic/gin"
 )
@@ -42,21 +40,21 @@ func Test1(ctx *gin.Context) {
 	//Kit.MakeCaptcha(ctx, "123")
 	//fmt.Println(imgCode)
 
-	// 生成Excel
-	rowData := [][]interface{}{
-		{"name", "phone", "age"},
-		{"张三1", "1231", 23},
-		{"张三2", "1232", 24},
-		{"张三3", "1233", 25},
-		{"合计人数", 3},
-	}
-	_excelName := Common.MakeSMSCode(8)+".xlsx"
-	excelName := Kit.MakeExcel(rowData, _excelName, "")
-	excelState, _:= Common.HasFile(Common.ServerInfo["storage_path"] + "cache_file/"+excelName)
-
-	// 读取Excel
-	_rowData, _ := Kit.ReadExcel(excelName, "")
-	fmt.Println(_rowData)
+	//// 生成Excel
+	//rowData := [][]interface{}{
+	//	{"name", "phone", "age"},
+	//	{"张三1", "1231", 23},
+	//	{"张三2", "1232", 24},
+	//	{"张三3", "1233", 25},
+	//	{"合计人数", 3},
+	//}
+	//_excelName := Common.MakeSMSCode(8)+".xlsx"
+	//excelName := Kit.MakeExcel(rowData, _excelName, "")
+	//excelState, _:= Common.HasFile(Common.ServerInfo["storage_path"] + "cache_file/"+excelName)
+	//
+	//// 读取Excel
+	//_rowData, _ := Kit.ReadExcel(excelName, "")
+	//fmt.Println(_rowData)
 
 	//// 压缩图片示例
 	//filepath := Common.ServerInfo["storage_path"] + "cache_file/" // 在服务器里面的绝对路径文件夹
@@ -73,18 +71,27 @@ func Test1(ctx *gin.Context) {
 	//// 压缩图片
 	//img := Kit.CompressImg("color.png", filepath, saveFilepath)
 
+	// 获取进程启动时间
+	//var stat os.FileInfo
+	//if stat, _ = os.Lstat(fmt.Sprintf("/proc/%v", pid)); err != nil {
+	//	fmt.Println(err)
+	//}
+	//proc.mtime = stat.ModTime().Unix()
+
 	// 接口返回
-	ctx.JSON(200, gin.H{
+	back := gin.H{
 		"method": method,
 		"body": body,
 		"header": header,
 		"id": id,
 		"nickname": nickname,
+		//"latency": ctx.Get("state_latency"),
 		//"img": img,
-		"excel_name": excelName,
-		"excel_state": excelState,
+		//"excel_name": excelName,
+		//"excel_state": excelState,
 		////"timezone": Common.ServerInfo["timezone"],
 		//"date": Common.GetTimeDate("Y-m-d H:i:s"),
 
-	})
+	}
+	ctx.JSON(200, back)
 }

@@ -1,0 +1,2 @@
+vendor/github.com/shirou/gopsutil/v3/mem/mem.go:6:2: cannot find package "." in:
+	/Users/fyonecon/go/src/ginlaravel/vendor/github.com/shirou/gopsutil/internal/common

@@ -93,33 +93,33 @@ func Api(route *gin.Engine) {
 		gen3 := api.Group("/gen3/")
 		{
 			//
-			gen3.Any("app/get_app_token", Middleware.HttpLimiter(2), Gen3.VerifyOpen, Gen3App.GetAppToken, Middleware.HttpAbort)
-			gen3.Any("user/user_login", Middleware.HttpLimiter(2), Gen3.VerifyOpen, Gen3User.UserLogin, Middleware.HttpAbort)
+			gen3.Any("app/get_app_token", Middleware.HttpLimiter(2), Gen3.VerifyOpen, Gen3App.GetAppToken)
+			gen3.Any("user/user_login", Middleware.HttpLimiter(2), Gen3.VerifyOpen, Gen3User.UserLogin)
 
 			//
 			open := gen3.Group("/open/", Middleware.HttpLimiter(2), Gen3.VerifyOpen)
 			{
-				open.Any("upload_form_file", Gen3Open.UploadFormFile, Middleware.HttpAbort)
+				open.Any("upload_form_file", Gen3Open.UploadFormFile)
 			}
 
 			//
 			app := gen3.Group("/app/", Middleware.HttpLimiter(4), Gen3.VerifyApp)
 			{
-				app.Any("list_user", Gen3App.ListUser, Middleware.HttpAbort)
-				app.Any("that_user", Gen3App.ThatUser, Middleware.HttpAbort)
-				app.Any("that_g_user", Gen3App.ThatGUser, Middleware.HttpAbort)
+				app.Any("list_user", Gen3App.ListUser)
+				app.Any("that_user", Gen3App.ThatUser)
+				app.Any("that_g_user", Gen3App.ThatGUser)
 
 			}
 
 			//
 			user := gen3.Group("/user/", Middleware.HttpLimiter(4), Gen3.VerifyUser)
 			{
-				user.Any("list_user", Gen3User.ListUser, Middleware.HttpAbort)
-				user.Any("that_user", Gen3User.ThatUser, Middleware.HttpAbort)
-				user.Any("add_user", Gen3User.AddUser, Middleware.HttpAbort)
-				user.Any("update_user", Gen3User.UpdateUser, Middleware.HttpAbort)
-				user.Any("del_user", Gen3User.DelUser, Middleware.HttpAbort)
-				user.Any("clear_user", Gen3User.ClearUser, Middleware.HttpAbort)
+				user.Any("list_user", Gen3User.ListUser)
+				user.Any("that_user", Gen3User.ThatUser)
+				user.Any("add_user", Gen3User.AddUser)
+				user.Any("update_user", Gen3User.UpdateUser)
+				user.Any("del_user", Gen3User.DelUser)
+				user.Any("clear_user", Gen3User.ClearUser)
 			}
 
 		}
