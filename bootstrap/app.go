@@ -44,9 +44,8 @@ func App(app *gin.Engine) {
 	fmt.Println(
 		" Author：fyonecon ；Blog；https://ginlaravel.com \n\n " +
 		"访问地址示例>>> \n " +
-		"0) 访问首页：http://" + host + " \n " +
-		"1) tpl模版视图输出：http://" + host + "/tpl?name=danchaofan&id=1949 \n " +
-		"2) api前后端分离：http://" + host + "/api?name=gl&id=2021 \n " +
+		"1) 访问首页（模版输出）：http://" + host + " \n " +
+		"2) 访问接口（JSON）：http://" + host + "/api?name=gl&id=2021 \n " +
 		"3) 静态文件输出：http://" + host + "/favicon.ico \n " +
 		"")
 

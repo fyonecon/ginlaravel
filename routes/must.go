@@ -30,13 +30,9 @@ func Must(route *gin.Engine) {
 	route.Any("/", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), func (ctx *gin.Context) {
 		Kit.Log("进入了默认根路由", ctx.ClientIP())
 
-		name := Kit.Input(ctx, "name")
-		if len(name) == 0 { name = "name为空"}
-		id := Kit.Input(ctx, "id")
-
 		ctx.HTML(200, "pages/welcome/index.html", gin.H{
 			"title": "Welcome GinLaravel !",
-			"msg": "name=" + name + "；id=" + id,
+			"cnd_domain": "//cdnaliyun.oss-cn-hangzhou.aliyuncs.com/view-ggvs/",
 		})
 
 	})
@@ -68,9 +64,6 @@ func Must(route *gin.Engine) {
 
 	// js、css、img等多个静态文件夹
 	route.Static("/static/", Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"])
-
-	// 示例-模版视图输出
-	route.Any("tpl", Middleware.HttpCorsWeb, Middleware.HttpLimiter(2), Controller.Tpl)
 
 	// 示例-api_json数据输出
 	route.Any("api", Middleware.HttpCorsApi, Middleware.HttpLimiter(2), Controller.Api)

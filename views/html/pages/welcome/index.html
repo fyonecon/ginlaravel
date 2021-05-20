@@ -1,11 +1,98 @@
 {{ define "pages/welcome/index.html" }}
 
-{{ template "parts/header/header.html"}}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="max-age=600" />
+    <meta name="robots" content="noindex, nofollow"/>
+    <title>{{.title}}</title>
+    <meta name="google" content="notranslate"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="black">
+    <meta name="apple-mobile-web-app-title" content="GGVS">
+    <meta name="keywords" content="逛逛维爱思,复读机行为,核心解析统一维护,GoGuideViewStudio"/>
+    <meta name="description" content="基于View前端模块化解析框架。核心解析统一维护。快速、模块、灵活、安全、省钱的框架。不面向SEO，可防页面内容$查。"/>
+    <meta name="author" content="fyonecon" />
 
-<h3 style="color: blue;">{{ .msg }}</h3>
-<p>Golang模板引擎快速入门教程：https://www.tizi365.com/archives/85.html</p>
-<p id="p">2021</p>
+    <script>
+        // 强制转到gl路由
+        (function (){
+            function get_url_param (url, key) { // 获取url中的参数
+                // 兼容模式url地址，例如：poop.html?page=3&ok=222#p=2#name=kd
+                let url_str = "";
+                if(!url){ url_str = window.location.href; } else {url_str = url; }
+                let regExp = new RegExp("([?]|&|#)" + key + "=([^&|^#]*)(&|$|#)");
+                let result = url_str.match(regExp);
+                if (result) {
+                    return decodeURIComponent(result[2]); // 转义还原参数
+                }else {
+                    return ""; // 没有匹配的键即返回空
+                }
+            }
+            let route = get_url_param("", "route")
+            if (route !== "gl"){
+                window.location.replace("./?route=gl")
+            }
+        })();
+    </script>
 
+    <script id="depend-js" data-view="" data-desc="">
 
+        var time_start  =  Math.floor((new Date()).getTime()); // ms。开始载入外部文件的时间戳
+        var time_loaded = 0; // ms。框架载入完成的时间戳
+        var time_error  = 0; // ms。框架出错的时间戳
+        var index_file_url = "{{.cnd_domain}}"; // 自定义CDN地址，./
+        var index_depend_file = "{{.cnd_domain}}"; // 自定义CDN地址，./
+        (function () {
+            // 自定义，CDN主网址，建议使用具有全球CDN能力的服务商
+            // 核心解析依赖，不可更改
+            var js_src_array = [
+                index_file_url + "config/config.js",
+                index_depend_file + "depend/view.js",
+                index_depend_file + "depend/depend.js",
+            ];
+            // 核心文件每次加载都自动清除缓存
+            var clear_cache =  Math.floor(new Date().getTime()/10000)*10000;
+            var head = document.head || document.getElementsByTagName("head")[0];
+            var script_config = document.createElement("script");
+            script_config.setAttribute("class", "write-js");
+            script_config.setAttribute("src", js_src_array[0]+"?"+clear_cache);
+            head.appendChild(script_config);
+            script_config.onload = function () {
+                var script_view = document.createElement("script");
+                script_view.setAttribute("class", "write-js");
+                script_view.setAttribute("src", js_src_array[1]+"?"+clear_cache);
+                head.appendChild(script_view);
+                script_view.onload = function (){
+                    var script_depend = document.createElement("script");
+                    script_depend.setAttribute("class", "write-js");
+                    script_depend.setAttribute("src", js_src_array[2]+"?"+clear_cache);
+                    head.appendChild(script_depend);
+                    script_depend.onload = function () {
+                        var link_depend = document.createElement("link");
+                        link_depend.setAttribute("id", "depend-css");
+                        link_depend.setAttribute("href", index_depend_file + "depend/depend.css?"+clear_cache);
+                        link_depend.setAttribute("rel", "stylesheet");
+                        head.appendChild(link_depend);
+                    };
+                };
+            };
+        })();
+    </script>
+</head>
+<body class="body" data-view="" data-desc="" style="background: #4c4c4c;">
+<div class="depend" id="depend"><!-- inject-div --></div>
+<div class="loading-div" id="loading-div"><!-- show loading-icon --></div>
+<div class="wifi-ad hide" id="wifi-ad"><!-- del-wifi-ad --></div>
+
+<script src="/static/js/welcome.js"></script>
 {{ template "parts/header/footer.html"}}
+
+</body>
+</html>
+
 {{ end }}

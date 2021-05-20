@@ -6,22 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Tpl
-// @title 模版视图输出
-// @description CorsWeb示例
-// @Router / [GET]
-func Tpl(ctx *gin.Context) {
-
-	name := Kit.Input(ctx, "name")
-	if len(name) == 0 { name = "name为空"}
-	id := Kit.Input(ctx, "id")
-
-	ctx.HTML(200, "pages/welcome/index.html", gin.H{
-		"title": "Welcome GinLaravel !",
-		"msg": "name=" + name + "；id=" + id,
-	})
-}
-
 // Api
 // @title 接口输出简单数据
 // @description CorsApi示例
@@ -44,6 +28,6 @@ func Api(ctx *gin.Context) {
 		"content": content,
 	}
 
-	ctx.JSON(200, back)
+	ctx.JSONP(200, back)
 }
 
