@@ -45,8 +45,8 @@
         var time_start  =  Math.floor((new Date()).getTime()); // ms。开始载入外部文件的时间戳
         var time_loaded = 0; // ms。框架载入完成的时间戳
         var time_error  = 0; // ms。框架出错的时间戳
-        var index_file_url = "{{.cnd_domain}}"; // 自定义CDN地址，./
-        var index_depend_file = "{{.cnd_domain}}"; // 自定义CDN地址，./
+        var index_file_url = "{{.cdn_domain}}"; // 自定义CDN地址，./
+        var index_depend_file = "{{.cdn_domain}}"; // 自定义CDN地址，./
         (function () {
             // 自定义，CDN主网址，建议使用具有全球CDN能力的服务商
             // 核心解析依赖，不可更改

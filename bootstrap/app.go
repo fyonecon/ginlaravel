@@ -32,8 +32,10 @@ func App(app *gin.Engine) {
 	// 配置模版视图
 	app.LoadHTMLGlob(config.GetViewConfig()["View_Pattern"])
 
-	// 注册路由
-	routes.Must(app) // 必要路由
+	// 注册必要路由，处理默认路由、静态文件路由、404路由等
+	Middleware.RouteMust(app)
+
+	// 注册其他路由，可以自定义
 	routes.Api(app) // 面向Api
 	routes.Web(app) // 面向模版输出
 
@@ -42,7 +44,7 @@ func App(app *gin.Engine) {
 
 	// 终端提示
 	fmt.Println(
-		" Author：fyonecon ；Blog；https://ginlaravel.com \n\n " +
+		"Success! \n Author:fyonecon | Blog:https://ginlaravel.com \n\n " +
 		"访问地址示例>>> \n " +
 		"1) 访问首页（模版输出）：http://" + host + " \n " +
 		"2) 访问接口（JSON）：http://" + host + "/api?name=gl&id=2021 \n " +

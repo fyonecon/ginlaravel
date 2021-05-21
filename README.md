@@ -40,9 +40,11 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /app/Http/Model/ ※ 数据模型
 
-+ /app/Middleware/ ※ 中间件，含有cors、http限速
++ /app/Middleware/ ※ 中间件，含有cors、http限速、500报错拦截、默认路由、app运行时等
 
 + /app/Kit/ ※ 自定义系统服务，包含第三方服务和系统功能服务
+
++ /app/Runtime/ ※ app服务等运行时事件处理
 
 + /bootstrap/ ※ 系统服务启动、数据库全局引用配置，一般不需要更改此处。
 
