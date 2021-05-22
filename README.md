@@ -17,7 +17,7 @@ GinLaravel基于Golang框架Gin（Gin学习文档：https://learnku.com/docs/gin
 GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Verify—Controller—Kit"模式处理数据。
 
 ## 现已支持
-> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、运行时监控、图形验证码、生成和读取Excel等。
+> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、运行时监控、图形验证码、生成和读取Excel、全局定时器等。
 
 > 测试过的客户端环境等：Vue3+Axios、Fetch、POST（x-www-form-urlencoded）、GET、Centos7、Mac。
 
@@ -46,6 +46,8 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /app/Runtime/ ※ app服务等运行时事件处理
 
++ /app/TaskInterval/ ※ app全局定时任务，默认20s精度
+
 + /bootstrap/ ※ 系统服务启动、数据库全局引用配置，一般不需要更改此处。
 
 + /bootstrap/app/ ※ 项目运行入口
@@ -58,7 +60,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /docs/ ※ 自动接口文档Swagger的的目录
 
-+ /extend/ ※ 自定义的扩展库，kit是扩展接口应用，extend是扩展接口封装
+[comment]: <> (+ /extend/ ※ 自定义的扩展库，kit是扩展接口应用，extend是扩展接口封装)
 
 + /routes/ ※ 路由，同时支持模版型路由（web.go）、Api型路由（api.go）。推荐4层路由命名。
 
