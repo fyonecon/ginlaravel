@@ -30,7 +30,8 @@ func init()  {
 			// 创建文件
 			file, err := os.OpenFile(filePath, os.O_CREATE | os.O_APPEND |os.O_WRONLY, 0666)
 			if err != nil {
-				panic(err)
+				log.Println("fresh服务未启动，已跳过", err)
+				//panic(err)
 			}else {
 				defer file.Close()
 				date := Common.GetTimeDate("Y-m-d H:i:s")

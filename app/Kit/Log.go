@@ -2,6 +2,7 @@ package Kit
 
 import (
 	"ginlaravel/app/Common"
+	"log"
 	"os"
 	"time"
 )
@@ -14,7 +15,8 @@ func Log(_txt string, _ip string) {
 	filePath := Common.ServerInfo["storage_path"] + "log/"
 	file, err := os.OpenFile(filePath+fileName, os.O_CREATE | os.O_APPEND |os.O_WRONLY, 0666)
 	if err != nil {
-		panic(err)
+		log.Println("文件写入失败", filePath, err)
+		//panic(err)
 	}
 	// 延迟关闭文件
 	defer file.Close()

@@ -64,7 +64,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /routes/ ※ 路由，同时支持模版型路由（web.go）、Api型路由（api.go）。推荐4层路由命名。
 
-+ /tmp/ ※ fresh热更的缓存日志目录
++ /tmp/ ※ fresh热更的缓存日志目录。目录需权限777。
 
 + /storage/ ※ 系统日志、文件上传、静态缓存。目录需权限777。
 
@@ -74,7 +74,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /views/static/ ※ 模板静态资源：js、css、img
 
-+ ginlaravel ※ 项目生产的二进制文件，在生产环境用
++ ginlaravel ※ 项目生产的二进制文件，在生产环境用。目录需权限773。
 
 + go.mod ※ 项目所依赖的module路径、第三方库等的引入
 
