@@ -24,7 +24,7 @@ func init()  {
 		err := cmd.Start()
 		if err != nil {
 			log.Println(err)
-			log.Println("请运行安装fresh热更服务，请手动运行如下命令：\n go get github.com/pilu/fresh \n")
+			log.Println("请运行安装fresh热更服务，请手动运行如下命令：\n go get -u github.com/pilu/fresh \n")
 			os.Exit(200)
 		}else {
 			// 创建文件

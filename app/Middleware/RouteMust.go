@@ -61,6 +61,6 @@ func RouteMust(route *gin.Engine) {
 	route.Static("/static/", staticPath + config.GetViewConfig()["View_Static"])
 
 	// 示例-api_json数据输出
-	route.Any("api", HttpCorsApi, HttpLimiter(2), Controller.Api)
+	route.Any("api", HttpCorsApi, HttpLimiter(200), Controller.Api)
 
 }
