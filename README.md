@@ -132,6 +132,7 @@ go mod vendor
 
 将项目打包成二进制文件：
 go build -mod=mod
+（运行二进制文件需要ginlaravel的文件的权限为：chmod 773 ginlaravel）
 
 在/config/mysql.go配置数据库信息。
 在/config/redis.go配置缓存数据库信息。
