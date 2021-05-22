@@ -23,7 +23,7 @@ import (
 // RouteMust ==系统必要路由==
 func RouteMust(route *gin.Engine) {
 	var staticPath string = Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"] // 静态文件目录
-	var host string =  config.GetServerConfig()["HOST"] + config.GetServerConfig()["PORT"]
+	var host string =  config.GetServerConfig()["HOST"] + ":" + config.GetServerConfig()["PORT"]
 
 	// 默认根路由
 	route.Any("/", HttpCorsWeb, HttpLimiter(2), func (ctx *gin.Context) {
