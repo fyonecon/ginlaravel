@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
-	"ginlaravel/extend/KitLib"
+	KitLib2 "ginlaravel/app/Kit/KitLib"
 	"github.com/gin-gonic/gin"
 	"github.com/go-ego/gse"
 	"strings"
@@ -198,7 +198,7 @@ func SearchSeg1(ctx *gin.Context)  {
 		}
 	}
 
-	rec := KitLib.Recommend{}
+	rec := KitLib2.Recommend{}
 	allIdsIntArray = rec.OrderHasArray(allIdsIntArray)
 
 	// 接口返回

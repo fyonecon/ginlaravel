@@ -15,7 +15,7 @@ func init()  {
 	// 文件信息
 	fileName := "having-fresh.log"
 	filePath := Common.ServerInfo["storage_path"] + "fresh/" + fileName
-	freshTips := "如果没有安装fresh，请先删除'/storage/fresh/'目录下的（所有）文件，然后再次运行「 go run server.go 」"
+	freshTips := "如果没有安装fresh，请先删除'/storage/fresh/'目录下的（所有）文件，然后再次运行「 go run main.go 」"
 	// 判断文件是否存在
 	hasFile, err := Common.HasFile(filePath)
 	if !hasFile {

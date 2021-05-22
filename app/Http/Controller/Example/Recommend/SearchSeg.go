@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
-	"ginlaravel/extend/KitLib"
+	KitLib2 "ginlaravel/app/Kit/KitLib"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,7 +28,7 @@ func SearchSeg1(ctx *gin.Context)  {
 	}
 
 	// 生成分词结果
-	wordArray := KitLib.MakeSeg(text)
+	wordArray := KitLib2.MakeSeg(text)
 	//wordArray := []string{"考研/vn","住宿/n","环境/n","收费/n"}
 	fmt.Println(wordArray)
 	// 分词id集合

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
-	"ginlaravel/extend/KitLib"
+	KitLib2 "ginlaravel/app/Kit/KitLib"
 	"github.com/gin-gonic/gin"
 	"math"
 )
@@ -31,7 +31,7 @@ func GoSave(theNewsId int)  {
 	fmt.Println(theNewsId, classId)
 
 	// 生成分词结果
-	wordArray := KitLib.MakeSeg(content)
+	wordArray := KitLib2.MakeSeg(content)
 	// 存储分词
 	_ = SaveSegment(Common.IntToString(int64(theNewsId)), classId, wordArray)
 

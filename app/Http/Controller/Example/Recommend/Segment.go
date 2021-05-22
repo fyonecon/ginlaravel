@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"ginlaravel/app/Common"
 	"ginlaravel/app/Kit"
-	"ginlaravel/extend/KitLib"
+	KitLib2 "ginlaravel/app/Kit/KitLib"
 	"strings"
 )
 
@@ -121,7 +121,7 @@ func SearchSegment(classId string, wordArray []string) []int {
 		}
 	}
 
-	rec := KitLib.Recommend{}
+	rec := KitLib2.Recommend{}
 	allIdsIntArray = rec.OrderHasArray(allIdsIntArray)
 
 	return allIdsIntArray
