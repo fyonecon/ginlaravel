@@ -2,7 +2,7 @@ package KitLib
 // 生成分词词组
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/go-ego/gse"
 	"strings"
 )

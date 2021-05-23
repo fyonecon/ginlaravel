@@ -2,8 +2,8 @@ package ModelMySQL
 
 import (
 	"database/sql"
-	"ginlaravel/app/Common"
-	"ginlaravel/bootstrap/driver"
+	"ginvel.com/app/Common"
+	"ginvel.com/bootstrap/driver"
 	"log"
 )
 

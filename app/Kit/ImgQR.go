@@ -2,7 +2,7 @@ package Kit
 
 import (
 	"fmt"
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	qrCreate "github.com/skip2/go-qrcode"
 	"image/color"
 )

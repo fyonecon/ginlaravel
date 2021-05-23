@@ -2,8 +2,8 @@ package Gen3App
 // 解析AppToken
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Kit"
 	"strings"
 )
 

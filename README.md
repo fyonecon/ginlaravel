@@ -74,7 +74,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /views/static/ ※ 模板静态资源：js、css、img
 
-+ ginlaravel ※ 项目生产的二进制文件，在生产环境用。目录需权限773。
++ ginvel.com ※ 项目生产的二进制文件，在生产环境用。目录需权限773。
 
 + go.mod ※ 项目所依赖的module路径、第三方库等的引入
 
@@ -132,7 +132,7 @@ go mod vendor
 
 将项目打包成二进制文件：
 go build -mod=mod
-（运行二进制文件需要ginlaravel的文件的权限为：chmod 773 ginlaravel）
+（运行二进制文件需要ginlaravel的文件的权限为：chmod 773 ginvel.com）
 
 在/config/mysql.go配置数据库信息。
 在/config/redis.go配置缓存数据库信息。
@@ -251,7 +251,7 @@ go build -mod=mod
 chmod 773 ginlaravel
         
 3。在项目根目录运行：
-./ginlaravel
+./ginvel.com
         
 即可开启二进制服务。
 
@@ -268,7 +268,7 @@ chmod 773 ginlaravel
 > 这样就可以将扩展自动引用到vendor目录下而不用govendor。
 
 ## 作者Author
-> fyonecon
+> https://github.com/fyonecon
 
-## GinLaravel（GoLaravel）版权
+## GinLaravel（Ginvel）版权
 > MIT（可更可改可匿名可传播，商用不受限）

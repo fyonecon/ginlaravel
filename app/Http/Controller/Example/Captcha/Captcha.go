@@ -2,8 +2,8 @@ package Captcha
 // 返回图形验证码
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,7 +1,7 @@
 package Kit
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"log"
 	"os"
 	"time"

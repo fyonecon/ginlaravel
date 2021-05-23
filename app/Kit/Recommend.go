@@ -1,7 +1,7 @@
 package Kit
 
 import (
-	"ginlaravel/app/Kit/KitLib"
+	"ginvel.com/app/Kit/KitLib"
 )
 
 // RecommendArraysId 分词ID推荐

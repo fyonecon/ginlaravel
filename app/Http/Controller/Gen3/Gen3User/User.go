@@ -2,9 +2,9 @@ package Gen3User
 
 import (
 	"database/sql"
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
-	"ginlaravel/bootstrap/driver"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Kit"
+	"ginvel.com/bootstrap/driver"
 	"github.com/gin-gonic/gin"
 	"log"
 )

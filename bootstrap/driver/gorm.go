@@ -5,7 +5,7 @@ package driver
 import (
 	"database/sql"
 	"fmt"
-	"ginlaravel/config"
+	"ginvel.com/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"

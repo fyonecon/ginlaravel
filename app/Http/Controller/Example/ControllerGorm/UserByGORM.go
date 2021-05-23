@@ -2,9 +2,9 @@ package ControllerGorm
 
 import (
 	"fmt"
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Http/Model/Example/ModelGorm"
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Http/Model/Example/ModelGorm"
+	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
 	"log"
 )

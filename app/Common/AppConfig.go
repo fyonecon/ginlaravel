@@ -2,7 +2,7 @@ package Common
 // 项目函数运行所依赖的参数配置
 
 import (
-	"ginlaravel/config"
+	"ginvel.com/config"
 )
 
 // Config 代码参数配置

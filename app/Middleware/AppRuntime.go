@@ -2,9 +2,9 @@ package Middleware
 // 处理App运行时的一些必要事件
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Runtime"
-	"ginlaravel/config"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Ruler/Runtime"
+	"ginvel.com/config"
 	"github.com/gin-gonic/gin"
 	"time"
 )

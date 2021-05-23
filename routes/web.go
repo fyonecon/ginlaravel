@@ -7,9 +7,9 @@ package routes
 */
 
 import (
-	"ginlaravel/app/Http/Controller/Example"
-	"ginlaravel/app/Http/Controller/Example/Tpl"
-	"ginlaravel/app/Middleware"
+	"ginvel.com/app/Http/Controller/Example"
+	"ginvel.com/app/Http/Controller/Example/Tpl"
+	"ginvel.com/app/Middleware"
 	"github.com/gin-gonic/gin"
 )
 

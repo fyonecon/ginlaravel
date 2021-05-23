@@ -7,7 +7,7 @@ func GetMySQLConfig() map[string]string {
 
 	conf["DB_HOST"] = "127.0.0.1"
 	conf["DB_PORT"] = "3306"
-	conf["DB_NAME"] = "ginlaravel"
+	conf["DB_NAME"] = "ginlarvel"
 	conf["DB_USER"] = "root2"
 	conf["DB_PWD"] = "12345678"
 	conf["DB_CHARSET"] = "utf8mb4"

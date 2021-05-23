@@ -4,7 +4,7 @@ package Kit
 // 加密或解密失败，会返回空字符串
 
 import (
-	"ginlaravel/app/Kit/KitLib"
+	"ginvel.com/app/Kit/KitLib"
 )
 
 // Encode 加密

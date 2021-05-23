@@ -3,8 +3,8 @@ package driver
 // 文档：https://blog.csdn.net/weixin_41827162/article/details/117152232
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/TaskInterval"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Ruler/Task"
 	"github.com/robfig/cron/v3"
 	"log"
 	"time"
@@ -38,7 +38,7 @@ func init()  {
 			num++
 			//log.Println("全局定时器已开启 >>> ", " 定时器ID=", intervalId, " 运行次数num=", num, " 时间区间=", timeout)
 			// 下面调用其他函数
-			TaskInterval.TaskInterval(intervalId, num, _timeout)
+			Task.TimeInterval(intervalId, num, _timeout)
 
 		})
 		if err != nil{

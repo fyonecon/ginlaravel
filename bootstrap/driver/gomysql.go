@@ -4,7 +4,7 @@ package driver
 import (
 	"database/sql"
 	"fmt"
-	"ginlaravel/config"
+	"ginvel.com/config"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"strconv"

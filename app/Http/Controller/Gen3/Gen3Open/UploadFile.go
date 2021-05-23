@@ -1,7 +1,7 @@
 package Gen3Open
 
 import (
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
 	"log"
 )

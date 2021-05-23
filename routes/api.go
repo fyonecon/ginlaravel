@@ -7,19 +7,19 @@ package routes
 */
 
 import (
-	"ginlaravel/app/Http/Controller/Example"
-	"ginlaravel/app/Http/Controller/Example/Captcha"
-	"ginlaravel/app/Http/Controller/Example/ControllerGorm"
-	"ginlaravel/app/Http/Controller/Example/ControllerMySQL"
-	"ginlaravel/app/Http/Controller/Example/Recommend"
-	"ginlaravel/app/Http/Controller/Example/Redis"
-	"ginlaravel/app/Http/Controller/Example/Segment"
-	"ginlaravel/app/Http/Controller/Example/Test"
-	"ginlaravel/app/Http/Controller/Gen3"
-	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
-	"ginlaravel/app/Http/Controller/Gen3/Gen3Open"
-	"ginlaravel/app/Http/Controller/Gen3/Gen3User"
-	"ginlaravel/app/Middleware"
+	"ginvel.com/app/Http/Controller/Example"
+	"ginvel.com/app/Http/Controller/Example/Captcha"
+	"ginvel.com/app/Http/Controller/Example/ControllerGorm"
+	"ginvel.com/app/Http/Controller/Example/ControllerMySQL"
+	"ginvel.com/app/Http/Controller/Example/Recommend"
+	"ginvel.com/app/Http/Controller/Example/Redis"
+	"ginvel.com/app/Http/Controller/Example/Segment"
+	"ginvel.com/app/Http/Controller/Example/Test"
+	"ginvel.com/app/Http/Controller/Gen3"
+	"ginvel.com/app/Http/Controller/Gen3/Gen3App"
+	"ginvel.com/app/Http/Controller/Gen3/Gen3Open"
+	"ginvel.com/app/Http/Controller/Gen3/Gen3User"
+	"ginvel.com/app/Middleware"
 	"github.com/gin-gonic/gin"
 )
 

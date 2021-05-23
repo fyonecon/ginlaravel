@@ -1,7 +1,7 @@
 package Test
 
 import (
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
 )
 

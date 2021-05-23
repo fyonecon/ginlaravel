@@ -1,8 +1,8 @@
 package ModelGorm
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Kit"
 )
 
 // ListUserKeys 查用户列表

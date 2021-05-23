@@ -1,8 +1,8 @@
 package Tpl
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/config"
+	"ginvel.com/app/Common"
+	"ginvel.com/config"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -10,7 +10,7 @@ import (
 func Tpl1(ctx *gin.Context) {
 
 	ctx.HTML(http.StatusOK, "pages/test/test.html", gin.H{
-		"title": "Welcome GinLaravel !",
+		"title": "Welcome ginvel.com !",
 		"msg": "=tpl=web=" + Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"],
 	})
 
@@ -19,7 +19,7 @@ func Tpl1(ctx *gin.Context) {
 func Tpl2(ctx *gin.Context) {
 
 	ctx.HTML(http.StatusOK, "pages/test/test.html", gin.H{
-		"title": "Welcome GinLaravel !",
+		"title": "Welcome ginvel.com !",
 		"msg": "=tpl=tpl=" + Common.ServerInfo["go_path"] + config.GetViewConfig()["View_Static"],
 	})
 

@@ -2,7 +2,7 @@ package Kit
 
 import (
 	"fmt"
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/nfnt/resize"
 	"image"
 	"image/jpeg"

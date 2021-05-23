@@ -3,8 +3,8 @@ package driver
 
 import (
 	"context"
-	"ginlaravel/app/Common"
-	"ginlaravel/config"
+	"ginvel.com/app/Common"
+	"ginvel.com/config"
 	"github.com/go-redis/redis/v8"
 	"log"
 )

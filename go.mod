@@ -1,4 +1,4 @@
-module ginlaravel
+module ginvel.com // module默认ginvel.com，没有强迫症就不要更改！
 
 go 1.16
 

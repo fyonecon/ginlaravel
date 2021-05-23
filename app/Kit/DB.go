@@ -4,7 +4,7 @@ package Kit
 
 import (
 	"database/sql"
-	"ginlaravel/bootstrap/driver"
+	"ginvel.com/bootstrap/driver"
 	"github.com/go-redis/redis/v8"
 	"gorm.io/gorm"
 )

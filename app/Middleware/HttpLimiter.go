@@ -3,7 +3,7 @@ package Middleware
 
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth/limiter"
 	"github.com/gin-gonic/gin"

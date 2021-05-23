@@ -2,7 +2,7 @@ package driver
 // 提示和安装fresh热更服务
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"log"
 	"os"
 	"os/exec"

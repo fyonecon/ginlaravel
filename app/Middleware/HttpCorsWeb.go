@@ -3,7 +3,7 @@ package Middleware
 
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -20,7 +20,7 @@ func HttpCorsWeb(ctx *gin.Context) { // 面向模版
 	////
 	ctx.Header("Content-type", "text/html; charset=utf-8")
 	ctx.Header("Cache-Control", "max-age=60")
-	ctx.Header("X-Powered-By", "GinLaravel; " + Common.ServerInfo["go_version"])
+	ctx.Header("X-Powered-By", "ginvel.com; " + Common.ServerInfo["go_version"])
 	ctx.Header("Author", "fyonecon")
 	ctx.Header("Timezone", Common.ServerInfo["timezone"])
 	ctx.Header("Date", Common.GetTimeDate("Y-m-d H:i:s"))

@@ -2,9 +2,9 @@ package Segment
 
 import (
 	"fmt"
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
-	KitLib2 "ginlaravel/app/Kit/KitLib"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Kit"
+	KitLib2 "ginvel.com/app/Kit/KitLib"
 	"github.com/gin-gonic/gin"
 	"github.com/go-ego/gse"
 	"strings"

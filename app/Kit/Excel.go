@@ -4,7 +4,7 @@ package Kit
 
 import (
 	"fmt"
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 )
 

@@ -1,8 +1,8 @@
 package Gen3
 
 import (
-	"ginlaravel/app/Http/Controller/Gen3/Gen3App"
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Http/Controller/Gen3/Gen3App"
+	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
 )
 

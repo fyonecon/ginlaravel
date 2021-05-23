@@ -1,7 +1,7 @@
 package Kit
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/gin-gonic/gin"
 	"strings"
 )

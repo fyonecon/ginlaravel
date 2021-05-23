@@ -5,7 +5,7 @@ package Kit
 import (
 	"encoding/json"
 	"fmt"
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/gin-gonic/gin"
 )
 

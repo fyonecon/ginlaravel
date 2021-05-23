@@ -2,8 +2,8 @@ package Redis
 
 import (
 	"fmt"
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Kit"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
 	"time"
 )

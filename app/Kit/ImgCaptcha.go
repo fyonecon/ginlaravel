@@ -1,7 +1,7 @@
 package Kit
 
 import (
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/afocus/captcha"
 	"github.com/gin-gonic/gin"
 	"image/color"

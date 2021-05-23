@@ -1,11 +1,10 @@
 package bootstrap
-// Author：fyonecon；Blog：https://ginlaravel.com
 
 import (
 	"fmt"
-	"ginlaravel/app/Middleware"
-	"ginlaravel/config"
-	"ginlaravel/routes"
+	"ginvel.com/app/Middleware"
+	"ginvel.com/config"
+	"ginvel.com/routes"
 	"github.com/gin-gonic/gin"
 )
 

@@ -3,7 +3,7 @@ package Kit
 import (
 	"bufio"
 	"fmt"
-	"ginlaravel/app/Common"
+	"ginvel.com/app/Common"
 	"github.com/gin-gonic/gin"
 	"io"
 	"mime/multipart"

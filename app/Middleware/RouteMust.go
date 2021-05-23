@@ -8,14 +8,13 @@ package Middleware
 */
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Http/Controller"
-	"ginlaravel/app/Kit"
-	//"ginlaravel/app/Middleware"
-	"ginlaravel/config"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Http/Controller"
+	"ginvel.com/app/Kit"
+	"ginvel.com/config"
 	//swaggerFiles "github.com/swaggo/files"
 	//ginSwagger "github.com/swaggo/gin-swagger"
-	//_ "ginlaravel/docs" // 跟目录执行「swag init」生成的docs文件夹路径，_引包表示只执行init函数。
+	//_ "GinLaravel/docs" // 跟目录执行「swag init」生成的docs文件夹路径，_引包表示只执行init函数。
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -58,7 +57,7 @@ func RouteMust(route *gin.Engine) {
 	// robots文件
 	route.StaticFile("/robots.txt", staticPath + "robots.txt")
 	// js、css、img等多个静态文件夹
-	route.Static("/static/", staticPath + config.GetViewConfig()["View_Static"])
+	route.Static("/static/", staticPath + "")
 
 	// 示例-api_json数据输出
 	route.Any("api", HttpCorsApi, HttpLimiter(200), Controller.Api)

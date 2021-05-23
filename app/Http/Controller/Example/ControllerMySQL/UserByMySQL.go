@@ -1,8 +1,8 @@
 package ControllerMySQL
 
 import (
-	"ginlaravel/app/Common"
-	"ginlaravel/app/Http/Model/Example/ModelMySQL"
+	"ginvel.com/app/Common"
+	"ginvel.com/app/Http/Model/Example/ModelMySQL"
 	"github.com/gin-gonic/gin"
 	"log"
 	"strconv"
