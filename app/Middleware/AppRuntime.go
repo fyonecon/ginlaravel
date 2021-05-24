@@ -22,14 +22,14 @@ func StatLatency(ctx *gin.Context) {
 	end := float64(time.Now().UnixNano()) / 1000000
 	latency := end - start
 
-	// 设置公共参数
+	// 设置公共参数（设置ctx每次请求的全局值）
 	ctx.Set("stat_latency", latency)
 	//fmt.Println("本次运行耗时=", latency, "ms")
 
-	// 进入Http服务自我治理
-	Runtime.HttpServer(ctx)
+	// 进入耗时治理服务
+	Runtime.StatLatency(ctx)
 
-	// 进入硬件自我治理服务
+	// 进入硬件治理服务
 	Runtime.Hardware(ctx)
 
 	// 计时完成，中断所有后续函数调用

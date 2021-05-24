@@ -20,7 +20,7 @@ func GetFrameworkConfig() map[string]string {
 	frameworkPath := gopath + "/src/ginlaravel/"
 
 	conf["timezone"] = "Asia/Shanghai" 		// 时区
-	conf["gl_version"] = "gl-1.7.21.0524.01" 	// GinLaravel版本信息
+	conf["gl_version"] = "gl-1.7.21.0524.09" 	// GinLaravel版本信息
 	conf["go_version"] = runtime.Version()
 	conf["go_root"] = runtime.GOROOT()
 	conf["go_path"] = frameworkPath // 默认使用框架gopath
