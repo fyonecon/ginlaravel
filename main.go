@@ -11,7 +11,7 @@ import (
 var HttpServer *gin.Engine
 
 // main
-// @title ginlaravel.com、GL
+// @title GinLaravel、GL、Ginvel
 // @description GinLaravel Web Framework. 2021. In Changsha. Powered By Gin & Laravel & Others, Think You.
 // @author https://github.com/fyonecon
 // @licence MIT
