@@ -7,10 +7,11 @@ import (
 	"ginvel.com/app/Ruler/Task"
 	"github.com/robfig/cron/v3"
 	"log"
+	"os"
 	"time"
 )
 
-func init()  {
+func InitInterval()  {
 
 	// timeout示例，写法v1的相同：
 	// 每12s运行一次："@every 12s" 或 "*/12 * * * * *"
@@ -25,7 +26,7 @@ func init()  {
 	// 每天的0点、13点、18点、21点都执行一次：0 0 0,13,18,21 * *
 	// 每天十点到十二点每五秒执行一次：*/5 * 10-12 * * *
 
-	var timeout string = "0,20,40 * * * * *" // 定时器时间区间，默认精度为20s/次：0,20,40 * * * * *
+	var timeout string = "0,30 * * * * *" // 定时器时间区间，默认精度为30s/次：0,30 * * * * *
 	var intervalId int // 定时器id
 
 	go func() {
@@ -42,11 +43,11 @@ func init()  {
 
 		})
 		if err != nil{
-			log.Println("全局定时器报错：", "\n error=", err, "\n num=", num)
-			return
+			log.Println("全局定时器报错：", " error=", err, " num=", num)
+			os.Exit(200)
 		}
 		intervalId = int(_intervalId)
-		log.Println("全局定时器已开启 >>>", "\n 定时器Id=", intervalId, " 默认精度=", _timeout)
+		log.Println("全局定时器已开启 >>>", " 定时器Id=", intervalId, " 默认精度=", _timeout)
 		interval.Start()
 
 		//关闭着计划任务, 但是不能关闭已经在执行中的任务.

@@ -17,8 +17,8 @@ var HttpServer *gin.Engine
 // @licence MIT
 // @website https://ginlaravel.com
 func main() {
-	log.Println("【GinLaravel main.go】启动服务...")
-	log.Println("GOPATH校准：当前go_path=", config.GetFrameworkConfig()["go_path"], " \n ")
+	log.Println("【GinLaravel main.go】启动main.go...")
+	log.Println("【GOPATH校准 framework.go】当前go_path=", config.GetFrameworkConfig()["go_path"], " \n ")
 
 	// 服务停止时清理数据库链接
 	defer driver.MysqlDb.Close()

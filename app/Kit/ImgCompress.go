@@ -18,7 +18,7 @@ import (
 // _saveFilepath和新生成的绝对路径文件夹，/结尾。
 /*
 	// 压缩图片示例
-	filepath := Common.ServerInfo["storage_path"] + "cache_file/" // 在服务器里面的绝对路径文件夹
+	filepath := Common.ServerInfo["storage_path"] + "upload/" // 在服务器里面的绝对路径文件夹
 	dateFile := Common.GetTimeDate("Cmp-Ymd") + "/"
 	saveFilepath := filepath + dateFile
 	// 创建日期文件夹

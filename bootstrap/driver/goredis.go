@@ -12,7 +12,7 @@ import (
 var rdbConfig map[string]string = config.GetRedisConfig()
 var RedisDb *redis.Client
 
-func init() {
+func InitRedis() {
 	log.Println("尝试连接GoRedis...")
 
 	RedisDb = redis.NewClient(&redis.Options{ // 连接服务
@@ -22,8 +22,7 @@ func init() {
 	})
 	RedisPong, RedisErr := RedisDb.Ping(context.Background()).Result() // 心跳
 	if RedisErr != nil {
-		log.Println("Redis服务未运行。。。")
-		log.Println(RedisPong, RedisErr)
+		log.Println("Redis服务未运行。。。", RedisPong, RedisErr)
 		//os.Exit(200)
 	}else {
 		log.Println("GoRedis已连接 >>> ")

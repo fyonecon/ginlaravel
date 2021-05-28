@@ -9,11 +9,11 @@ import (
 )
 
 type Secret struct {
-	_KEY string  "fy2021GL" // 占8字节
+	_KEY string  "2iGVF52v" // 默认密钥，占8字节
 }
 
 // 默认密钥
-//const _KEY string = "fy2021GL" // 占8字节
+//const _KEY string = "fY2o2igL" // 占8字节
 
 // Encode 加密
 func (kit *Secret) Encode(text string, key string) string {

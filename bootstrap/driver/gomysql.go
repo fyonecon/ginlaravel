@@ -14,7 +14,7 @@ import (
 var MysqlDb *sql.DB
 var MysqlDbErr error
 
-func init() {
+func InitMysql() {
 	log.Println("尝试连接MySQL服务...")
 
 	// get db config
@@ -49,8 +49,7 @@ func init() {
 	MysqlDb.SetConnMaxLifetime(time.Duration(dbMaxLifetimeConns))
 
 	if MysqlDbErr = MysqlDb.Ping(); nil != MysqlDbErr {
-		log.Println("MySQL数据库连接失败。。。")
-		log.Println(MysqlDbErr.Error())
+		log.Println("MySQL数据库连接失败。。。", MysqlDbErr.Error())
 		//os.Exit(200)
 	}else {
 		log.Println("MySQL已连接 >>> ")

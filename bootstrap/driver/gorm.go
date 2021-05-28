@@ -14,7 +14,7 @@ import (
 var GDB *gorm.DB
 var gErr error
 
-func init() {
+func InitGorm() {
 
 	dbConfig := config.GetMySQLConfig()
 
@@ -35,16 +35,15 @@ func init() {
 	}), &gorm.Config{})
 
 	if sErr != nil {
-		log.Println("GORM现有数据库连接失败，GORM功能将不可用。")
+		log.Println("GORM现有数据库连接失败，GORM功能将不可用。。。", sErr)
+		//os.Exit(200)
 	}else {
-		log.Println("GORM现有数据库连接成功")
+		log.Println("GORM现有数据库驱动连接成功 >>> ")
 	}
 
 	if gErr != nil {
-		log.Println("GORM数据库连接失败")
-	}else {
-		log.Println("GORM数据库连接成功")
+		log.Println("GORM数据库连接失败。。。", gErr)
+		//os.Exit(200)
 	}
-
 
 }

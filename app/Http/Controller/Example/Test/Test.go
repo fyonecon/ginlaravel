@@ -1,9 +1,74 @@
 package Test
 
 import (
+	"bufio"
+	"fmt"
+	"ginvel.com/app/Common"
 	"ginvel.com/app/Kit"
 	"github.com/gin-gonic/gin"
+	"log"
+	"os"
+	"strings"
 )
+
+func Test2(ctx *gin.Context)  {
+
+	oldFilepath := Common.ServerInfo["storage_path"] + "cache_file/"
+	newFilepath := Common.ServerInfo["storage_path"] + "cache_file/"
+	filename := "phone.txt"
+
+	// 计数
+	lineNumHave := 0
+	lineNumNull := 0
+
+	// 打开txt文件
+	file, err := os.Open(oldFilepath + filename)
+	if err != nil{
+		fmt.Println("无效的txt文件", err)
+		return
+		//os.Exit(1)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+
+	// 创建新txt文件
+	newName := "new_" + Common.GetTimeDate("YmdHis") + "_" + filename
+	newFile, err := os.OpenFile(newFilepath + newName, os.O_CREATE | os.O_APPEND |os.O_WRONLY, 0666)
+	if err != nil {
+		log.Println("文件创建失败", newFilepath, err)
+		//panic(err)
+		return
+	}
+	defer newFile.Close()
+
+	// 按行处理txt
+	for scanner.Scan(){
+		//fmt.Println(strings.TrimSpace(scanner.Text()))
+		lineTxt := strings.TrimSpace(scanner.Text())
+
+		// 写入文件内容
+		if len(lineTxt) == 0 {
+			_, _ = newFile.WriteString(lineTxt + "\n")
+			lineNumNull ++
+		}else {
+			lineTxt = Common.MD5("86" + lineTxt)
+			_, _ = newFile.WriteString(lineTxt + "\n")
+			lineNumHave ++
+		}
+
+	}
+
+	msgNewFile := "\n\n 有效值=" + Common.IntToString(int64(lineNumHave)) + "；空值=" + Common.IntToString(int64(lineNumNull)) + "\n\n"
+	_, _ = newFile.WriteString(msgNewFile)
+
+	// 接口返回
+	back := gin.H{
+		"newName": newName,
+		"lineNumHave": lineNumHave,
+		"lineNumNull": lineNumNull,
+	}
+	ctx.JSON(200, back)
+}
 
 func Test1(ctx *gin.Context) {
 

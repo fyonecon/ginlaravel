@@ -13,7 +13,7 @@ import (
 func Hardware(ctx *gin.Context)  {
 
 	memVirtual, _ := mem.VirtualMemory()
-	fmt.Println("memVirtual=", memVirtual.Free/1024/1024)
+	fmt.Println("虚拟内存memVirtual=", memVirtual.Free/1024/1024)
 
 	// 非常耗时
 	//cpuPercent, _ := cpu.Percent(time.Second, false)

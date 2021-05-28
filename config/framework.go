@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 	"runtime"
 )
@@ -9,22 +8,15 @@ import (
 // GetFrameworkConfig http服务配置
 func GetFrameworkConfig() map[string]string {
 	conf := make(map[string]string)
-
-	// 系统gopath
-	gopath := os.Getenv("GOPATH")
-	if gopath == "" {
-		gopath = "/home/wwwroot/go" // centos获取不到env？？？手动填吧
-		log.Println("env中GOPATH获取为空，将使用默认手动地址（/config/framework.go:17行）。默认路径：", gopath)
-	}
-	// 框架gopath，请更改为你的项目实际目录名
-	frameworkPath := gopath + "/src/ginlaravel/"
+	mainDirectory, _ := os.Getwd() // main.go文件的绝对路径
+	mainDirectory = mainDirectory + "/"
 
 	conf["timezone"] = "Asia/Shanghai" 		// 时区
-	conf["gl_version"] = "gl-1.7.21.0524.09" 	// GinLaravel版本信息
+	conf["gl_version"] = "gl-1.8.21.0528.20" 	// GinLaravel版本信息
 	conf["go_version"] = runtime.Version()
 	conf["go_root"] = runtime.GOROOT()
-	conf["go_path"] = frameworkPath // 默认使用框架gopath
-	conf["storage_path"] = frameworkPath + "storage/" // 文件存储
+	conf["go_path"] = mainDirectory // 默认使用框架gopath
+	conf["storage_path"] = mainDirectory + "storage/" // 文件存储文件夹
 
 	return conf
 }

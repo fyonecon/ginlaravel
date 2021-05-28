@@ -140,6 +140,23 @@ func IntToString(_int int64) string {
 	return _str
 }
 
+// StringToFloat string转float
+func StringToFloat(_str string) float64 {
+	_float, err := strconv.ParseFloat(_str, 64) // string转int
+	if err != nil { // 报错则默认返回0
+		_float = 0.0
+		//fmt.Println("格式转换错误，默认为0。")
+		//fmt.Println(err)
+	}
+	return _float
+}
+
+// FloatToString float转string
+func FloatToString(_float float64) string {
+	_str := strconv.FormatFloat(_float, 'e', 10, 64)
+	return _str
+}
+
 // RandRange 获取指定范围内的可变随机整数数，正负都行。[a, b]
 func RandRange(_min int64, _max int64) int64 {
 	var _rand int64

@@ -4,7 +4,7 @@ import (
 	"log"
 )
 
-// TimeInterval 全局定时器，默认精度20s/次
+// TimeInterval 全局定时器，默认精度30s/次
 func TimeInterval(intervalId int, num int, timeout string) {
 	var maxLog int = 5
 	if num < maxLog { // 不必全部打印，只打印前几个即可
@@ -14,6 +14,5 @@ func TimeInterval(intervalId int, num int, timeout string) {
 	}
 
 	// 其他定时任务
-
 
 }

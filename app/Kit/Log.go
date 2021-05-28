@@ -1,6 +1,7 @@
 package Kit
 
 import (
+	"fmt"
 	"ginvel.com/app/Common"
 	"log"
 	"os"
@@ -10,13 +11,27 @@ import (
 // Log 记录一般日志，定期自动删除
 func Log(_txt string, _ip string) {
 
+	// 创建文件夹
+	filepath := Common.ServerInfo["storage_path"]+"log_file/log/"
+	dateFile := Common.GetTimeDate("Ymd") + "/"
+	saveFilepath := filepath + dateFile
+	// 创建日期文件夹
+	has, _ := Common.HasFile(saveFilepath)
+	if !has {
+		err := os.Mkdir(saveFilepath, os.ModePerm)
+		if err != nil {
+			fmt.Printf("不能创建文件夹1=[%v]\n", err)
+		}
+	}
+
 	// 文件信息
 	fileName := "log_" + Common.GetTimeDate("Y-m-d") + ".log"
-	filePath := Common.ServerInfo["storage_path"] + "log/"
+	filePath := saveFilepath
 	file, err := os.OpenFile(filePath+fileName, os.O_CREATE | os.O_APPEND |os.O_WRONLY, 0666)
 	if err != nil {
-		log.Println("文件写入失败", filePath, err)
+		log.Println("文件创建失败", filePath, err)
 		//panic(err)
+		return
 	}
 	// 延迟关闭文件
 	defer file.Close()
@@ -24,25 +39,19 @@ func Log(_txt string, _ip string) {
 	date := Common.GetTimeDate("Y-m-d H:i:s")
 	txt := "【" + date + "】" + _ip + "：" + _txt
 	// 写入文件内容
-	file.WriteString(txt + "\n")
+	_, err = file.WriteString(txt + "\n")
+	if err != nil {
+		log.Println("文件写入失败", filePath, err)
+		return
+	}
 
-	// 删除老文件，默认存放2个月
-	_oldMonth := -2
-	day21 := time.Now().AddDate(0, _oldMonth, -1).Format("2006-01-02")
-	day22 := time.Now().AddDate(0, _oldMonth, -2).Format("2006-01-02")
-	day23 := time.Now().AddDate(0, _oldMonth, -3).Format("2006-01-02")
-	day24 := time.Now().AddDate(0, _oldMonth, -4).Format("2006-01-02")
-	day25 := time.Now().AddDate(0, _oldMonth, -5).Format("2006-01-02")
-	day26 := time.Now().AddDate(0, _oldMonth, -6).Format("2006-01-02")
-	day27 := time.Now().AddDate(0, _oldMonth, -7).Format("2006-01-02")
-	dayArray := [7]string{day25, day24, day23, day22, day21, day26, day27}
-	for d:=0; d<len(dayArray); d++ {
-		err := os.Remove(filePath + "log_" + dayArray[d]+".log")
-		// os.Remove(filePath +"2021-04-10.log")
-		// fmt.Println(filePath + dayArray[d]+".log")
-		if err != nil {
-			// 删除失败
-		}
+	// 删除老文件夹
+	_oldMonth := -18
+	delFile := time.Now().AddDate(0, _oldMonth, -1).Format("20060102")
+	delFilepath := filepath + delFile
+	err1 := os.RemoveAll(delFilepath)
+	if err1 != nil {
+		log.Println("老文件夹删除失败=", err1)
 	}
 
 }
@@ -50,9 +59,22 @@ func Log(_txt string, _ip string) {
 // Error 记录错误日志
 func Error(_txt string, _ip string) {
 
+	// 创建文件夹
+	filepath := Common.ServerInfo["storage_path"]+"log_file/error/"
+	dateFile := Common.GetTimeDate("Ymd") + "/"
+	saveFilepath := filepath + dateFile
+	// 创建日期文件夹
+	has, _ := Common.HasFile(saveFilepath)
+	if !has {
+		err := os.Mkdir(saveFilepath, os.ModePerm)
+		if err != nil {
+			fmt.Printf("不能创建文件夹1=[%v]\n", err)
+		}
+	}
+
 	// 文件信息
 	fileName := "error_" + Common.GetTimeDate("Y-m-d") + ".log"
-	filePath := Common.ServerInfo["storage_path"] + "error/"
+	filePath := saveFilepath
 	file, err := os.OpenFile(filePath+fileName, os.O_CREATE | os.O_APPEND |os.O_WRONLY, 0666)
 	if err != nil {
 		panic(err)
@@ -65,23 +87,13 @@ func Error(_txt string, _ip string) {
 	// 写入文件内容
 	file.WriteString(txt + "\n")
 
-	// 删除老文件，默认存放13个月
-	_oldMonth := -13
-	day21 := time.Now().AddDate(0, _oldMonth, -1).Format("2006-01-02")
-	day22 := time.Now().AddDate(0, _oldMonth, -2).Format("2006-01-02")
-	day23 := time.Now().AddDate(0, _oldMonth, -3).Format("2006-01-02")
-	day24 := time.Now().AddDate(0, _oldMonth, -4).Format("2006-01-02")
-	day25 := time.Now().AddDate(0, _oldMonth, -5).Format("2006-01-02")
-	day26 := time.Now().AddDate(0, _oldMonth, -6).Format("2006-01-02")
-	day27 := time.Now().AddDate(0, _oldMonth, -7).Format("2006-01-02")
-	dayArray := [7]string{day25, day24, day23, day22, day21, day26, day27}
-	for d:=0; d<len(dayArray); d++ {
-		err := os.Remove(filePath + "error_" + dayArray[d]+".log")
-		// os.Remove(filePath +"2021-04-10.log")
-		// fmt.Println(filePath + dayArray[d]+".log")
-		if err != nil {
-			// 删除失败
-		}
+	// 删除老文件夹
+	_oldMonth := -18
+	delFile := time.Now().AddDate(0, _oldMonth, -1).Format("20060102")
+	delFilepath := filepath + delFile
+	err1 := os.RemoveAll(delFilepath)
+	if err1 != nil {
+		log.Println("老文件夹删除失败=", err1)
 	}
 
 }

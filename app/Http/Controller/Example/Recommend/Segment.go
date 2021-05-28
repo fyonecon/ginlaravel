@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"ginvel.com/app/Common"
 	"ginvel.com/app/Kit"
-	KitLib2 "ginvel.com/app/Kit/KitLib"
+	"ginvel.com/app/Kit/KitLib"
 	"strings"
 )
 
@@ -121,7 +121,7 @@ func SearchSegment(classId string, wordArray []string) []int {
 		}
 	}
 
-	rec := KitLib2.Recommend{}
+	rec := KitLib.Recommend{}
 	allIdsIntArray = rec.OrderHasArray(allIdsIntArray)
 
 	return allIdsIntArray
