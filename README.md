@@ -1,9 +1,10 @@
 ## 欢迎 Star🌟 本项目
 #### Github（推荐）：https://github.com/fyonecon/ginlaravel
 #### Github（大陆）：https://hub.fastgit.org/fyonecon/ginlaravel
+#### Gitee（备用）：https://gitee.com/fyonecon/ginlaravel
 
 ## 版本
-#### v1.7
+#### v1.8
 
 [comment]: <> (## 官网)
 
@@ -116,7 +117,7 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 ## 如何初始化项目
 以当前目录 /Users/fyonecon/go/src/ 为例
-```sybase
+```cmd
 获取源代码：
 cd go/src
 git clone https://github.com/fyonecon/ginlaravel.git
@@ -176,7 +177,7 @@ go run main.go
 
 ## 运行fresh热更服务（Mac环境）
 以项目目录 /Users/fyonecon/go/src/ginlaravel 为例
-```sybase
+```cmd
 安装fresh：
 go get github.com/pilu/fresh
 
@@ -204,7 +205,7 @@ fresh
 >官方教程：https://github.com/swaggo/gin-swagger
 
 安装教程（GinLaravel v1.4已经集成swagger(v1.7开始默认不集成，因为没什么卵用)，在/routes/must.go路由文件里面，不需要再次安装和引入。）如下：
-```apacheconf
+```cmd
 1。进入项目跟目录
 
 2。安装swag命令：
@@ -241,7 +242,7 @@ route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 ```
 
 ## 将项目打包成二进制文件（Mac、Centos环境）
-```sybase
+```cmd
 1。在ginlaravel项目根目录：
 go build -mod=mod
 
