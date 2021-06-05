@@ -9,7 +9,7 @@ import (
 )
 
 type Secret struct {
-	_KEY string  "2iGVF52v" // 默认密钥，占8字节
+	_KEY string  "2iGVF52I" // 默认密钥，占8字节
 }
 
 // 默认密钥

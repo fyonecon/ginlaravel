@@ -27,7 +27,7 @@ func RouteMust(route *gin.Engine) {
 	// 默认根路由
 	route.Any("/", HttpCorsWeb, HttpLimiter(2), func (ctx *gin.Context) {
 		Kit.Log("进入了默认根路由 >>> ", host)
-		ctx.HTML(200, "pages/welcome/index.html", gin.H{
+		ctx.HTML(200, "pages/welcome/tpl-welcome.html", gin.H{
 			"title": "Welcome GinLaravel !",
 			"cdn_domain": "//cdnaliyun.oss-cn-hangzhou.aliyuncs.com/view-ggvs/",
 		})

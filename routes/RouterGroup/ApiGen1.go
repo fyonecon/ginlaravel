@@ -18,7 +18,7 @@ func ApiGen1(route *gin.Engine){
 				"state": 200,
 				"msg": "gin1",
 				"content": map[string]interface{}{
-					"time": Common.GetTimeDate("Ymd.His.ms.ns"),
+					"time": Common.GetTimeDate("Ymd.His.MS.NS"),
 				},
 			})
 		})

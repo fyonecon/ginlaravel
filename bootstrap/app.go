@@ -52,6 +52,7 @@ func App(HttpServer *gin.Engine) {
 			"1) 访问首页（模版输出）：http://" + host + " \n " +
 			"2) 访问接口（JSON输出）：http://" + host + "/api?name=gl&id=2021 \n " +
 			"3) 静态文件输出（文件）：http://" + host + "/favicon.ico \n " +
+			"4) 查看WebSocket连接：http://" + host + "/web/example/websocket \n " +
 			"")
 
 	err := HttpServer.Run(host)

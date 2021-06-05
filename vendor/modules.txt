@@ -76,6 +76,9 @@ github.com/golang/freetype/truetype
 github.com/golang/protobuf/proto
 # github.com/golang/snappy v0.0.3
 github.com/golang/snappy
+# github.com/gorilla/websocket v1.4.2
+## explicit
+github.com/gorilla/websocket
 # github.com/hashicorp/go-uuid v1.0.2
 github.com/hashicorp/go-uuid
 # github.com/jcmturner/aescts/v2 v2.0.0

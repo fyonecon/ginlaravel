@@ -14,6 +14,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/gorilla/websocket v1.4.2
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect

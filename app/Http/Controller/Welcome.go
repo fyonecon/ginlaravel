@@ -20,6 +20,7 @@ func Api(ctx *gin.Context) {
 	content := map[string]interface{}{
 		"name": name,
 		"id": id,
+		"phone": Common.HideStringValue("18512345506", 3, 10, "*"),
 	}
 
 	var back = map[string]interface{}{
