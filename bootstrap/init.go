@@ -13,7 +13,7 @@ import (
 func init()  {
 	log.Println("【GinLaravel init()】系统基础环境自检...")
 	var _goVersion string = runtime.Version()
-	var minVersion string = "go1.16.0"
+	var minVersion string = "go1.15.0"
 
 	var goVersion string = strings.Replace(_goVersion, "go", "", -1)
 	var goArray []string = strings.Split(goVersion, ".")
@@ -28,9 +28,9 @@ func init()  {
 		}else {
 			if go2==0 {
 				go2 = int(theValue)
-				if go1 == 1 { // min=1.16
+				if go1 == 1 { // min=1.15
 					goYes = goYes + 1
-					if go2 >= 16 {
+					if go2 >= 15 {
 						goYes = goYes + 1
 					}
 				}else if go1 >= 2 {
