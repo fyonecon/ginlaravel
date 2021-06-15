@@ -13,8 +13,6 @@ func RouterRegister(app *gin.Engine)  {
 	RouterGroup.ExampleApi(app) // 面向Api
 	RouterGroup.ExampleWeb(app) // 面向模版输出
 	// 其他
-	RouterGroup.ApiGen1(app)
-	RouterGroup.ApiGen3(app)
 
 	return
 }
