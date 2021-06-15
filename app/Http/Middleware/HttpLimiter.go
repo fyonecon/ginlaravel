@@ -21,7 +21,7 @@ func HttpLimiter(_max float64) gin.HandlerFunc {
 	}else {
 		max = 20
 	}
-	lmt := tollbooth.NewLimiter(max, &tbOptions) // 默认4次/秒，建议范围[1，20]
+	lmt := tollbooth.NewLimiter(max, &tbOptions) // 默认4次/秒，建议范围[1，40]
 
 	return func(ctx *gin.Context) {
 		httpError := tollbooth.LimitByRequest(lmt, ctx.Writer, ctx.Request)

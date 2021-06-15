@@ -1,0 +1,24 @@
+[root@bigserver3 ~]# kubectl create serviceaccount  dashboard-admin -n kube-system  
+
+serviceaccount/dashboard-admin created
+  
+[root@bigserver3 ~]# kubectl create clusterrolebinding  dashboard-admin --clusterrole=cluster-admin --serviceaccount=kube-system:dashboard-admin
+
+clusterrolebinding.rbac.authorization.k8s.io/dashboard-admin created  
+  
+[root@bigserver3 ~]# kubectl describe secrets -n kube-system $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
+
+
+Name:         dashboard-admin-token-whgv9  
+Namespace:    kube-system  
+Labels:       <none>  
+Annotations:  kubernetes.io/service-account.name: dashboard-admin  
+              kubernetes.io/service-account.uid: dfbb4498-b69f-41f9-84fa-3480b1a4c437  
+  
+Type:  kubernetes.io/service-account-token  
+  
+Data  
+====  
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IkUtNDZpS3lLbGk5YlhpOFhldTZvcUktOUgxVFk2TkMzN2wwTGlzdlN1aWMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkYXNoYm9hcmQtYWRtaW4tdG9rZW4td2hndjkiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGFzaGJvYXJkLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiZGZiYjQ0OTgtYjY5Zi00MWY5LTg0ZmEtMzQ4MGIxYTRjNDM3Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRhc2hib2FyZC1hZG1pbiJ9.oguhHisptOdzxVIfJVY6sRUzFgok-NVy2Ob4tvAy3_h9tIwa-5hzshSwXduDTWtgQ8KO5ry5EphAaa9t3BBdy_KqPO2_ysdD-Hrlfa0Fi-8jep1mk34Ol0kjw6EzmAXT6I09-hLj0yjHAM3ub3cnV2Rc-hHcEZKDs3lVCRLiPeFggMhTOQsPXw3mElVuX3PxghwKRw4c2Kw5Vvg5ALRQ6lcrYY2Kex4hNFo6y1ewszyMyDPXIFIDwupjYbuAmEKb2C7j5QHargSBJ88q-iTcwtAAZs1_gOpXYOJVNVfBsbHAK4O8FeKZnvJhgL4aufNRw12_ffw1Ot4VqR8v43pWow  
+ca.crt:     1025 bytes  
+namespace:  11 bytes  

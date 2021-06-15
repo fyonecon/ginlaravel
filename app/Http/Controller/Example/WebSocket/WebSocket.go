@@ -19,6 +19,7 @@ var upGrader = websocket.Upgrader{
 }
 
 // Ping1 处理WebSocket消息
+// ws:// wss://
 // 参考：https://blog.csdn.net/qq_17612199/article/details/79601318
 func Ping1(ctx *gin.Context)  {
 	//升级get请求为webSocket协议

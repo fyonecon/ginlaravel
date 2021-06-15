@@ -1,0 +1,10 @@
+{
+  "timezone": "Asia/Shanghai",
+  "gl_version": "gl-1.8.21.0615.09",
+  "framework_desc": {
+    "Desc": "本框架是Golang的web MVC框架，基础特性基于Gin。GinLaravel是开源版，Ginvel是私有版。",
+    "Author": "fyonecon",
+    "Email": "2652335796@qq.com",
+    "Github": "github.com/fyonecon/ginlaravel"
+  }
+}

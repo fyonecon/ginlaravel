@@ -5,7 +5,6 @@ import (
 	"ginvel.com/config"
 	"ginvel.com/routes"
 	"os"
-
 	//"ginvel.com/routes/Router"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -15,6 +14,7 @@ import (
 // 项目访问入口
 func App(HttpServer *gin.Engine) {
 	serverConfig := config.GetServerConfig()
+	frameworkConfig := config.GetFrameworkConfig()
 
 	// Gin服务
 	HttpServer = gin.Default()
@@ -42,14 +42,18 @@ func App(HttpServer *gin.Engine) {
 	//Router.Api(HttpServer) // 面向Api
 	//Router.Web(HttpServer) // 面向模版输出
 
-	// 访问网址和端口
+	// 实际访问网址和端口
 	_host := "127.0.0.1:" + serverConfig["PORT"] // 测试访问IP
 	host := serverConfig["HOST"] + ":" + serverConfig["PORT"] // Docker访问IP
+
+	glVersion := frameworkConfig["gl_version"]
 
 	// 终端提示
 	log.Println(
 		//"\n App Success! \n Author: fyonecon | Blog: https://ginlaravel.com \n\n " +
-			"访问地址示例 " + host + " >>> \n " +
+		" \n " +
+			"访问地址示例：" + host + " >>> \n " +
+			"gl_version：" + glVersion + " \n " +
 			"1) 访问首页（模版输出）：http://" + _host + " \n " +
 			"2) 访问接口（JSON输出）：http://" + _host + "/api?name=gl&id=2021 \n " +
 			"3) 静态文件输出（文件）：http://" + _host + "/favicon.ico \n " +

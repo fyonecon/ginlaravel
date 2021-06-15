@@ -11,20 +11,20 @@ var Config = map[string]interface{}{
 	"api": "http",
 }
 
-// ServerInfo 服务器信息
+// ServerInfo 框架和服务参数
 var ServerInfo = map[string]string{
 	"timezone": config.GetFrameworkConfig()["timezone"], // 时区
 	"gl_version": config.GetFrameworkConfig()["gl_version"],
 	"go_version": config.GetFrameworkConfig()["go_version"],
 	"go_root": config.GetFrameworkConfig()["go_root"],
-	"go_path": config.GetFrameworkConfig()["go_path"],
+	"framework_path": config.GetFrameworkConfig()["framework_path"],
 	"storage_path": config.GetFrameworkConfig()["storage_path"], // 文件存储在服务器的地址
 }
 
 // Page 分页参数
 var Page = map[string]int{
 	"limit": 20, // 每页多少条数据
-	"max_page": 500, // 最大查到多少页
+	"max_page": 1000, // 最大查到多少页
 	"min_limit": 2, // 最少一次查多少条数据
 	"max_limit": 100, // 最多一次查多少条数据
 }

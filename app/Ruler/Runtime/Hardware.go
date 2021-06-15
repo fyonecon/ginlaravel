@@ -8,12 +8,16 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/shirou/gopsutil/v3/mem"
+	"runtime"
 )
 
 func Hardware(ctx *gin.Context)  {
 
 	memVirtual, _ := mem.VirtualMemory()
 	fmt.Println("虚拟内存memVirtual=", memVirtual.Free/1024/1024)
+
+	CPU := runtime.NumCPU()
+	fmt.Println("逻辑CPU数量=", CPU)
 
 	// 非常耗时
 	//cpuPercent, _ := cpu.Percent(time.Second, false)

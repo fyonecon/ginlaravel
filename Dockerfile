@@ -2,28 +2,34 @@
 ########### Dockerfile代码 ##########
 
 #1.1）docker images查看制作
-FROM golang:latest
+FROM golang:latest as builder
 # 修改系统为上海时区
 RUN echo "Asia/Shanghai" > /etc/timezone \
  && rm /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 #作者
 MAINTAINER fyonecon "2652335796@qq.com"
 #设置工作目录（暂时规定最终文件夹名与module名相同）
-WORKDIR $GOPATH/src/ginvel.com
+WORKDIR $GOPATH/src/ginvel
 #将服务器的go工程代码加入到docker容器中
-ADD . $GOPATH/src/ginvel.com
+ADD . $GOPATH/src/ginvel
 #修改env参数
 RUN go env -w GO111MODULE=on
 RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN export GIN_MODE=release
 #初始化框架所需扩展
-RUN go mod vendor
+# RUN go mod vendor
 #编译成二进制文件
-RUN go build -mod=mod
+RUN go build main.go
+#RUN go build -o /tmp/main main.go
 #暴露端口
 EXPOSE 8090
-#最终运行docker的命令（必须为module名）
-ENTRYPOINT  ["./ginvel.com"]
+#最终运行docker的命令（运行项目生成的二进制文件）
+ENTRYPOINT  ["./main"]
+
+#FROM debian:slim
+#WORKDIR /go/bin
+#COPY --from=builder /tmp/main ./main
+#ENTRYPOINT ["/go/bin/main"]
 
 ######### Dockerfile教程 #########
 
@@ -32,6 +38,8 @@ ENTRYPOINT  ["./ginvel.com"]
 #docker build -t ginvel.com .
 #查看镜像
 #docker images
+#查看正在运行的docker
+#docker ps
 #查看docker占用内存大小
 #docker ps -as
 
