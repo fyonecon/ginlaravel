@@ -4,7 +4,7 @@
 #### Gitee（备用）：https://gitee.com/fyonecon/ginlaravel
 
 ## 版本
-#### v1.8
+#### v1.9
 
 [comment]: <> (## 官网)
 
@@ -18,7 +18,7 @@ GinLaravel基于Golang框架Gin（Gin学习文档：https://learnku.com/docs/gin
 GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展示"Verify—Controller—Kit"模式处理数据。
 
 ## 现已支持
-> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出、Http访问频率拦截、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、运行时监控、图形验证码、生成和读取Excel、全局定时器等。
+> Go-MySQL、GORM（v2）、Go-Redis、热更（fresh）、Swagger、MVC、模版输出（v1.9开始已剔除）、Http访问频率拦截、熔断、HttpCors、对称加密（可中文）、http拦截器、多层路由、分词与全文检索、运行时监控、图形验证码、生成和读取Excel、全局定时器等。
 
 > 测试过的客户端环境等：Vue3+Axios、Fetch、POST（x-www-form-urlencoded）、GET、Centos7、Mac。
 
@@ -26,32 +26,34 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 > 宽进严出，面向Api，适合复杂项目，任何参数或服务都会有默认值。整个项目运行需go+mysql+redis！
 
 ## 路由周期
-> 请求路由名 ➡️ header过滤 ➡️ 拦截请求频率 ➡️ 校验请求方法和Token参数 ➡️ 运行目标函数 ➡️ Controller程序并返回Json ➡️ 治理或运行时监控服务 ➡️ 程序结束️
+> 请求路由名 ➡️ header过滤 ➡️ 拦截请求频率 ➡️ 熔断 ➡️ 校验请求方法和Token参数 ➡️ 运行目标函数 ➡️ Controller程序并返回Json ➡️ 治理或运行时监控服务 ➡️ 程序结束️
 
 ## 项目目录
 + /app/Common/ ※ 对go原生封装的公共函数、自定义必要数据参数配置。有很多用Go解释Go的公用函数。
 
 + /app/Http/ ※ 控制器、模型、拦截器
 
-+ /app/Http/Controller/ ※ 控制器
++ /app/Http/Controllers/ ※ 控制器
 
-+ /app/Http/Controller/Example ※ 示例
++ /app/Http/Controllers/Example ※ 示例
 
-+ /app/Http/Controller/Gen3 ※ 版本3的控制器文件夹
++ /app/Http/Controllers/Gen3 ※ 版本3的控制器文件夹
 
-+ /app/Http/Model/ ※ 数据模型
++ /app/Http/Models/ ※ 数据模型
 
-+ /app/Middleware/ ※ 中间件，含有cors、http限速、500报错拦截、默认路由、app运行时等
++ /app/Http/Middlewares/ ※ 中间件，含有cors、http限速、500报错拦截、默认路由、app运行时等
 
 + /app/Kit/ ※ 自定义系统服务，包含第三方服务和系统功能服务
 
-+ /app/Runtime/ ※ app服务等运行时事件处理
++ /app/Ruler/Runtime/ ※ app服务等运行时事件处理
 
-+ /app/TaskInterval/ ※ app全局定时任务，默认20s精度
++ /app/Ruler/Task/ ※ app全局定时任务，默认20s精度
 
 + /bootstrap/ ※ 系统服务启动、数据库全局引用配置，一般不需要更改此处。
 
-+ /bootstrap/app/ ※ 项目运行入口
++ /bootstrap/app.go ※ 项目运行入口
+
++ /bootstrap/init.go ※ 项目全局参数初始化
 
 + /bootstrap/driver/ ※ 服务驱动
 
@@ -61,19 +63,19 @@ GinLaravel支持MVC开发模式。本项目展示了MVC处理数据，同时展�
 
 + /docs/ ※ 自动接口文档Swagger的的目录
 
-[comment]: <> (+ /extend/ ※ 自定义的扩展库，kit是扩展接口应用，extend是扩展接口封装)
++ /extend/ ※ 自定义的扩展库，kit是扩展接口应用，extend是扩展接口封装
 
 + /routes/ ※ 路由，同时支持模版型路由（web.go）、Api型路由（api.go）。推荐4层路由命名。
 
-+ /tmp/ ※ fresh热更的缓存日志目录。目录需权限777。
++ /tmp/ ※ fresh热更的缓存日志目录。目录需权限777。v1.9已经迁移到storage文件夹里面的fresh_tmp文件夹。
 
 + /storage/ ※ 系统日志、文件上传、静态缓存。目录需权限777。
 
-+ /views/ ※ 模版渲染的原始文件夹
++ /views/ ※ 模版渲染的原始文件夹（v1.9已剔除）
 
-+ /views/pages/ ※ 模版的html文件
++ /views/pages/ ※ 模版的html文件（v1.9已剔除）
 
-+ /views/static/ ※ 模板静态资源：js、css、img
++ /views/static/ ※ 模板静态资源：js、css、img（v1.9已迁移）
 
 + ginvel.com ※ 项目生产的二进制文件，在生产环境用。目录需权限773。
 
