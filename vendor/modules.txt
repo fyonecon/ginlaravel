@@ -180,17 +180,24 @@ github.com/robertkrimen/otto/token
 # github.com/robfig/cron/v3 v3.0.1
 ## explicit
 github.com/robfig/cron/v3
-# github.com/shirou/gopsutil v3.21.4+incompatible
+# github.com/shirou/gopsutil/v3 v3.21.5
 ## explicit
-# github.com/shirou/gopsutil/v3 v3.21.4
-## explicit
+github.com/shirou/gopsutil/v3/cpu
+github.com/shirou/gopsutil/v3/host
 github.com/shirou/gopsutil/v3/internal/common
+github.com/shirou/gopsutil/v3/load
 github.com/shirou/gopsutil/v3/mem
+github.com/shirou/gopsutil/v3/net
+github.com/shirou/gopsutil/v3/process
 # github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 ## explicit
 github.com/skip2/go-qrcode
 github.com/skip2/go-qrcode/bitset
 github.com/skip2/go-qrcode/reedsolomon
+# github.com/tklauser/go-sysconf v0.3.4
+github.com/tklauser/go-sysconf
+# github.com/tklauser/numcpus v0.2.1
+github.com/tklauser/numcpus
 # github.com/ugorji/go v1.2.5
 ## explicit
 # github.com/ugorji/go/codec v1.2.5

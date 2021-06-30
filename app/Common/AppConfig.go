@@ -7,8 +7,8 @@ import (
 
 // Config 代码参数配置
 var Config = map[string]interface{}{
-	"debug": true,
-	"api": "http",
+	"log_debug": config.GetFrameworkConfig()["log_debug"],
+	"api": config.GetFrameworkConfig()["api"],
 }
 
 // ServerInfo 框架和服务参数

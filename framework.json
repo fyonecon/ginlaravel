@@ -1,10 +1,44 @@
 {
-  "timezone": "Asia/Shanghai",
-  "gl_version": "gl-1.8.21.0615.09",
+  "gl_version": "gl-1.9-21.0630.10",
+  "framework_path": "",
   "framework_desc": {
-    "Desc": "本框架是Golang的web MVC框架，基础特性基于Gin。GinLaravel是开源版，Ginvel是私有版。",
+    "Desc": "本框架是Golang的web MVC框架，基础特性基于Gin。",
     "Author": "fyonecon",
-    "Email": "2652335796@qq.com",
+    "Email": "youcansendmsg@qq.com",
     "Github": "github.com/fyonecon/ginlaravel"
+  },
+  "config": {
+    "timezone": "Asia/Shanghai",
+    "api_version_block": "0&0",
+    "web_version_block": "0&0",
+    "server": {
+      "HOST": "127.0.0.1",
+      "PORT": "8090",
+      "ENV": "release"
+    },
+    "grpc": {
+      "HOST": "127.0.0.1",
+      "PORT": "9090",
+    },
+    "mysql": {
+      "DB_HOST": "192.168.131.24",
+      "DB_PORT": "3306",
+      "DB_NAME": "ginlaravel",
+      "DB_USER": "root2",
+      "DB_PWD": "12345678",
+      "DB_CHARSET": "utf8mb4"
+    },
+    "redis": {
+      "Addr": "192.168.131.24:6379",
+      "Password": "12345678",
+      "DB": "0"
+    },
+    "view": {
+      "View_Static": "storage/static/"
+    }
+  },
+  "common":{
+    "log_debug": "true"
   }
+
 }

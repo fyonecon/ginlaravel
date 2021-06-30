@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"html"
 	"io"
 	"io/ioutil"
 	"log"
@@ -22,9 +23,14 @@ import (
 )
 
 // Log 自定义终端打印日志
-func Log(txt interface{}) {
-	if Config["debug"] == true {
-		log.Println(txt)
+func Log(txt ...interface{}) {
+	if Config["log_debug"] == true || Config["log_debug"] == "true" {
+		log.Println("Log：", txt)
+	}
+}
+func Error(txt ...interface{}) {
+	if Config["log_debug"] == true || Config["log_debug"] == "true" {
+		log.Println("Error：", txt)
 	}
 }
 
@@ -579,6 +585,8 @@ func FilterInput(_value string) string {
 		txt := changArray[j]
 		value = ReplaceString(value, txt, "_" + txt)
 	}
+
+	value = html.EscapeString(value) // xss
 
 	return value
 }

@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>websocket示例</title>
 </head>
 <body>
 <script>
-    var ws = new WebSocket("ws://127.0.0.1:8090/api/example/socket/ping1");
+    let ws = new WebSocket("ws://127.0.0.1:8090/api/example/socket/ping1");
     //连接打开时触发
     ws.onopen = function(evt) {
         console.log("Connection open ...");

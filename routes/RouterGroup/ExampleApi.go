@@ -8,29 +8,29 @@ package RouterGroup
 */
 
 import (
-	"ginvel.com/app/Http/Controller/Example"
-	"ginvel.com/app/Http/Controller/Example/Captcha"
-	"ginvel.com/app/Http/Controller/Example/ControllerGorm"
-	"ginvel.com/app/Http/Controller/Example/ControllerMySQL"
-	"ginvel.com/app/Http/Controller/Example/Recommend"
-	"ginvel.com/app/Http/Controller/Example/Redis"
-	"ginvel.com/app/Http/Controller/Example/Segment"
-	"ginvel.com/app/Http/Controller/Example/Test"
-	"ginvel.com/app/Http/Controller/Example/WebSocket"
-	"ginvel.com/app/Http/Middleware"
+	"ginvel.com/app/Http/Controllers/Example"
+	"ginvel.com/app/Http/Controllers/Example/Captcha"
+	"ginvel.com/app/Http/Controllers/Example/ControllerGorm"
+	"ginvel.com/app/Http/Controllers/Example/ControllerMySQL"
+	"ginvel.com/app/Http/Controllers/Example/Recommend"
+	"ginvel.com/app/Http/Controllers/Example/Redis"
+	"ginvel.com/app/Http/Controllers/Example/Segment"
+	"ginvel.com/app/Http/Controllers/Example/Test"
+	"ginvel.com/app/Http/Controllers/Example/WebSocket"
+	"ginvel.com/app/Http/Middlewares"
 	"github.com/gin-gonic/gin"
 )
 
 // ExampleApi 面向模版。访问：你的域名/api/空间命名/具体方法
 func ExampleApi(route *gin.Engine)  {
 	// api分组路由
-	api := route.Group("/api/", Middleware.HttpCorsApi)
+	api := route.Group("/api/", Middlewares.HttpCorsApi)
 	{
 		//
 		example := api.Group("/example/")
 		{
 			//
-			mysql := example.Group("/mysql/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			mysql := example.Group("/mysql/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				mysql.Any("list_user", ControllerMySQL.ListUser)
 				mysql.Any("that_user", ControllerMySQL.ThatUser)
@@ -41,7 +41,7 @@ func ExampleApi(route *gin.Engine)  {
 			}
 
 			//
-			gorm := example.Group("/gorm/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			gorm := example.Group("/gorm/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				gorm.Any("list_user", ControllerGorm.ListUser)
 				gorm.Any("that_user", ControllerGorm.ThatUser)
@@ -52,27 +52,27 @@ func ExampleApi(route *gin.Engine)  {
 			}
 
 			//
-			redis := example.Group("/redis/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			redis := example.Group("/redis/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				redis.Any("redis_set", Redis.RedisSet)
 				redis.Any("redis_list", Redis.RedisList)
 			}
 
 			//
-			test := example.Group("/test/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			test := example.Group("/test/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				test.Any("test1", Test.Test1)
 				test.Any("test2", Test.Test2)
 			}
 
 			// 图形验证码
-			cap := example.Group("/cap/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			cap := example.Group("/cap/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				cap.Any("cap", Captcha.Captcha)
 			}
 
 			//
-			seg := example.Group("/seg/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			seg := example.Group("/seg/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				seg.Any("save_seg1", Segment.SaveSeg1)
 				seg.Any("search_seg1", Segment.SearchSeg1)
@@ -80,14 +80,14 @@ func ExampleApi(route *gin.Engine)  {
 			}
 
 			//
-			segment := example.Group("/rec/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			segment := example.Group("/rec/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				segment.Any("save_seg1", Recommend.SaveSeg1)
 				segment.Any("search_seg1", Recommend.SearchSeg1)
 			}
 
 			//
-			socket := example.Group("/socket/", Middleware.HttpLimiter(2), Example.VerifyExample)
+			socket := example.Group("/socket/", Middlewares.HttpLimiter(2), Middlewares.RankingLimiter(90), Example.VerifyExample)
 			{
 				socket.Any("ping1", WebSocket.Ping1)
 			}

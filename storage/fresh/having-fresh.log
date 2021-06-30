@@ -1,2 +1,0 @@
-2021-05-06 16:08:44
-如果没有安装fresh，请先删除'/storage/fresh/'目录下的（所有）文件，然后再次运行「 go run server.go 」

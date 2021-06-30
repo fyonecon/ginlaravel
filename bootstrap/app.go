@@ -1,7 +1,8 @@
 package bootstrap
 
 import (
-	"ginvel.com/app/Http/Middleware"
+	"ginvel.com/app/Http/Middlewares"
+	"ginvel.com/app/Ruler/Task"
 	"ginvel.com/config"
 	"ginvel.com/routes"
 	"os"
@@ -20,27 +21,27 @@ func App(HttpServer *gin.Engine) {
 	HttpServer = gin.Default()
 
 	// 捕捉接口运行耗时（必须排第一）
-	HttpServer.Use(Middleware.StatLatency)
+	HttpServer.Use(Middlewares.StatLatency)
 
 	// 设置全局ctx参数（必须排第二）
-	HttpServer.Use(Middleware.AppData)
+	HttpServer.Use(Middlewares.AppData)
 
 	// 拦截应用500报错，使之可视化
-	HttpServer.Use(Middleware.AppError500)
+	HttpServer.Use(Middlewares.AppError500)
 
 	// Gin运行时：release、debug、test
 	gin.SetMode(serverConfig["ENV"])
 
-	// 配置模版视图
-	HttpServer.LoadHTMLGlob(config.GetViewConfig()["View_Pattern"])
-
 	// 注册必要路由，处理默认路由、静态文件路由、404路由等
-	Middleware.RouteMust(HttpServer)
+	routes.RouteMust(HttpServer)
 
 	// 注册其他路由，可以自定义
 	routes.RouterRegister(HttpServer)
 	//Router.Api(HttpServer) // 面向Api
 	//Router.Web(HttpServer) // 面向模版输出
+
+	// 初始化定时器（立即运行定时器）
+	Task.TimeInterval(0, 0, "0")
 
 	// 实际访问网址和端口
 	_host := "127.0.0.1:" + serverConfig["PORT"] // 测试访问IP
@@ -54,10 +55,10 @@ func App(HttpServer *gin.Engine) {
 		" \n " +
 			"访问地址示例：" + host + " >>> \n " +
 			"gl_version：" + glVersion + " \n " +
-			"1) 访问首页（模版输出）：http://" + _host + " \n " +
-			"2) 访问接口（JSON输出）：http://" + _host + "/api?name=gl&id=2021 \n " +
+			"1) 默认接口（JSON输出）：http://" + _host + " \n " +
+			"2) 测试接口（JSON输出）：http://" + _host + "/api?name=gl&id=2021 \n " +
 			"3) 静态文件输出（文件）：http://" + _host + "/favicon.ico \n " +
-			"4) 查看WebSocket连接：http://" + _host + "/web/example/websocket \n " +
+			"4) 查看WebSocket连接：ws://" + _host + "/api/example/socket/ping1 \n " +
 			"")
 
 	err := HttpServer.Run(host)

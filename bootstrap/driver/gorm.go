@@ -38,12 +38,14 @@ func InitGorm() {
 		log.Println("GORM现有数据库连接失败，GORM功能将不可用。。。", sErr)
 		//os.Exit(200)
 	}else {
-		log.Println("GORM现有数据库驱动连接成功 >>> ")
+		log.Println("尝试连接GORM... ")
 	}
 
 	if gErr != nil {
 		log.Println("GORM数据库连接失败。。。", gErr)
 		//os.Exit(200)
+	}else {
+		log.Println("GORM已连接现有数据库驱动 >>> ")
 	}
 
 }

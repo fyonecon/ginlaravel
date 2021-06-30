@@ -7,7 +7,7 @@ FROM golang:latest as builder
 RUN echo "Asia/Shanghai" > /etc/timezone \
  && rm /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 #作者
-MAINTAINER fyonecon "2652335796@qq.com"
+MAINTAINER fyonecon "youcansendmsg@qq.com"
 #设置工作目录（暂时规定最终文件夹名与module名相同）
 WORKDIR $GOPATH/src/ginvel
 #将服务器的go工程代码加入到docker容器中

@@ -26,8 +26,7 @@ require (
 	github.com/robertkrimen/otto v0.0.0-20200922221731-ef014fd054ac
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/shirou/gopsutil v3.21.4+incompatible // indirect
-	github.com/shirou/gopsutil/v3 v3.21.4
+	github.com/shirou/gopsutil/v3 v3.21.5
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/ugorji/go v1.2.5 // indirect
 	github.com/unrolled/secure v1.0.9 // indirect
