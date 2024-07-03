@@ -4,6 +4,8 @@
 ## 版本
 #### v1.9
 
+## ⚠️本项目只在Git-hub、bit-bucket上官更，其他网站上的都是盗版。
+
 ## 简介
 GinLaravel基于Golang框架Gin（Gin学习文档：https://learnku.com/docs/gin-gonic/2019 ）开发，项目结构和项目理念参考Laravel。学习本项目时建议从阅读本项目源码开始，并具备Golang、Gin、go mod、centos+nginx、redis、mysql、加密解密、http、Swagger等必要知识。GinLaravel的构建和运行周期与Beego、Vue、React、Laravel、ThinkPHP、Django等都会有类似的引导思路、参数设置、插件扩展、服务部署、代码统一性、生态护城河等。GinLaravel尽量减少汉字造词、功能造词、贤者造词，不会用描述华丽、中英文混杂的造词方式去包装一个功能平常的老东西（比如 http+header、cookie/localstorage/sqlite+token、加密与解密、数据缓存+队列、负载均衡+docker、内存常驻与微服务、接口安全与前后端分离等）。
 
